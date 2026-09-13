@@ -2626,7 +2626,7 @@ async function renderFinance(root) {
   }
 }
 
-function openTransactionSheet(existing, presetType, presetCycleId, presetAmount, presetNote) {
+function openTransactionSheet(existing, presetType, presetCycleId, presetAmount, presetNote, presetAccountId) {
   const accounts = AccountsService.list();
   const tags = FinanceService.listTags();
   const cyclesEnabled = ModuleManager.isEnabled('cycles');
@@ -2635,6 +2635,7 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
   const cycleId = existing ? existing.cycleId : (presetCycleId || '');
   const amountValue = existing ? existing.amount : (presetAmount !== undefined && presetAmount !== null ? presetAmount : '');
   const noteValue = existing ? existing.note : (presetNote || '');
+  const accountIdValue = existing ? existing.accountId : (presetAccountId || '');
 
   if (!accounts.length) {
     toast('Crea prima un account per registrare un movimento.');
@@ -2654,7 +2655,7 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
     <div class="field">
       <label>Account</label>
       <select id="tx-account">
-        ${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}
+        ${accounts.map(a => `<option value="${a.id}" ${accountIdValue === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}
       </select>
     </div>
     <div class="field">
@@ -3867,25 +3868,41 @@ async function renderGoals(root) {
 
 function openGoalDetail(id) {
   const g = GoalsService.get(id);
+  const linkedAccount = g.accountId ? AccountsService.get(g.accountId) : null;
   const node = openSheet(`
     <div class="sheet-title">${escapeAttr(g.name)}</div>
+    ${linkedAccount ? `
+    <button type="button" id="g-account-link" class="chip" style="margin-bottom:14px">${sectionIcon('accounts')} Collegato a: ${escapeAttr(linkedAccount.name)}</button>
+    ` : ''}
     <div class="field">
       <label>Aggiungi importo</label>
       <div style="display:flex;gap:8px">
         <input id="g-contribute" type="number" step="0.01" min="0" placeholder="0,00" style="flex:1" />
         <button class="btn btn-primary" id="g-add" style="width:auto;padding:0 20px">Aggiungi</button>
       </div>
+      ${linkedAccount ? `<p style="color:var(--text-secondary);font-size:12px;margin-top:8px">Ti proporrò il movimento che sposta davvero questa cifra da "${escapeAttr(linkedAccount.name)}".</p>` : ''}
     </div>
     <button class="btn btn-secondary" id="g-edit" style="margin-top:10px">Modifica obiettivo</button>
     <button class="btn btn-danger" id="g-delete" style="margin-top:10px">Elimina obiettivo</button>
   `);
+
+  node.querySelector('#g-account-link')?.addEventListener('click', () => {
+    closeSheet();
+    openAccountSheet(linkedAccount);
+  });
 
   node.querySelector('#g-add').addEventListener('click', () => {
     const amount = parseFloat(node.querySelector('#g-contribute').value);
     if (!amount || amount <= 0) { toast('Inserisci un importo valido.'); return; }
     GoalsService.contribute(id, amount);
     closeSheet();
-    toast('Obiettivo aggiornato.');
+    if (g.accountId) {
+      // Real link: a contribution actually proposes moving the money out
+      // of the linked account, instead of just bumping a number.
+      openTransactionSheet(null, 'expense', null, amount, `Obiettivo: ${g.name}`, g.accountId);
+    } else {
+      toast('Obiettivo aggiornato.');
+    }
     renderCurrentRoute();
   });
   node.querySelector('#g-edit').addEventListener('click', () => { closeSheet(); openGoalForm(g); });
@@ -3931,6 +3948,11 @@ function openGoalForm(existing) {
       <label>Note (opzionale)</label>
       <textarea id="g-notes">${existing ? escapeAttr(existing.notes) : ''}</textarea>
     </div>
+    ${accounts.length ? `<div class="field">
+      <label>Account collegato (opzionale)</label>
+      <select id="g-account"><option value="">Nessuno</option>${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
+      <p style="color:var(--text-secondary);font-size:12px;margin-top:8px">Se scelto, ogni volta che aggiungi un contributo ti proporrò il movimento che sposta davvero quella cifra da questo account.</p>
+    </div>` : ''}
     <button class="btn btn-primary" id="g-save">Salva</button>
   `);
 
@@ -3954,6 +3976,7 @@ function openGoalForm(existing) {
       currentAmount: parseFloat(node.querySelector('#g-current').value) || 0,
       targetDate: node.querySelector('#g-date').value || null,
       notes: node.querySelector('#g-notes').value.trim(),
+      accountId: node.querySelector('#g-account')?.value || null,
     };
     if (existing) { GoalsService.update(existing.id, payload); toast('Obiettivo aggiornato.'); }
     else { GoalsService.create(payload); toast('Obiettivo creato.'); }
@@ -4418,8 +4441,12 @@ async function renderInvestments(root) {
 
 function openInvestmentDetail(id) {
   const i = InvestmentsService.get(id);
+  const linkedAccount = i.accountId ? AccountsService.get(i.accountId) : null;
   const node = openSheet(`
     <div class="sheet-title">${escapeAttr(i.name)}</div>
+    ${linkedAccount ? `
+    <button type="button" id="i-account-link" class="chip" style="margin-bottom:14px">${sectionIcon('accounts')} Collegato a: ${escapeAttr(linkedAccount.name)}</button>
+    ` : ''}
     <div class="field">
       <label>Aggiorna valore attuale</label>
       <div style="display:flex;gap:8px">
@@ -4431,6 +4458,11 @@ function openInvestmentDetail(id) {
     ${!i.closed ? '<button class="btn btn-secondary" id="i-close" style="margin-top:10px">Segna come chiuso</button>' : ''}
     <button class="btn btn-danger" id="i-delete" style="margin-top:10px">Elimina</button>
   `);
+
+  node.querySelector('#i-account-link')?.addEventListener('click', () => {
+    closeSheet();
+    openAccountSheet(linkedAccount);
+  });
 
   node.querySelector('#i-update').addEventListener('click', () => {
     const val = parseFloat(node.querySelector('#i-value').value);
@@ -4444,7 +4476,13 @@ function openInvestmentDetail(id) {
   node.querySelector('#i-close')?.addEventListener('click', () => {
     InvestmentsService.close(id);
     closeSheet();
-    toast('Investimento chiuso.');
+    if (i.accountId) {
+      // Real link: closing an investment actually proposes moving the
+      // current value back into the account it was funded from.
+      openTransactionSheet(null, 'income', null, i.currentValue, `Chiusura investimento: ${i.name}`, i.accountId);
+    } else {
+      toast('Investimento chiuso.');
+    }
     renderCurrentRoute();
   });
   node.querySelector('#i-delete').addEventListener('click', () => {
@@ -4465,6 +4503,7 @@ function openInvestmentForm(existing) {
     <div class="field"><label>Data inizio</label><input id="i-start" type="date" value="${existing ? existing.startDate : nowISO().slice(0, 10)}" /></div>
     ${accounts.length ? `<div class="field"><label>Account collegato (opzionale)</label>
       <select id="i-account"><option value="">Nessuno</option>${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
+      <p style="color:var(--text-secondary);font-size:12px;margin-top:8px">${existing ? 'Usato per proporre il movimento quando chiudi l\'investimento.' : 'Se scelto, alla creazione ti proporrò di spostare il capitale investito da questo account.'}</p>
     </div>` : ''}
     <div class="field"><label>Note (opzionale)</label><textarea id="i-notes">${existing ? escapeAttr(existing.notes) : ''}</textarea></div>
     <button class="btn btn-primary" id="i-save">Salva</button>
@@ -4474,17 +4513,30 @@ function openInvestmentForm(existing) {
     const name = node.querySelector('#i-name').value.trim();
     const capital = parseFloat(node.querySelector('#i-capital').value);
     if (!name || isNaN(capital) || capital < 0) { toast('Inserisci nome e capitale investito validi.'); return; }
+    const accountId = node.querySelector('#i-account')?.value || null;
     const payload = {
       name,
       capitalInvested: capital,
       currentValue: node.querySelector('#i-current').value,
       startDate: node.querySelector('#i-start').value,
-      accountId: node.querySelector('#i-account')?.value || null,
+      accountId,
       notes: node.querySelector('#i-notes').value.trim(),
     };
-    if (existing) { InvestmentsService.update(existing.id, { ...payload, currentValue: parseFloat(payload.currentValue) || 0 }); toast('Investimento aggiornato.'); }
-    else { InvestmentsService.create(payload); toast('Investimento creato.'); }
-    closeSheet();
+    if (existing) {
+      InvestmentsService.update(existing.id, { ...payload, currentValue: parseFloat(payload.currentValue) || 0 });
+      toast('Investimento aggiornato.');
+      closeSheet();
+    } else {
+      InvestmentsService.create(payload);
+      closeSheet();
+      if (accountId && capital > 0) {
+        // Real link: funding a new investment from an account actually
+        // proposes moving the capital out of that account.
+        openTransactionSheet(null, 'expense', null, capital, `Investimento: ${name}`, accountId);
+      } else {
+        toast('Investimento creato.');
+      }
+    }
     renderCurrentRoute();
   });
 }
