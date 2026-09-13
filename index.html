@@ -539,10 +539,18 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   flex-shrink: 0;
   background: var(--surface-2);
 }
+.row-icon svg { width: 20px; height: 20px; }
+.inline-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.inline-icon svg { width: 100%; height: 100%; display: block; }
+.chev { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.chev svg { width: 100%; height: 100%; display: block; }
 .row-main { flex: 1; min-width: 0; }
 .row-title { font-size: 14px; font-weight: 600; }
 .row-sub { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
 .row-value { font-weight: 700; font-size: 14px; white-space: nowrap; }
+.section-title .st-label { display: inline-flex; align-items: center; gap: 8px; }
+.section-title .st-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; color: var(--primary); flex-shrink: 0; }
+.section-title .st-icon svg { width: 100%; height: 100%; }
 .row-value.income { color: var(--positive); }
 .row-value.expense { color: var(--negative); }
 
@@ -1452,6 +1460,11 @@ const ICONS = {
 
 function icon(name) {
   return ICONS[name] || '';
+}
+
+/** A small icon meant to sit to the left of a section-title label. */
+function sectionIcon(name) {
+  return `<span class="st-icon">${icon(name)}</span>`;
 }
 
 
@@ -2368,7 +2381,7 @@ function getWidgetDefs() {
     cashflow: {
       label: t('cashflow'), moduleKey: null,
       html: () => `
-        <div class="section-title">Cashflow (30 giorni)</div>
+        <div class="section-title"><span class="st-label">${sectionIcon('finance')}Cashflow (30 giorni)</span></div>
         <div class="two-col">
           <div class="card stat-card positive"><div class="k">Entrate</div><div class="v num">${formatMoney(income)}</div></div>
           <div class="card stat-card negative"><div class="k">Uscite</div><div class="v num">${formatMoney(expenses)}</div></div>
@@ -2380,7 +2393,7 @@ function getWidgetDefs() {
         const alerts = BudgetsService.list().map(b => ({ b, s: BudgetsService.status(b.id) })).filter(x => x.s.level === 'danger' || x.s.level === 'over');
         if (!alerts.length) return '';
         return `
-        <div class="section-title"><span>Attenzione ai budget</span></div>
+        <div class="section-title"><span class="st-label">${sectionIcon('budgets')}Attenzione ai budget</span></div>
         ${alerts.map(({ b, s }) => `
           <div class="card" style="margin-bottom:8px;${s.level === 'over' ? 'border-color:var(--negative)' : 'border-color:var(--warning)'}">
             <div style="font-size:13px">${s.level === 'over' ? '🔴' : '⚠️'} <strong>${escapeAttr(b.name)}</strong> — ${s.pct}% di ${formatMoney(b.amount)}</div>
@@ -2390,7 +2403,7 @@ function getWidgetDefs() {
     cycles: {
       label: t('cycles'), moduleKey: 'cycles',
       html: () => `
-        <div class="section-title"><span>${t('cycles')}</span></div>
+        <div class="section-title"><span class="st-label">${sectionIcon('cycles')}${t('cycles')}</span></div>
         <div class="two-col">
           <div class="card stat-card"><div class="k">${t('activeCycles')}</div><div class="v num">${CyclesService.activeCount()}</div></div>
           <div class="card stat-card"><div class="k">${t('lockedCapital')}</div><div class="v num">${formatMoney(CyclesService.totalLockedCapital())}</div></div>
@@ -2402,7 +2415,7 @@ function getWidgetDefs() {
         const accounts = AccountsService.list();
         return `
         <div class="section-title">
-          <span>${t('accounts')}</span>
+          <span class="st-label">${sectionIcon('accounts')}${t('accounts')}</span>
           <button class="btn-ghost" data-nav="accounts" style="font-size:12px;font-weight:700;color:var(--primary)">Vedi tutti</button>
         </div>
         <div class="card">
@@ -2423,7 +2436,7 @@ function getWidgetDefs() {
         const tags = FinanceService.listTags();
         return `
         <div class="section-title">
-          <span>Movimenti recenti</span>
+          <span class="st-label">${sectionIcon('finance')}Movimenti recenti</span>
           <button class="btn-ghost" data-nav="finance" style="font-size:12px;font-weight:700;color:var(--primary)">Vedi tutti</button>
         </div>
         <div class="card">
@@ -2451,7 +2464,7 @@ function getWidgetDefs() {
         if (!top.length) return '';
         return `
         <div class="section-title">
-          <span>${t('insights')}</span>
+          <span class="st-label">${sectionIcon('insights')}${t('insights')}</span>
           <button class="btn-ghost" data-nav="insights" style="font-size:12px;font-weight:700;color:var(--primary)">Vedi tutti</button>
         </div>
         ${top.map(ins => `
@@ -2546,7 +2559,7 @@ async function renderFinance(root) {
     <div class="field" style="margin-bottom:12px">
       <div style="position:relative">
         <input id="search" placeholder="Cerca movimenti..." value="${state.query}" style="padding-left:40px" />
-        <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-secondary)">${icon('search')}</span>
+        <span class="inline-icon" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-secondary)">${icon('search')}</span>
       </div>
     </div>
 
@@ -2613,13 +2626,15 @@ async function renderFinance(root) {
   }
 }
 
-function openTransactionSheet(existing, presetType, presetCycleId) {
+function openTransactionSheet(existing, presetType, presetCycleId, presetAmount, presetNote) {
   const accounts = AccountsService.list();
   const tags = FinanceService.listTags();
   const cyclesEnabled = ModuleManager.isEnabled('cycles');
   const cycles = cyclesEnabled ? CyclesService.list().filter(c => c.status !== 'COMPLETED' && c.status !== 'CANCELLED' || c.id === existing?.cycleId) : [];
   const type = existing?.type || presetType || 'expense';
   const cycleId = existing ? existing.cycleId : (presetCycleId || '');
+  const amountValue = existing ? existing.amount : (presetAmount !== undefined && presetAmount !== null ? presetAmount : '');
+  const noteValue = existing ? existing.note : (presetNote || '');
 
   if (!accounts.length) {
     toast('Crea prima un account per registrare un movimento.');
@@ -2634,7 +2649,7 @@ function openTransactionSheet(existing, presetType, presetCycleId) {
     </div>
     <div class="field">
       <label>Importo</label>
-      <input id="tx-amount" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0,00" value="${existing ? existing.amount : ''}" />
+      <input id="tx-amount" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0,00" value="${amountValue}" />
     </div>
     <div class="field">
       <label>Account</label>
@@ -2660,7 +2675,7 @@ function openTransactionSheet(existing, presetType, presetCycleId) {
     </div>` : ''}
     <div class="field">
       <label>Nota (opzionale)</label>
-      <input id="tx-note" placeholder="Descrizione" value="${existing ? escapeAttr(existing.note) : ''}" />
+      <input id="tx-note" placeholder="Descrizione" value="${escapeAttr(noteValue)}" />
     </div>
     <button class="btn btn-primary" id="tx-save">Salva</button>
     ${existing ? '<button class="btn btn-danger" id="tx-delete" style="margin-top:10px">Elimina</button>' : ''}
@@ -2754,7 +2769,7 @@ async function renderAccounts(root) {
 
   root.innerHTML = `
     <div class="section-title">
-      <span>I tuoi account</span>
+      <span class="st-label">${sectionIcon('accounts')}I tuoi account</span>
     </div>
     <div class="card" id="acc-list" style="padding:8px var(--space-5)"></div>
 
@@ -3078,10 +3093,10 @@ async function renderSettings(root) {
     <div class="section-title">Dati</div>
     <div class="card">
       <button class="settings-row" id="export-btn" style="width:100%;text-align:left;background:none">
-        <div style="display:flex;align-items:center;gap:12px"><span style="width:20px;height:20px;color:var(--primary)">${icon('download')}</span><div class="row-title">Esporta backup (JSON)</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--primary)">${icon('download')}</span><div class="row-title">Esporta backup (JSON)</div></div>
       </button>
       <label class="settings-row" style="width:100%;cursor:pointer">
-        <div style="display:flex;align-items:center;gap:12px"><span style="width:20px;height:20px;color:var(--primary)">${icon('upload')}</span><div class="row-title">Importa backup</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--primary)">${icon('upload')}</span><div class="row-title">Importa backup</div></div>
         <input type="file" id="import-file" accept="application/json" style="display:none" />
       </label>
       <button class="settings-row" id="csv-transactions" style="width:100%;text-align:left;background:none">
@@ -3092,7 +3107,7 @@ async function renderSettings(root) {
       </button>
       ${ModuleManager.isEnabled('cycles') ? `<button class="settings-row" id="csv-cycles" style="width:100%;text-align:left;background:none"><div class="row-title">Esporta cicli (CSV)</div></button>` : ''}
       <button class="settings-row" id="reset-btn" style="width:100%;text-align:left;background:none">
-        <div style="display:flex;align-items:center;gap:12px"><span style="width:20px;height:20px;color:var(--negative)">${icon('trash')}</span><div class="row-title" style="color:var(--negative)">Azzera tutti i dati</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--negative)">${icon('trash')}</span><div class="row-title" style="color:var(--negative)">Azzera tutti i dati</div></div>
       </button>
     </div>
 
@@ -3404,7 +3419,7 @@ async function renderCycles(root) {
     </div>
 
     <div class="section-title">
-      <span>${t('cycles')}</span>
+      <span class="st-label">${sectionIcon('cycles')}${t('cycles')}</span>
       <button class="btn-ghost" id="new-cycle" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="cycle-list"></div>
@@ -3532,6 +3547,11 @@ function openCycleDetail(id) {
     <div class="section-title" style="margin-top:0">Movimenti collegati</div>
     <div class="card" id="cycle-tx-list" style="padding:4px var(--space-5);margin-bottom:16px"></div>
 
+    ${ModuleManager.isEnabled('inventory') ? `
+    <div class="section-title" style="margin-top:0">Prodotti collegati</div>
+    <div class="card" id="cycle-inv-list" style="padding:4px var(--space-5);margin-bottom:16px"></div>
+    ` : ''}
+
     <button class="btn btn-secondary" id="edit-cycle" style="margin-bottom:10px">${'Modifica dettagli'}</button>
     <button class="btn btn-danger" id="delete-cycle">Elimina ciclo</button>
   `);
@@ -3549,6 +3569,27 @@ function openCycleDetail(id) {
         </div>
       `));
     });
+  }
+
+  const invList = node.querySelector('#cycle-inv-list');
+  if (invList) {
+    const linkedItems = InventoryService.list().filter(item => item.cycleId === id);
+    if (!linkedItems.length) {
+      invList.appendChild(el(`<div class="empty-state" style="padding:20px 0"><p>Nessun prodotto d'inventario collegato a questo ciclo.</p></div>`));
+    } else {
+      linkedItems.forEach(item => {
+        const im = InventoryService.metrics(item.id);
+        const row = el(`
+          <div class="list-row" style="cursor:pointer">
+            <div class="row-icon">${icon('inventory')}</div>
+            <div class="row-main"><div class="row-title">${escapeAttr(item.name)}</div><div class="row-sub">${im.available} disponibili · ${item.quantitySold} venduti</div></div>
+            <div class="row-value num">${formatMoney(im.inventoryValue)}</div>
+          </div>
+        `);
+        row.addEventListener('click', () => { closeSheet(); openItemDetail(item.id); });
+        invList.appendChild(row);
+      });
+    }
   }
 
   node.querySelectorAll('#status-picker button').forEach(btn => {
@@ -3596,7 +3637,7 @@ async function renderBudgets(root) {
 
   root.innerHTML = `
     <div class="section-title">
-      <span>${t('budgets')}</span>
+      <span class="st-label">${sectionIcon('budgets')}${t('budgets')}</span>
       <button class="btn-ghost" id="new-budget" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="budget-list"></div>
@@ -3784,7 +3825,7 @@ async function renderGoals(root) {
 
   root.innerHTML = `
     <div class="section-title">
-      <span>${t('goals')}</span>
+      <span class="st-label">${sectionIcon('goals')}${t('goals')}</span>
       <button class="btn-ghost" id="new-goal" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="goal-list"></div>
@@ -3931,7 +3972,7 @@ async function renderRecurrences(root) {
 
   root.innerHTML = `
     <div class="section-title">
-      <span>${t('recurrences')}</span>
+      <span class="st-label">${sectionIcon('recurrences')}${t('recurrences')}</span>
       <button class="btn-ghost" id="new-rec" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuova</button>
     </div>
     <div class="card" id="rec-list" style="padding:8px var(--space-5)"></div>
@@ -4131,7 +4172,7 @@ async function renderInventory(root) {
       <div class="v num">${formatMoney(totalValue)}</div>
     </div>
     <div class="section-title">
-      <span>${t('inventory')}</span>
+      <span class="st-label">${sectionIcon('inventory')}${t('inventory')}</span>
       <button class="btn-ghost" id="new-item" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="item-list"></div>
@@ -4168,8 +4209,12 @@ async function renderInventory(root) {
 function openItemDetail(id) {
   const i = InventoryService.get(id);
   const m = InventoryService.metrics(id);
+  const linkedCycle = i.cycleId ? CyclesService.get(i.cycleId) : null;
   const node = openSheet(`
     <div class="sheet-title">${escapeAttr(i.name)}</div>
+    ${linkedCycle ? `
+    <button type="button" id="i-cycle-link" class="chip" style="margin-bottom:14px">${sectionIcon('cycles')} Collegato a: ${escapeAttr(linkedCycle.name)}</button>
+    ` : ''}
     <div class="two-col" style="grid-template-columns:1fr 1fr;margin-bottom:16px">
       <div class="stat-card card"><div class="k">Disponibili</div><div class="v num">${m.available} / ${i.quantityPurchased}</div></div>
       <div class="stat-card card"><div class="k">Venduti</div><div class="v num">${i.quantitySold}</div></div>
@@ -4183,17 +4228,29 @@ function openItemDetail(id) {
         <input id="i-sell-qty" type="number" min="1" max="${m.available}" value="1" style="flex:1" />
         <button class="btn btn-primary" id="i-sell" style="width:auto;padding:0 20px">Vendi</button>
       </div>
+      ${linkedCycle ? `<p style="color:var(--text-secondary);font-size:12px;margin-top:8px">Il ricavo verrà proposto come entrata già collegata al ciclo "${escapeAttr(linkedCycle.name)}": dovrai solo scegliere l'account e confermare.</p>` : ''}
     </div>` : `<p style="color:var(--text-secondary);font-size:13px;margin-bottom:16px">Tutte le unità sono state vendute.</p>`}
     <button class="btn btn-secondary" id="i-edit" style="margin-top:6px">Modifica prodotto</button>
     <button class="btn btn-danger" id="i-delete" style="margin-top:10px">Elimina prodotto</button>
   `);
+
+  node.querySelector('#i-cycle-link')?.addEventListener('click', () => {
+    closeSheet();
+    openCycleDetail(i.cycleId);
+  });
 
   node.querySelector('#i-sell')?.addEventListener('click', () => {
     const qty = parseInt(node.querySelector('#i-sell-qty').value) || 0;
     if (qty <= 0 || qty > m.available) { toast('Quantità non valida.'); return; }
     InventoryService.registerSale(id, qty);
     closeSheet();
-    toast(`Registrata vendita di ${qty} unità (ricavo potenziale ${formatMoney(qty * i.salePrice)} — registra il ricavo effettivo in Finanze).`);
+    if (i.cycleId) {
+      // The sale is genuinely tied to the cycle: prefill a linked income
+      // transaction instead of just telling the user to add it manually.
+      openTransactionSheet(null, 'income', i.cycleId, qty * i.salePrice, i.name);
+    } else {
+      toast(`Registrata vendita di ${qty} unità (ricavo potenziale ${formatMoney(qty * i.salePrice)}). Aggiungi l'entrata in Finanze quando la incassi.`);
+    }
     renderCurrentRoute();
   });
   node.querySelector('#i-edit').addEventListener('click', () => { closeSheet(); openItemForm(i); });
@@ -4255,7 +4312,7 @@ async function renderInsights(root) {
   const insights = InsightsService.generate();
 
   root.innerHTML = `
-    <div class="section-title"><span>${t('insights')}</span></div>
+    <div class="section-title"><span class="st-label">${sectionIcon('insights')}${t('insights')}</span></div>
     <p style="color:var(--text-secondary);font-size:13px;line-height:1.5;margin-bottom:16px">
       Generati localmente dai tuoi dati, nessuna connessione esterna.
     </p>
@@ -4281,7 +4338,7 @@ async function renderMore(root) {
   const extra = ModuleManager.getExtraNavModules();
 
   root.innerHTML = `
-    <div class="section-title">Altro</div>
+    <div class="section-title"><span class="st-label">${sectionIcon('more')}Altro</span></div>
     <div class="card" id="more-list" style="padding:4px var(--space-5)"></div>
   `;
 
@@ -4325,7 +4382,7 @@ async function renderInvestments(root) {
     </div>
 
     <div class="section-title">
-      <span>${t('investments')}</span>
+      <span class="st-label">${sectionIcon('investments')}${t('investments')}</span>
       <button class="btn-ghost" id="new-inv" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="inv-list"></div>
@@ -4616,7 +4673,7 @@ async function renderForecasts(root) {
   const hasUpside = ForecastsService.estimatedUpside() > 0;
 
   root.innerHTML = `
-    <div class="section-title"><span>${t('forecasts')}</span></div>
+    <div class="section-title"><span class="st-label">${sectionIcon('forecasts')}${t('forecasts')}</span></div>
     <p style="color:var(--text-secondary);font-size:13px;line-height:1.5;margin-bottom:16px">
       Proiezione basata su saldo attuale e ricorrenze attive.${hasUpside ? ' La stima include anche i ricavi attesi dai cicli aperti.' : ''}
     </p>
@@ -4687,20 +4744,20 @@ function runSearch(query, node) {
     return;
   }
 
-  if (r.accounts.length) node.appendChild(section(t('accounts'), r.accounts.map(a => row('🏦', a.name, '', () => navigate('accounts')))));
+  if (r.accounts.length) node.appendChild(section(t('accounts'), r.accounts.map(a => row('🏦', a.name, '', () => navigate('accounts'))), 'accounts'));
   if (r.transactions.length) node.appendChild(section('Movimenti', r.transactions.map(tx => {
     const acc = AccountsService.get(tx.accountId);
     return row(tx.type === 'income' ? '⬆️' : '⬇️', tx.note || (tx.type === 'income' ? t('income') : t('expense')), `${acc?.name || ''} · ${formatDate(tx.date)} · ${formatMoney(tx.amount)}`, () => navigate('finance'));
-  })));
+  }), 'finance'));
   if (r.tags.length) node.appendChild(section('Tag', r.tags.map(tg => row(tg.icon, tg.name, '', () => navigate('finance')))));
-  if (r.cycles.length) node.appendChild(section(t('cycles'), r.cycles.map(c => row('🔄', c.name, c.platform || '', () => navigate('cycles')))));
-  if (r.inventory.length) node.appendChild(section(t('inventory'), r.inventory.map(i => row('📦', i.name, i.category || '', () => navigate('inventory')))));
-  if (r.goals.length) node.appendChild(section(t('goals'), r.goals.map(g => row(g.icon, g.name, '', () => navigate('goals')))));
+  if (r.cycles.length) node.appendChild(section(t('cycles'), r.cycles.map(c => row('🔄', c.name, c.platform || '', () => navigate('cycles'))), 'cycles'));
+  if (r.inventory.length) node.appendChild(section(t('inventory'), r.inventory.map(i => row('📦', i.name, i.category || '', () => navigate('inventory'))), 'inventory'));
+  if (r.goals.length) node.appendChild(section(t('goals'), r.goals.map(g => row(g.icon, g.name, '', () => navigate('goals'))), 'goals'));
 }
 
-function section(title, rows) {
+function section(title, rows, iconKey) {
   const wrap = el(`<div style="margin-bottom:16px"></div>`);
-  wrap.appendChild(el(`<div class="section-title" style="margin-top:0">${title}</div>`));
+  wrap.appendChild(el(`<div class="section-title" style="margin-top:0"><span class="st-label">${iconKey ? sectionIcon(iconKey) : ''}${title}</span></div>`));
   const card = el(`<div class="card" style="padding:4px var(--space-5)"></div>`);
   rows.forEach(r => card.appendChild(r));
   wrap.appendChild(card);
