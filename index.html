@@ -30,7 +30,6 @@
   --negative: #FF6B6B;
   --warning: #F5B942;
   --border: #262B35;
-
   /* Density / shape — adjustable via presets */
   --radius-s: 8px;
   --radius-m: 14px;
@@ -43,24 +42,19 @@
   --space-6: 32px;
   --font-size-base: 15px;
   --font-scale: 1;
-
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-
   --nav-height: 64px;
   --header-height: 56px;
   --ambient-opacity: 1;
-
   --shadow-sm: 0 1px 2px rgba(0,0,0,.24);
   --shadow-md: 0 10px 24px -12px rgba(0,0,0,.55), 0 2px 6px -1px rgba(0,0,0,.35);
   --shadow-lg: 0 24px 48px -20px rgba(0,0,0,.6), 0 8px 16px -6px rgba(0,0,0,.4);
   --shadow-glow: 0 0 0 1px rgba(var(--primary-rgb), .12), 0 16px 40px -18px rgba(var(--primary-rgb), .35);
   --ease-spring: cubic-bezier(.22, 1, .36, 1);
 }
-
 @keyframes viewEnter {
   from { opacity: 0; transform: translateY(10px) scale(.995); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -95,7 +89,6 @@
   from { opacity: 0; transform: scale(.92); }
   to   { opacity: 1; transform: scale(1); }
 }
-
 [data-theme="light"] {
   --background: #F5F4F1;
   --surface: #FFFFFF;
@@ -104,7 +97,6 @@
   --text-secondary: #6B7280;
   --border: #E3E1DB;
 }
-
 /* Density presets */
 [data-density="compact"] {
   --space-3: 8px;
@@ -118,7 +110,6 @@
   --space-4: 22px;
   --space-5: 30px;
 }
-
 /* Style presets: minimal/classic drop shadows and glam entirely, compact keeps
    only a whisper of it, premium gets the full treatment. Radius/typography/
    ambient intensity are set inline via applyTheme(); this block reacts to them. */
@@ -138,7 +129,6 @@
 [data-shadows="low"] .card::before { box-shadow: none; }
 [data-shadows="none"] .card::before { display: none; }
 [data-shadows="none"] .btn-primary { box-shadow: none; }
-
 [data-preset="minimal"] .hero-metric,
 [data-preset="classic"] .hero-metric { box-shadow: none; }
 [data-preset="minimal"] .hero-metric .value,
@@ -150,18 +140,14 @@
 [data-preset="minimal"] .hero-metric::after,
 [data-preset="classic"] .hero-metric::after,
 [data-preset="compact"] .hero-metric::after { content: none; }
-
 [data-preset="minimal"] .fab::before,
 [data-preset="classic"] .fab::before { display: none; }
 [data-preset="compact"] .fab::before { opacity: .2; }
-
 [data-preset="classic"] .sheet { border-radius: var(--radius-l) var(--radius-l) 0 0; }
 [data-preset="classic"] .segmented button.active { box-shadow: none; border: 1px solid var(--border); }
 [data-preset="classic"] .section-title { text-transform: uppercase; letter-spacing: .06em; }
-
 [data-preset="compact"] .empty-state .glyph { animation: none; }
 [data-preset="compact"] .empty-state { padding: var(--space-4) var(--space-4); }
-
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
@@ -173,7 +159,6 @@ body {
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
 }
-
 /* Ambient backdrop: slow-drifting aurora glow + a faint field of stars.
    Real DOM nodes (not ::before/::after) so JS can force-restart them after
    the tab/app comes back from background — pseudo-element animations are
@@ -222,21 +207,21 @@ body {
 [data-theme="light"] .bg-stars { opacity: calc(var(--ambient-opacity, 1) * .12); }
 h1, h2, h3, h4, p, figure { margin: 0; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
-button { font-family: inherit; border: none; background: none; color: inherit; cursor: pointer; padding: 0; }
+button { font-family: inherit; border: none; background: none; color: inherit;
+cursor: pointer; padding: 0; }
 input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 button:focus-visible, [tabindex]:focus-visible { border-radius: var(--radius-s); }
-
 .num {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1;
 }
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-  .bg-aurora-a, .bg-aurora-b, .bg-stars, .fab::before, .empty-state .glyph { animation: none !important; }
+  .bg-aurora-a, .bg-aurora-b, .bg-stars, .fab::before, .empty-state .glyph {
+animation: none !important; }
 }
 #app {
   min-height: 100vh;
@@ -244,7 +229,6 @@ button:focus-visible, [tabindex]:focus-visible { border-radius: var(--radius-s);
   display: flex;
   flex-direction: column;
 }
-
 .app-header {
   position: sticky;
   top: 0;
@@ -258,15 +242,19 @@ button:focus-visible, [tabindex]:focus-visible { border-radius: var(--radius-s);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
-
 .app-header h1 {
   font-family: var(--font-display);
   font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
-
 .header-actions { display: flex; align-items: center; gap: var(--space-2); }
+.icon-btn svg { width: 20px; height: 20px; }
+.ana-bar { display:flex; align-items:center; gap:10px; margin-bottom:8px; cursor:pointer; font-size:12px; }
+.ana-bar .track { flex:1; height:8px; border-radius:999px; background:var(--surface-2); overflow:hidden; }
+.ana-bar .track i { display:block; height:100%; border-radius:999px; }
+.ana-legend { display:flex; align-items:center; gap:8px; padding:7px 0; cursor:pointer; font-size:13px; }
+.ana-legend .sw { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
 
 .icon-btn {
   width: 38px; height: 38px;
@@ -278,7 +266,6 @@ button:focus-visible, [tabindex]:focus-visible { border-radius: var(--radius-s);
   transition: transform .15s var(--ease-spring), background .15s ease;
 }
 .icon-btn:active { transform: scale(0.92); }
-
 main.view {
   flex: 1;
   padding: var(--space-4) var(--space-4) calc(var(--nav-height) + var(--safe-bottom) + var(--space-6));
@@ -287,7 +274,6 @@ main.view {
   margin: 0 auto;
 }
 main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
-
 .bottom-nav {
   position: fixed;
   bottom: 0; left: 0; right: 0;
@@ -298,7 +284,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   border-top: 1px solid var(--border);
   padding-bottom: var(--safe-bottom);
 }
-
 .nav-item {
   flex: 1;
   display: flex;
@@ -317,7 +302,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .nav-item.active { color: var(--primary); }
 .nav-item.active svg { transform: translateY(-1px) scale(1.08); }
 .nav-item:active svg { transform: scale(.88); }
-
 .fab {
   position: fixed;
   right: var(--space-5);
@@ -345,7 +329,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .fab.open { transform: rotate(45deg) scale(1.04); }
 .fab:active { transform: scale(.92); }
 .fab.open:active { transform: rotate(45deg) scale(.96); }
-
 .fab-menu {
   position: fixed;
   right: var(--space-5);
@@ -356,7 +339,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   align-items: flex-end;
   gap: var(--space-3);
 }
-
 .fab-menu-item {
   display: flex;
   align-items: center;
@@ -387,7 +369,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   display: flex; align-items: center; justify-content: center;
 }
 .fab-menu-item .dot svg { width: 20px; height: 20px; }
-
 .overlay-scrim {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.5);
@@ -398,7 +379,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   transition: opacity .22s ease;
 }
 .overlay-scrim.visible { opacity: 1; pointer-events: auto; }
-
 .sheet {
   position: fixed;
   left: 0; right: 0; bottom: 0;
@@ -414,21 +394,18 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   box-shadow: var(--shadow-lg);
 }
 .sheet.visible { transform: translateY(0); }
-
 .sheet-handle {
   width: 36px; height: 4px;
   border-radius: 2px;
   background: var(--border);
   margin: 0 auto var(--space-4);
 }
-
 .sheet-title {
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
   margin-bottom: var(--space-4);
 }
-
 @media (min-width: 900px) {
   .app-header, main.view { max-width: 880px; }
   .bottom-nav {
@@ -466,8 +443,8 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 @media (hover: hover) {
   a[style*="cursor:pointer"]:hover, .card[style*="cursor:pointer"]:hover { box-shadow: var(--shadow-lg); }
 }
-.card[style*="cursor:pointer"]:active, .list-row[style*="cursor:pointer"]:active { transform: scale(.985); }
-
+.card[style*="cursor:pointer"]:active, .list-row[style*="cursor:pointer"]:active {
+transform: scale(.985); }
 .section-title {
   font-family: var(--font-display);
   font-size: 13px;
@@ -479,7 +456,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   justify-content: space-between;
 }
 .section-title:first-child { margin-top: 0; }
-
 /* Net worth hero */
 .hero-metric { position: relative; margin-bottom: var(--space-5); overflow: hidden; box-shadow: var(--shadow-glow); }
 .hero-metric .label { color: var(--text-secondary); font-size: 13px; font-weight: 600; }
@@ -512,14 +488,11 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 }
 .hero-breakdown div .k { font-size: 12px; color: var(--text-secondary); }
 .hero-breakdown div .v { font-size: 15px; font-weight: 700; margin-top: 2px; }
-
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-
 .stat-card .k { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
 .stat-card .v { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-top: var(--space-1); }
 .stat-card.positive .v { color: var(--positive); }
 .stat-card.negative .v { color: var(--negative); }
-
 .list-row {
   display: flex;
   align-items: center;
@@ -530,7 +503,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 }
 .list-row:last-child { border-bottom: none; }
 .list-row[style*="cursor:pointer"]:active { opacity: .7; }
-
 .row-icon {
   width: 40px; height: 40px;
   border-radius: 12px;
@@ -540,7 +512,8 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   background: var(--surface-2);
 }
 .row-icon svg { width: 20px; height: 20px; }
-.inline-icon { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.inline-icon { display: inline-flex; align-items: center; justify-content: center;
+flex-shrink: 0; }
 .inline-icon svg { width: 100%; height: 100%; display: block; }
 .chev { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .chev svg { width: 100%; height: 100%; display: block; }
@@ -549,11 +522,11 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .row-sub { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
 .row-value { font-weight: 700; font-size: 14px; white-space: nowrap; }
 .section-title .st-label { display: inline-flex; align-items: center; gap: 8px; }
-.section-title .st-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; color: var(--primary); flex-shrink: 0; }
+.section-title .st-icon { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; color: var(--primary); flex-shrink: 0;
+}
 .section-title .st-icon svg { width: 100%; height: 100%; }
 .row-value.income { color: var(--positive); }
 .row-value.expense { color: var(--negative); }
-
 .empty-state {
   text-align: center;
   padding: var(--space-6) var(--space-4);
@@ -566,7 +539,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   animation: floatGlyph 3.6s ease-in-out infinite;
 }
 .empty-state p { font-size: 13px; line-height: 1.5; }
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -584,7 +556,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .btn-ghost { color: var(--text-secondary); }
 .btn { transition: transform .16s var(--ease-spring), box-shadow .16s ease, opacity .16s ease; }
 .btn:active { transform: scale(0.97); opacity: .92; }
-
 .field { margin-bottom: var(--space-4); }
 .field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: var(--space-2); }
 .field input, .field select, .field textarea {
@@ -596,7 +567,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   font-size: 15px;
 }
 .field textarea { resize: vertical; min-height: 64px; }
-
 .segmented {
   display: flex;
   background: var(--surface-2);
@@ -616,7 +586,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 }
 .segmented button { transition: background .18s var(--ease-spring), color .18s ease, box-shadow .18s ease; }
 .segmented button.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 0 rgba(0,0,0,0.2); }
-
 .chip-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .chip {
   padding: 8px 13px;
@@ -632,7 +601,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .chip { transition: background .16s ease, border-color .16s ease, color .16s ease, transform .12s var(--ease-spring); }
 .chip:active { transform: scale(.95); }
 .chip.active { background: rgba(var(--primary-rgb), 0.15); border-color: var(--primary); color: var(--primary); }
-
 .toggle {
   width: 46px; height: 28px;
   border-radius: 999px;
@@ -653,7 +621,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .toggle.on { background: rgba(var(--primary-rgb), 0.2); border-color: var(--primary); }
 .toggle.on .dot { left: 21px; background: var(--primary); box-shadow: 0 0 0 4px rgba(var(--primary-rgb), .18); }
 .toggle:active .dot { width: 23px; }
-
 .settings-row {
   display: flex;
   align-items: center;
@@ -666,7 +633,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .settings-row .row-title { font-size: 14px; }
 .settings-row .row-desc { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
 .settings-row .chev { color: var(--text-secondary); }
-
 .swatch-row { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 .swatch {
   width: 40px; height: 40px;
@@ -676,7 +642,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 }
 .swatch.active { border-color: var(--text); transform: scale(1.08); box-shadow: var(--shadow-sm); }
 .swatch:active { transform: scale(.9); }
-
 .toast {
   position: fixed;
   bottom: calc(var(--nav-height) + var(--safe-bottom) + var(--space-4));
@@ -695,7 +660,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   transition: opacity .22s var(--ease-spring), transform .22s var(--ease-spring);
 }
 .toast.visible { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-
 .onboard-option {
   display: flex;
   align-items: center;
@@ -709,7 +673,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
 .onboard-option .glyph { font-size: 22px; }
 .onboard-option .t { font-weight: 700; font-size: 14px; }
 .onboard-option .d { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
-
 .progress-bar {
   height: 8px;
   border-radius: 999px;
@@ -722,7 +685,6 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   .hero-metric .value { font-size: 46px; }
   .two-col { grid-template-columns: repeat(3, 1fr); }
 }
-
 @media (min-width: 900px) {
   .sheet {
     left: 50%;
@@ -736,11 +698,9 @@ main.view.route-enter { animation: viewEnter .32s var(--ease-spring); }
   }
   .sheet.visible { transform: translate(-50%, 0); opacity: 1; }
 }
-
 @media (max-width: 380px) {
   .hero-metric .value { font-size: 32px; }
 }
-
 /* ---- Zoom disabilitato completamente + hardening mobile ---- */
 html {
   touch-action: manipulation;
@@ -760,24 +720,19 @@ input, select, textarea, button {
 }
 .field input, .field select, .field textarea { font-size: 16px; }
 img, svg { touch-action: pan-y; }
-
 </style>
 </head>
 <body>
-
 <div class="bg-aurora-a" aria-hidden="true"></div>
 <div class="bg-aurora-b" aria-hidden="true"></div>
 <div class="bg-stars" aria-hidden="true"></div>
-
 <div id="onboarding-root" style="display:none;min-height:100dvh;align-items:center;justify-content:center;padding:32px 24px;"></div>
 <div id="lock-root" style="display:none;position:fixed;inset:0;z-index:100;background:var(--background);align-items:center;justify-content:center;padding:32px 24px;"></div>
-
 <div id="app">
   <nav class="bottom-nav" id="bottom-nav"></nav>
-
   <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
     <header class="app-header">
-      <h1 id="app-name">Finance Hub</h1>
+      <div style="display:flex;align-items:center;gap:10px;min-width:0"><button class="icon-btn" id="header-back-btn" style="display:none" aria-label="Indietro"></button><h1 id="app-name">Finance Hub</h1></div>
       <div class="header-actions">
         <button class="icon-btn" id="header-search-btn" aria-label="Cerca">🔍</button>
         <button class="icon-btn" id="header-settings-btn" aria-label="Impostazioni">⚙️</button>
@@ -785,11 +740,8 @@ img, svg { touch-action: pan-y; }
     </header>
     <main class="view" id="view-root"></main>
   </div>
-
   <div id="fab-container"></div>
 </div>
-
-
 <script>
 // Blocco totale dello zoom: pinch-to-zoom (gesture Safari) e doppio tap.
 document.addEventListener('gesturestart', e => e.preventDefault());
@@ -803,17 +755,13 @@ document.addEventListener('touchend', e => {
   __lastTouchEnd = now;
 }, { passive: false });
 </script>
-
 <script>
-
 // ---- storage/storage.js ----
 // Storage Layer — abstracts persistence so the rest of the app never touches
 // localStorage directly. Swapping to IndexedDB later only means rewriting
 // this file's internals; every caller keeps working.
-
 const DB_KEY = 'financehub:data';
 const DB_VERSION = 1;
-
 function safeParse(raw, fallback) {
   if (!raw) return fallback;
   try {
@@ -823,14 +771,12 @@ function safeParse(raw, fallback) {
     return fallback;
   }
 }
-
 const Storage = {
   /** Read the whole app data object. Returns null if nothing stored yet. */
   get() {
     const raw = localStorage.getItem(DB_KEY);
     return safeParse(raw, null);
   },
-
   /** Overwrite the whole app data object. */
   set(data) {
     try {
@@ -841,7 +787,6 @@ const Storage = {
       return false;
     }
   },
-
   /** Functional partial update: update(draft => { draft.settings.x = 1 }) */
   update(mutator) {
     const data = this.get();
@@ -851,17 +796,14 @@ const Storage = {
     this.set(data);
     return data;
   },
-
   remove() {
     localStorage.removeItem(DB_KEY);
   },
-
   /** Full JSON backup, ready to download. */
   backup() {
     const data = this.get();
     return JSON.stringify({ dbVersion: DB_VERSION, exportedAt: new Date().toISOString(), data }, null, 2);
   },
-
   /** Restore from a backup JSON string. mode: 'replace' | 'merge' */
   restore(jsonString, mode = 'replace') {
     let parsed;
@@ -896,26 +838,20 @@ const Storage = {
     return { ok: true };
   },
 };
-
-
 // ---- core/utils.js ----
 function uid() {
   if (crypto?.randomUUID) return crypto.randomUUID();
   return 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
 }
-
 function nowISO() {
   return new Date().toISOString();
 }
-
 let currencyCode = 'EUR';
 let localeCode = 'it-IT';
-
 function configureFormat(currency, locale) {
   currencyCode = currency || 'EUR';
   localeCode = locale || 'it-IT';
 }
-
 function formatMoney(amount, opts = {}) {
   const n = Number(amount) || 0;
   const formatter = new Intl.NumberFormat(localeCode, {
@@ -926,7 +862,6 @@ function formatMoney(amount, opts = {}) {
   });
   return formatter.format(n);
 }
-
 function formatDate(iso, opts = {}) {
   if (!iso) return '';
   const d = new Date(iso);
@@ -935,12 +870,10 @@ function formatDate(iso, opts = {}) {
     : { day: '2-digit', month: 'short' }
   ).format(d);
 }
-
 function daysBetween(a, b) {
   const ms = new Date(b) - new Date(a);
   return Math.max(0, Math.round(ms / 86400000));
 }
-
 function debounce(fn, wait = 250) {
   let t;
   return (...args) => {
@@ -948,19 +881,16 @@ function debounce(fn, wait = 250) {
     t = setTimeout(() => fn(...args), wait);
   };
 }
-
 function escapeHtml(str) {
   return String(str ?? '').replace(/[&<>"']/g, c => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[c]));
 }
-
 function el(html) {
   const t = document.createElement('template');
   t.innerHTML = html.trim();
   return t.content.firstElementChild;
 }
-
 /**
  * Mobile browsers frequently freeze CSS animations on fixed, off-screen-ish
  * decorative elements after the tab/app is backgrounded and resumed (a known
@@ -976,8 +906,8 @@ function restartAmbientAnimations() {
     });
   });
 }
-
-/** Animates a number element from 0 to `target`, formatting each frame with `formatter`. */
+/** Animates a number element from 0 to `target`, formatting each frame with
+`formatter`. */
 function animateCountUp(node, target, formatter = (n) => formatMoney(n), duration = 900) {
   if (!node) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -995,7 +925,6 @@ function animateCountUp(node, target, formatter = (n) => formatMoney(n), duratio
   }
   requestAnimationFrame(frame);
 }
-
 function toast(message) {
   let node = document.getElementById('toast');
   if (!node) {
@@ -1009,8 +938,6 @@ function toast(message) {
   clearTimeout(node._t);
   node._t = setTimeout(() => node.classList.remove('visible'), 2200);
 }
-
-
 // ---- core/state.js ----
 // The canonical shape of appData (see spec §40). Only modules that are
 // actually implemented in this build ship with real services/views — the
@@ -1065,18 +992,15 @@ function defaultAppData() {
     investments: [],
   };
 }
-
 class Store {
   constructor() {
     this.data = Storage.get() || defaultAppData();
     this._listeners = new Set();
     configureFormat(this.data.settings.currency, this.data.settings.locale);
   }
-
   get() {
     return this.data;
   }
-
   /** Mutate state via a function, persist, then notify subscribers. */
   commit(mutator) {
     mutator(this.data);
@@ -1085,26 +1009,20 @@ class Store {
     configureFormat(this.data.settings.currency, this.data.settings.locale);
     this._emit();
   }
-
   subscribe(fn) {
     this._listeners.add(fn);
     return () => this._listeners.delete(fn);
   }
-
   _emit() {
     this._listeners.forEach(fn => fn(this.data));
   }
-
   reset() {
     this.data = defaultAppData();
     Storage.set(this.data);
     this._emit();
   }
 }
-
 const store = new Store();
-
-
 // ---- core/customization.js ----
 // Default Italian labels for every renameable concept in the app.
 // t(key) returns the user's custom label if set, otherwise this default.
@@ -1132,18 +1050,15 @@ const DEFAULT_LABELS = {
   lockedCapital: 'Capitale bloccato',
   activeCycles: 'Cicli attivi',
 };
-
 function t(key) {
   const custom = store.get().customization.labels?.[key];
   return custom && custom.trim() ? custom : (DEFAULT_LABELS[key] || key);
 }
-
 function setLabel(key, value) {
   store.commit(d => {
     d.customization.labels[key] = value;
   });
 }
-
 const PRESETS = {
   minimal: {
     space: 'default',
@@ -1178,9 +1093,7 @@ const PRESETS = {
     desc: 'Densità alta e decorazioni ridotte al minimo: pensato per vedere più dati a schermo.',
   },
 };
-
 const THEME_PRESETS = PRESETS;
-
 /** Applies the current settings to CSS custom properties on <html>. */
 function applyTheme() {
   const { settings } = store.get();
@@ -1195,7 +1108,6 @@ function applyTheme() {
   if (nameNode) nameNode.textContent = settings.appName;
   const manifestLink = document.getElementById('manifest-link');
   if (manifestLink) manifestLink.setAttribute('href', 'manifest.json');
-
   const presetName = settings.activePreset && PRESETS[settings.activePreset] ? settings.activePreset : 'premium';
   const preset = PRESETS[presetName];
   root.setAttribute('data-preset', presetName);
@@ -1206,7 +1118,6 @@ function applyTheme() {
   root.style.setProperty('--font-display', preset.fontDisplay);
   root.style.setProperty('--ambient-opacity', preset.ambient);
 }
-
 function applyPreset(name) {
   const preset = PRESETS[name];
   if (!preset) return;
@@ -1216,14 +1127,11 @@ function applyPreset(name) {
   });
   applyTheme();
 }
-
 function hexToRgb(hex) {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '');
   if (!m) return null;
   return { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) };
 }
-
-
 // ---- core/module-manager.js ----
 // Registry of every module Finance Hub knows about. `builtin: true` modules
 // are core to this build (finance/accounts) and are not user-toggleable yet
@@ -1281,51 +1189,44 @@ const REGISTRY = {
     nav: { route: 'forecasts', order: 9.6 },
   },
 };
-
 const ModuleManager = {
   registry: REGISTRY,
-
   isEnabled(id) {
     return !!store.get().modules[id]?.enabled;
   },
-
   /** Modules that are both implemented in this build AND currently enabled. */
   getActiveModules() {
     return Object.values(REGISTRY).filter(m => m.implemented && this.isEnabled(m.id));
   },
-
   /** Only modules with real UI shipped — what the Moduli page should list. */
   getManageableModules() {
     return Object.values(REGISTRY).filter(m => m.implemented && !m.builtin);
   },
-
   getDependencies(id) {
     return REGISTRY[id]?.dependencies || [];
   },
-
   checkDependencies(id) {
     return this.getDependencies(id).filter(dep => !this.isEnabled(dep));
   },
-
   enableModule(id) {
     const missing = this.checkDependencies(id);
     if (missing.length) {
-      store.commit(d => missing.forEach(dep => { d.modules[dep].enabled = true; }));
+      store.commit(d => missing.forEach(dep => { d.modules[dep].enabled = true;
+}));
     }
     store.commit(d => { d.modules[id].enabled = true; });
   },
-
   disableModule(id) {
     // Disabling never deletes data — only flips the flag the rest of the
     // app reads. Also cascade-disable anything that depends on this module.
-    const dependents = Object.values(REGISTRY).filter(m => m.dependencies.includes(id) && this.isEnabled(m.id));
+    const dependents = Object.values(REGISTRY).filter(m =>
+m.dependencies.includes(id) && this.isEnabled(m.id));
     store.commit(d => {
       d.modules[id].enabled = false;
       dependents.forEach(m => { d.modules[m.id].enabled = false; });
     });
     return dependents;
   },
-
   getNavigationItems() {
     const home = { route: 'home', icon: 'home', label: 'Home', order: 0 };
     const settings = { route: 'settings', icon: 'settings', label: 'Impostazioni', order: 999 };
@@ -1335,33 +1236,32 @@ const ModuleManager = {
       .filter(m => CORE.includes(m.id))
       .map(m => ({ route: m.nav.route, icon: m.id, label: t(m.labelKey), order: m.nav.order }));
     const extra = navModules.filter(m => !CORE.includes(m.id));
-
-    const items = [home, ...coreItems];
+    const analytics = { route: 'analytics', icon: 'analytics', label: 'Analisi', order: 3.2 };
+    const items = [home, ...coreItems, analytics];
     if (extra.length === 1) {
       const m = extra[0];
       items.push({ route: m.nav.route, icon: m.id, label: t(m.labelKey), order: m.nav.order });
     } else if (extra.length > 1) {
       items.push({ route: 'more', icon: 'more', label: 'Altro', order: 50 });
     }
-    items.push(settings);
     return items.sort((a, b) => a.order - b.order);
   },
-
   /** Modules bundled into the "Altro" hub page when there isn't room for a dedicated tab. */
   getExtraNavModules() {
     const CORE = ['finance', 'accounts'];
     const navModules = this.getActiveModules().filter(m => m.nav);
-    const extra = navModules.filter(m => !CORE.includes(m.id)).sort((a, b) => a.nav.order - b.nav.order);
+    const extra = navModules.filter(m => !CORE.includes(m.id)).sort((a, b) =>
+a.nav.order - b.nav.order);
     return extra.length > 1 ? extra : [];
   },
-
   getQuickActions() {
     const actions = [];
     if (this.isEnabled('finance')) {
       actions.push({ id: 'add-income', label: `+ ${t('income')}`, icon: '➕', route: 'finance', payload: { type: 'income' } });
       actions.push({ id: 'add-expense', label: `- ${t('expense')}`, icon: '➖', route: 'finance', payload: { type: 'expense' } });
     }
-    if (this.isEnabled('transfers') && store.get().accounts.filter(a => !a.archived).length >= 2) {
+    if (this.isEnabled('transfers') && store.get().accounts.filter(a =>
+!a.archived).length >= 2) {
       actions.push({ id: 'add-transfer', label: t('transfer'), icon: '↔️', route: 'accounts', payload: { openTransfer: true } });
     }
     if (this.isEnabled('cycles')) {
@@ -1376,26 +1276,20 @@ const ModuleManager = {
     return actions;
   },
 };
-
-
 // ---- core/router.js ----
 const routes = {};
 let currentParams = {};
-
 function registerRoute(name, renderFn) {
   routes[name] = renderFn;
 }
-
 function navigate(name, params = {}) {
   currentParams = params;
   const query = Object.keys(params).length ? '?' + new URLSearchParams(params).toString() : '';
   window.location.hash = `#/${name}${query}`;
 }
-
 function getParams() {
   return currentParams;
 }
-
 function parseHash() {
   const hash = window.location.hash.replace(/^#\//, '');
   const [name, query] = hash.split('?');
@@ -1403,7 +1297,6 @@ function parseHash() {
   if (query) new URLSearchParams(query).forEach((v, k) => { params[k] = v; });
   return { name: name || 'home', params };
 }
-
 async function renderCurrentRoute() {
   const { name, params } = parseHash();
   currentParams = params;
@@ -1416,19 +1309,19 @@ async function renderCurrentRoute() {
     el.classList.toggle('active', el.dataset.route === name);
   });
   window.scrollTo(0, 0);
+  const navRoutes = ModuleManager.getNavigationItems().map(i => i.route);
+  const backBtn = document.getElementById('header-back-btn');
+  if (backBtn) backBtn.style.display = ((navRoutes.includes(name) || name === 'home') && !params.drill) ? 'none' : '';
   // Replay the entrance animation on every navigation (restart via reflow).
   main.classList.remove('route-enter');
   void main.offsetWidth;
   main.classList.add('route-enter');
 }
-
 function startRouter() {
   window.addEventListener('hashchange', renderCurrentRoute);
   if (!window.location.hash) window.location.hash = '#/home';
   renderCurrentRoute();
 }
-
-
 // ---- core/icons.js ----
 const ICONS = {
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
@@ -1455,19 +1348,15 @@ const ICONS = {
   calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>',
   forecasts: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3v9l6 3"/></svg>',
   more: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
-  archive: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 13h4"/></svg>',
-};
-
+  archive: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 13h4"/></svg>', };
+ICONS.analytics = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>';
 function icon(name) {
   return ICONS[name] || '';
 }
-
 /** A small icon meant to sit to the left of a section-title label. */
 function sectionIcon(name) {
   return `<span class="st-icon">${icon(name)}</span>`;
 }
-
-
 // ---- services/finance.js ----
 const FinanceService = {
   listTransactions(filter = {}) {
@@ -1483,7 +1372,6 @@ const FinanceService = {
     }
     return items.sort((a, b) => (b.date + b.createdAt).localeCompare(a.date + a.createdAt));
   },
-
   addTransaction({ type, amount, accountId, tagId, note, date }) {
     const tx = {
       id: uid(),
@@ -1500,23 +1388,20 @@ const FinanceService = {
     store.commit(d => d.transactions.push(tx));
     return tx;
   },
-
   updateTransaction(id, patch) {
     store.commit(d => {
       const tx = d.transactions.find(t => t.id === id);
       if (tx) Object.assign(tx, patch, { updatedAt: nowISO() });
     });
   },
-
   deleteTransaction(id) {
-    store.commit(d => { d.transactions = d.transactions.filter(t => t.id !== id); });
+    store.commit(d => { d.transactions = d.transactions.filter(t => t.id !== id);
+});
   },
-
   // --- Tags ---
   listTags() {
     return store.get().tags;
   },
-
   getOrCreateTag(name, { icon = '🏷️', color = '#8B93A7' } = {}) {
     const clean = name.trim();
     if (!clean) return null;
@@ -1526,14 +1411,12 @@ const FinanceService = {
     store.commit(d => d.tags.push(tag));
     return tag;
   },
-
   deleteTag(id) {
     store.commit(d => {
       d.tags = d.tags.filter(t => t.id !== id);
       d.transactions.forEach(t => { if (t.tagId === id) t.tagId = null; });
     });
   },
-
   tagStats(tagId) {
     const txs = store.get().transactions.filter(t => t.tagId === tagId);
     const income = txs.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
@@ -1541,8 +1424,6 @@ const FinanceService = {
     return { income, expense, profit: income - expense, count: txs.length };
   },
 };
-
-
 // ---- services/recurrences.js ----
 const RECURRENCE_FREQUENCIES = [
   { id: 'daily', label: 'Giornaliera' },
@@ -1550,7 +1431,6 @@ const RECURRENCE_FREQUENCIES = [
   { id: 'monthly', label: 'Mensile' },
   { id: 'yearly', label: 'Annuale' },
 ];
-
 function nextOccurrence(dateStr, frequency, interval = 1) {
   const d = new Date(dateStr + 'T00:00:00');
   if (frequency === 'daily') d.setDate(d.getDate() + interval);
@@ -1559,16 +1439,13 @@ function nextOccurrence(dateStr, frequency, interval = 1) {
   else if (frequency === 'yearly') d.setFullYear(d.getFullYear() + interval);
   return d.toISOString().slice(0, 10);
 }
-
 const RecurrencesService = {
   list() {
     return store.get().recurrences.sort((a, b) => (a.nextDate || '').localeCompare(b.nextDate || ''));
   },
-
   get(id) {
     return store.get().recurrences.find(r => r.id === id);
   },
-
   create({ type, amount, accountId, tagId, note, frequency, interval, startDate, endDate }) {
     const rec = {
       id: uid(),
@@ -1588,23 +1465,20 @@ const RecurrencesService = {
     store.commit(d => d.recurrences.push(rec));
     return rec;
   },
-
   update(id, patch) {
     store.commit(d => {
       const r = d.recurrences.find(x => x.id === id);
       if (r) Object.assign(r, patch, { updatedAt: nowISO() });
     });
   },
-
   toggleActive(id) {
     const r = this.get(id);
     if (r) this.update(id, { active: !r.active });
   },
-
   delete(id) {
-    store.commit(d => { d.recurrences = d.recurrences.filter(r => r.id !== id); });
+    store.commit(d => { d.recurrences = d.recurrences.filter(r => r.id !== id);
+});
   },
-
   /**
    * Idempotent: walks each active recurrence from its stored nextDate up to
    * today, creating exactly one transaction per missed occurrence and
@@ -1614,7 +1488,6 @@ const RecurrencesService = {
     const today = nowISO().slice(0, 10);
     let generated = 0;
     const recs = store.get().recurrences.filter(r => r.active);
-
     recs.forEach(rec => {
       let cursor = rec.nextDate;
       let guard = 0;
@@ -1634,50 +1507,42 @@ const RecurrencesService = {
       const shouldDeactivate = rec.endDate && cursor > rec.endDate;
       this.update(rec.id, { nextDate: cursor, active: !shouldDeactivate });
     });
-
     return generated;
   },
 };
-
-
 // ---- core/security.js ----
 async function hashPin(pin) {
   const enc = new TextEncoder().encode('financehub-salt:' + pin);
   const buf = await crypto.subtle.digest('SHA-256', enc);
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
-
 async function setPin(pin) {
   const hash = await hashPin(pin);
   store.commit(d => { d.settings.pinHash = hash; });
 }
-
 function clearPin() {
   store.commit(d => { d.settings.pinHash = null; d.settings.autoLock = false; });
 }
-
 function isPinSet() {
   return !!store.get().settings.pinHash;
 }
-
 async function verifyPin(pin) {
   const hash = await hashPin(pin);
   return hash === store.get().settings.pinHash;
 }
-
 /** Renders a full-screen PIN pad over #lock-root. Calls onUnlock() on success. */
 function showLock(onUnlock) {
   const root = document.getElementById('lock-root');
   root.style.display = 'flex';
   let entered = '';
-
   function render() {
     root.innerHTML = `
       <div style="text-align:center;width:100%;max-width:320px">
         <div style="font-size:32px;margin-bottom:8px">🔒</div>
         <div style="font-family:var(--font-display);font-weight:700;font-size:17px;margin-bottom:24px">Inserisci il PIN</div>
         <div id="lock-dots" style="display:flex;justify-content:center;gap:12px;margin-bottom:28px">
-          ${Array.from({ length: 6 }).map((_, i) => `<span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--border);background:${i < entered.length ? 'var(--primary)' : 'transparent'}"></span>`).join('')}
+          ${Array.from({ length: 6 }).map((_, i) => `<span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--border);background:${i < entered.length ? 'var(--primary)' : 'transparent'}">
+</span>`).join('')}
         </div>
         <div id="lock-error" style="color:var(--negative);font-size:12px;height:16px;margin-bottom:8px"></div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
@@ -1710,8 +1575,6 @@ function showLock(onUnlock) {
   }
   render();
 }
-
-
 // ---- services/accounts.js ----
 const ACCOUNT_TYPES = [
   { id: 'bank', label: 'Banca', icon: '🏦' },
@@ -1723,18 +1586,15 @@ const ACCOUNT_TYPES = [
   { id: 'investment', label: 'Investimento', icon: '📈' },
   { id: 'custom', label: 'Personalizzato', icon: '⭐' },
 ];
-
 const AccountsService = {
   list({ includeArchived = false } = {}) {
     return store.get().accounts
       .filter(a => includeArchived || !a.archived)
       .sort((a, b) => a.order - b.order);
   },
-
   get(id) {
     return store.get().accounts.find(a => a.id === id);
   },
-
   create({ name, type, customType, icon, color, initialBalance, note }) {
     const account = {
       id: uid(),
@@ -1753,22 +1613,18 @@ const AccountsService = {
     store.commit(d => d.accounts.push(account));
     return account;
   },
-
   update(id, patch) {
     store.commit(d => {
       const acc = d.accounts.find(a => a.id === id);
       if (acc) Object.assign(acc, patch, { updatedAt: nowISO() });
     });
   },
-
   archive(id) {
     this.update(id, { archived: true });
   },
-
   restore(id) {
     this.update(id, { archived: false });
   },
-
   /** Computed balance = initial + income - expense (on this account) + transfers in - transfers out. */
   balance(id) {
     const data = store.get();
@@ -1785,36 +1641,31 @@ const AccountsService = {
     });
     return bal;
   },
-
   totalBalance({ includeArchived = false } = {}) {
     return this.list({ includeArchived }).reduce((sum, a) => sum + this.balance(a.id), 0);
   },
 };
-
-
 // ---- views/onboarding.js ----
 const ONBOARD_COLORS = ['#C8A84B', '#3DD68C', '#5B8DEF', '#FF6B6B', '#F5B942', '#B98BE0'];
-
 function renderOnboarding(onDone) {
   const root = document.getElementById('onboarding-root');
   root.style.display = 'flex';
   document.getElementById('app').style.display = 'none';
-
   let step = 1;
   let chosenColor = '#C8A84B';
   let chosenPreset = 'premium';
-
   function render() {
     root.innerHTML = stepMarkup(step, chosenColor, chosenPreset);
     wire();
   }
-
   function wire() {
-    root.querySelectorAll('[data-color]').forEach(sw => sw.addEventListener('click', () => {
+    root.querySelectorAll('[data-color]').forEach(sw =>
+sw.addEventListener('click', () => {
       chosenColor = sw.dataset.color;
       render();
     }));
-    root.querySelectorAll('[data-preset]').forEach(btn => btn.addEventListener('click', () => {
+    root.querySelectorAll('[data-preset]').forEach(btn =>
+btn.addEventListener('click', () => {
       chosenPreset = btn.dataset.preset;
       render();
     }));
@@ -1854,19 +1705,17 @@ function renderOnboarding(onDone) {
     const back = root.querySelector('#ob-back');
     if (back) back.addEventListener('click', () => { step--; render(); });
   }
-
   render();
 }
-
 function stepMarkup(step, color, preset) {
   const progress = (step / 4) * 100;
   const shell = (inner) => `
     <div style="width:100%;max-width:420px">
-      <div class="progress-bar"><div class="fill" style="width:${progress}%"></div></div>
+      <div class="progress-bar"><div class="fill" style="width:${progress}%">
+</div></div>
       <div style="margin-top:28px">${inner}</div>
     </div>
   `;
-
   if (step === 1) {
     return shell(`
       <h1 style="font-family:var(--font-display);font-size:24px;font-weight:700;margin-bottom:6px">Benvenuto in Finance Hub</h1>
@@ -1887,9 +1736,11 @@ function stepMarkup(step, color, preset) {
     return shell(`
       <h1 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:6px">Scegli il colore</h1>
       <p style="color:var(--text-secondary);font-size:14px;margin-bottom:20px">Potrai cambiarlo in qualsiasi momento dalle Impostazioni.</p>
-      <div class="swatch-row">${['#C8A84B', '#3DD68C', '#5B8DEF', '#FF6B6B', '#F5B942', '#B98BE0'].map(c => `<button type="button" class="swatch ${color === c ? 'active' : ''}" data-color="${c}" style="background:${c}"></button>`).join('')}</div>
+      <div class="swatch-row">${['#C8A84B', '#3DD68C', '#5B8DEF', '#FF6B6B', '#F5B942', '#B98BE0'].map(c => `<button type="button" class="swatch ${color === c ? 'active' : ''}" data-color="${c}" style="background:${c}"></button>`).join('')}
+</div>
       <button class="btn btn-primary" id="ob-next" style="margin-top:24px">Continua</button>
-      <button class="btn btn-ghost" id="ob-back" style="margin-top:8px">Indietro</button>
+      <button class="btn btn-ghost" id="ob-back" style="margin-
+top:8px">Indietro</button>
     `);
   }
   if (step === 3) {
@@ -1900,25 +1751,26 @@ function stepMarkup(step, color, preset) {
         ${['minimal', 'premium', 'classic', 'compact'].map(p => `
           <button type="button" class="onboard-option" data-preset="${p}" style="width:100%;text-align:left;${preset === p ? 'border-color:var(--primary)' : ''}">
             <div class="glyph">${p === 'minimal' ? '◽' : p === 'premium' ? '✦' : p === 'classic' ? '▪' : '▤'}</div>
-            <div><div class="t">${p.charAt(0).toUpperCase() + p.slice(1)}</div><div class="d">${PRESETS[p].desc}</div></div>
+            <div><div class="t">${p.charAt(0).toUpperCase() + p.slice(1)}</div>
+<div class="d">${PRESETS[p].desc}</div></div>
           </button>
         `).join('')}
       </div>
       <button class="btn btn-primary" id="ob-next" style="margin-top:24px">Continua</button>
-      <button class="btn btn-ghost" id="ob-back" style="margin-top:8px">Indietro</button>
+      <button class="btn btn-ghost" id="ob-back" style="margin-
+top:8px">Indietro</button>
     `);
   }
   return shell(`
     <h1 style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:6px">Aggiungi il primo account</h1>
     <p style="color:var(--text-secondary);font-size:14px;margin-bottom:20px">Puoi saltare questo passo e aggiungerlo più tardi.</p>
-    <div class="field"><label>Nome (es. Contanti, Conto principale...)</label><input id="ob-acc-name" placeholder="Contanti" /></div>
+    <div class="field"><label>Nome (es. Contanti, Conto principale...)</label>
+<input id="ob-acc-name" placeholder="Contanti" /></div>
     <div class="field"><label>Saldo iniziale</label><input id="ob-acc-balance" type="number" step="0.01" value="0" /></div>
     <button class="btn btn-primary" id="ob-finish" style="margin-top:8px">Inizia a usare Finance Hub</button>
     <button class="btn btn-ghost" id="ob-skip" style="margin-top:8px">Salta per ora</button>
   `);
 }
-
-
 // ---- services/cycles.js ----
 const CYCLE_STATUSES = [
   { id: 'ACTIVE', label: 'Attivo', color: '#5B8DEF' },
@@ -1927,18 +1779,15 @@ const CYCLE_STATUSES = [
   { id: 'COMPLETED', label: 'Completato', color: '#3DD68C' },
   { id: 'CANCELLED', label: 'Annullato', color: '#8B93A7' },
 ];
-
 const CyclesService = {
   list({ status } = {}) {
     let items = [...store.get().cycles];
     if (status) items = items.filter(c => c.status === status);
     return items.sort((a, b) => (b.startDate || '').localeCompare(a.startDate || ''));
   },
-
   get(id) {
     return store.get().cycles.find(c => c.id === id);
   },
-
   create({ name, tagId, platform, startDate, estimatedRevenue, quantityPurchased, notes }) {
     const cycle = {
       id: uid(),
@@ -1960,14 +1809,12 @@ const CyclesService = {
     store.commit(d => d.cycles.push(cycle));
     return cycle;
   },
-
   update(id, patch) {
     store.commit(d => {
       const c = d.cycles.find(x => x.id === id);
       if (c) Object.assign(c, patch, { updatedAt: nowISO() });
     });
   },
-
   setStatus(id, status) {
     const patch = { status };
     if (status === 'COMPLETED' || status === 'CANCELLED') {
@@ -1979,41 +1826,34 @@ const CyclesService = {
     }
     this.update(id, patch);
   },
-
   delete(id) {
     store.commit(d => {
       d.cycles = d.cycles.filter(c => c.id !== id);
       d.transactions.forEach(t => { if (t.cycleId === id) t.cycleId = null; });
     });
   },
-
   /** Transactions linked to a cycle — costs are expenses, revenue is income. */
   transactions(id) {
     return store.get().transactions.filter(t => t.cycleId === id)
       .sort((a, b) => b.date.localeCompare(a.date));
   },
-
   metrics(id) {
     const cycle = this.get(id);
     if (!cycle) return null;
     const txs = this.transactions(id);
     const cost = txs.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
-    const revenueCollected = txs.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+    const revenueCollected = txs.filter(t => t.type === 'income').reduce((s, t) =>
+s + t.amount, 0);
     const revenueEstimated = cycle.estimatedRevenue || 0;
     const revenueFinal = cycle.finalRevenue;
-
     const profitCurrent = revenueCollected - cost;
     const profitEstimated = revenueEstimated - cost;
     const profitFinal = revenueFinal !== null && revenueFinal !== undefined ? revenueFinal - cost : null;
-
     const roi = (profit) => (cost > 0 ? Math.round((profit / cost) * 1000) / 10 : null);
-
     const capitalRecovered = revenueCollected;
     const capitalLocked = Math.max(0, cost - revenueCollected);
-
     const endRef = cycle.endDate || nowISO().slice(0, 10);
     const holdingDays = daysBetween(cycle.startDate, endRef);
-
     return {
       cost,
       revenueCollected,
@@ -2031,20 +1871,16 @@ const CyclesService = {
       isOpen: cycle.status !== 'COMPLETED' && cycle.status !== 'CANCELLED',
     };
   },
-
   totalLockedCapital() {
     return this.list().reduce((sum, c) => {
       const m = this.metrics(c.id);
       return sum + (m.isOpen ? m.capitalLocked : 0);
     }, 0);
   },
-
   activeCount() {
     return this.list().filter(c => c.status === 'ACTIVE' || c.status === 'SELLING' || c.status === 'PARTIAL').length;
   },
 };
-
-
 // ---- services/budgets.js ----
 const BUDGET_PERIODS = [
   { id: 'weekly', label: 'Settimanale' },
@@ -2052,7 +1888,6 @@ const BUDGET_PERIODS = [
   { id: 'yearly', label: 'Annuale' },
   { id: 'custom', label: 'Personalizzato' },
 ];
-
 function addDays(dateStr, days) {
   const d = new Date(dateStr + 'T00:00:00');
   d.setDate(d.getDate() + days);
@@ -2068,7 +1903,6 @@ function addYears(dateStr, years) {
   d.setFullYear(d.getFullYear() + years);
   return d.toISOString().slice(0, 10);
 }
-
 /** Returns the [start, end) of the CURRENT occurrence of a rolling budget period. */
 function currentPeriodRange(budget) {
   const today = nowISO().slice(0, 10);
@@ -2089,16 +1923,13 @@ function currentPeriodRange(budget) {
   }
   return { start, end: next };
 }
-
 const BudgetsService = {
   list() {
     return store.get().budgets.sort((a, b) => a.name.localeCompare(b.name));
   },
-
   get(id) {
     return store.get().budgets.find(b => b.id === id);
   },
-
   create({ name, tagIds, amount, period, startDate, endDate }) {
     const budget = {
       id: uid(),
@@ -2114,18 +1945,15 @@ const BudgetsService = {
     store.commit(d => d.budgets.push(budget));
     return budget;
   },
-
   update(id, patch) {
     store.commit(d => {
       const b = d.budgets.find(x => x.id === id);
       if (b) Object.assign(b, patch, { updatedAt: nowISO() });
     });
   },
-
   delete(id) {
     store.commit(d => { d.budgets = d.budgets.filter(b => b.id !== id); });
   },
-
   spent(id) {
     const budget = this.get(id);
     if (!budget) return 0;
@@ -2137,7 +1965,6 @@ const BudgetsService = {
     );
     return txs.reduce((s, t) => s + t.amount, 0);
   },
-
   status(id) {
     const budget = this.get(id);
     const spent = this.spent(id);
@@ -2147,8 +1974,6 @@ const BudgetsService = {
     return { spent, remaining, pct, level, range: currentPeriodRange(budget) };
   },
 };
-
-
 // ---- services/investments.js ----
 // Investments here means "buy and hold" capital (stocks, funds, crypto...),
 // distinct from Cicli which models buy-low/sell-high reselling flows.
@@ -2156,11 +1981,9 @@ const InvestmentsService = {
   list() {
     return store.get().investments ? store.get().investments.slice().sort((a, b) => (b.startDate || '').localeCompare(a.startDate || '')) : [];
   },
-
   get(id) {
     return (store.get().investments || []).find(i => i.id === id);
   },
-
   create({ name, accountId, capitalInvested, currentValue, startDate, notes }) {
     const inv = {
       id: uid(),
@@ -2180,43 +2003,70 @@ const InvestmentsService = {
     });
     return inv;
   },
-
   update(id, patch) {
     store.commit(d => {
       const i = (d.investments || []).find(x => x.id === id);
       if (i) Object.assign(i, patch, { updatedAt: nowISO() });
     });
   },
-
   updateValue(id, currentValue) {
     this.update(id, { currentValue: Number(currentValue) || 0 });
   },
-
-  close(id) {
-    this.update(id, { closed: true, endDate: nowISO().slice(0, 10) });
+  /** Quota di peso (in %) di un investimento aperto sul totale degli investimenti aperti. */
+  weight(id) {
+    const open = this.list().filter(x => !x.closed);
+    const tot = open.reduce((s, x) => s + x.currentValue, 0);
+    const i = this.get(id);
+    return { pct: tot > 0 && i && !i.closed ? Math.round(i.currentValue / tot * 100) : 0, count: open.length };
   },
 
+  /** Vendita parziale: l'importo incassato è proporzionale al valore attuale; costo e plusvalenza si ripartiscono di conseguenza. */
+  sell(id, proceeds) {
+    const i = this.get(id);
+    proceeds = Number(proceeds);
+    if (!i || i.closed || !(proceeds > 0) || proceeds >= i.currentValue) return null;
+    const f = proceeds / i.currentValue;
+    const costBasis = Math.round(i.capitalInvested * f * 100) / 100;
+    const sale = { id: uid(), date: nowISO().slice(0, 10), proceeds, costBasis, gain: Math.round((proceeds - costBasis) * 100) / 100, final: false };
+    store.commit(d => {
+      const x = d.investments.find(v => v.id === id);
+      x.sales = [...(x.sales || []), sale];
+      x.capitalInvested = Math.round((x.capitalInvested - costBasis) * 100) / 100;
+      x.currentValue = Math.round((x.currentValue - proceeds) * 100) / 100;
+      x.updatedAt = nowISO();
+    });
+    return sale;
+  },
+
+  close(id) {
+    const i = this.get(id);
+    if (!i || i.closed) return;
+    const sale = { id: uid(), date: nowISO().slice(0, 10), proceeds: i.currentValue, costBasis: i.capitalInvested, gain: i.currentValue - i.capitalInvested, final: true };
+    this.update(id, { closed: true, endDate: nowISO().slice(0, 10), sales: [...(i.sales || []), sale] });
+  },
   delete(id) {
     store.commit(d => { d.investments = (d.investments || []).filter(i => i.id !== id); });
   },
-
   metrics(id) {
     const i = this.get(id);
     if (!i) return null;
-    const profit = i.currentValue - i.capitalInvested;
-    const roi = i.capitalInvested > 0 ? Math.round((profit / i.capitalInvested) * 1000) / 10 : null;
-    return { profit, roi, capitalInvested: i.capitalInvested, currentValue: i.currentValue };
+    const sales = i.sales || [];
+    let realized = sales.reduce((s, x) => s + x.gain, 0), cost = sales.reduce((s, x) => s + x.costBasis, 0);
+    if (i.closed && !sales.some(x => x.final)) { realized += i.currentValue - i.capitalInvested; cost += i.capitalInvested; }
+    else if (!i.closed) cost += i.capitalInvested;
+    const unrealized = i.closed ? 0 : i.currentValue - i.capitalInvested;
+    const profit = realized + unrealized;
+    const roi = cost > 0 ? Math.round((profit / cost) * 1000) / 10 : null;
+    return { profit, roi, realized, unrealized, totalCost: cost, capitalInvested: i.capitalInvested, currentValue: i.currentValue };
   },
-
   totals() {
     const items = this.list().filter(i => !i.closed);
     const invested = items.reduce((s, i) => s + i.capitalInvested, 0);
     const value = items.reduce((s, i) => s + i.currentValue, 0);
-    return { invested, value, profit: value - invested, roi: invested > 0 ? Math.round(((value - invested) / invested) * 1000) / 10 : null };
+    const realized = this.list().reduce((s, i) => s + this.metrics(i.id).realized, 0);
+    return { invested, value, profit: value - invested, realized, roi: invested > 0 ? Math.round(((value - invested) / invested) * 1000) / 10 : null };
   },
 };
-
-
 // ---- services/analytics.js ----
 // Every derived financial number lives here so views never duplicate a
 // calculation — matches spec §19 "Analytics Module".
@@ -2228,50 +2078,41 @@ const Analytics = {
     const lockedCapital = ModuleManager.isEnabled('cycles') ? CyclesService.totalLockedCapital() : 0;
     return { liquidity, investments, lockedCapital, total: liquidity + investments + lockedCapital };
   },
-
   calculateNetWorth() {
     return this.netWorthBreakdown().total;
   },
-
   _txInRange(days) {
     const data = store.get();
     const since = days ? new Date(Date.now() - days * 86400000).toISOString().slice(0, 10) : null;
     return data.transactions.filter(t => !since || t.date >= since);
   },
-
   calculateIncome(days = 30) {
-    return this._txInRange(days).filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+    return this._txInRange(days).filter(t => t.type === 'income').reduce((s, t) =>
+s + t.amount, 0);
   },
-
   calculateExpenses(days = 30) {
     return this._txInRange(days).filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
   },
-
   calculateCashflow(days = 30) {
     const income = this.calculateIncome(days);
     const expenses = this.calculateExpenses(days);
     return { income, expenses, net: income - expenses };
   },
-
   calculateSavingsRate(days = 30) {
     const { income, net } = this.calculateCashflow(days);
     if (!income) return 0;
     return Math.round((net / income) * 100);
   },
 };
-
-
 // ---- services/insights.js ----
 function pctChange(current, previous) {
   if (!previous) return null;
   return Math.round(((current - previous) / previous) * 100);
 }
-
 const InsightsService = {
   generate() {
     const insights = [];
     const data = store.get();
-
     // Spend trend: last 30 days vs the 30 before that.
     const expensesNow = Analytics.calculateExpenses(30);
     const allExpenses = data.transactions.filter(t => t.type === 'expense');
@@ -2288,7 +2129,6 @@ const InsightsService = {
           : `Le tue spese sono aumentate del ${change}% rispetto ai 30 giorni precedenti.`,
       });
     }
-
     // Cashflow direction.
     const { net } = Analytics.calculateCashflow(30);
     if (data.transactions.length > 0) {
@@ -2300,7 +2140,6 @@ const InsightsService = {
           : `Cashflow negativo negli ultimi 30 giorni: ${formatMoney(net)}.`,
       });
     }
-
     // Best-performing tag by profit.
     const tags = FinanceService.listTags();
     if (tags.length) {
@@ -2310,7 +2149,7 @@ const InsightsService = {
       if (ranked.length && ranked[0].profit > 0) {
         const top = ranked[0];
         const totalProfit = ranked.reduce((s, r) => s + Math.max(0, r.profit), 0);
-        const share = totalProfit > 0 ? Math.round((Math.max(0, top.profit) / totalProfit) * 100) : 0;
+        const share = totalProfit > 0 ? Math.round((Math.max(0, top.profit) /totalProfit) * 100) : 0;
         insights.push({
           icon: '🔥',
           level: 'good',
@@ -2320,7 +2159,6 @@ const InsightsService = {
         });
       }
     }
-
     // Locked capital (cycles).
     if (ModuleManager.isEnabled('cycles')) {
       const locked = CyclesService.totalLockedCapital();
@@ -2328,12 +2166,13 @@ const InsightsService = {
         insights.push({ icon: '📦', level: 'info', text: `Hai ${formatMoney(locked)} di capitale bloccato in cicli aperti.` });
       }
       const open = CyclesService.list().filter(c => c.status !== 'COMPLETED' && c.status !== 'CANCELLED');
-      const stale = open.filter(c => CyclesService.metrics(c.id).holdingDays > 60);
+      const stale = open.filter(c => CyclesService.metrics(c.id).holdingDays >
+60);
       if (stale.length) {
-        insights.push({ icon: '🐌', level: 'warning', text: `${stale.length} ciclo/i sono aperti da oltre 60 giorni: ${stale.map(c => c.name).slice(0, 2).join(', ')}.` });
+        insights.push({ icon: '🐌', level: 'warning', text: `${stale.length}
+ciclo/i sono aperti da oltre 60 giorni: ${stale.map(c => c.name).slice(0, 2).join(', ')}.` });
       }
     }
-
     // Budget alerts.
     if (ModuleManager.isEnabled('budgets')) {
       BudgetsService.list().forEach(b => {
@@ -2342,16 +2181,12 @@ const InsightsService = {
         else if (s.level === 'danger') insights.push({ icon: '⚠️', level: 'warning', text: `Sei al ${s.pct}% del budget "${b.name}".` });
       });
     }
-
     if (!insights.length) {
       insights.push({ icon: '💡', level: 'info', text: 'Continua a registrare movimenti: più dati hai, più insight utili potrò generare.' });
     }
-
     return insights;
   },
 };
-
-
 // ---- views/home.js ----
 /**
  * Widget registry: every entry knows its own visibility rule (moduleKey) and
@@ -2363,7 +2198,6 @@ function getWidgetDefs() {
   const { income, expenses } = Analytics.calculateCashflow(30);
   const investmentsOn = ModuleManager.isEnabled('investments');
   const cyclesOn = ModuleManager.isEnabled('cycles');
-
   return {
     netWorth: {
       label: t('netWorth'), moduleKey: null,
@@ -2372,9 +2206,9 @@ function getWidgetDefs() {
           <div class="label">${t('netWorth')}</div>
           <div class="value num" id="net-worth-value" data-target="${breakdown.total}">${formatMoney(0)}</div>
           <div class="hero-breakdown">
-            <div><div class="k">Liquidità</div><div class="v num">${formatMoney(breakdown.liquidity)}</div></div>
-            ${investmentsOn ? `<div><div class="k">${t('investments')}</div><div class="v num">${formatMoney(breakdown.investments)}</div></div>` : ''}
-            ${cyclesOn ? `<div><div class="k">${t('lockedCapital')}</div><div class="v num">${formatMoney(breakdown.lockedCapital)}</div></div>` : ''}
+            <div data-nav="accounts" style="cursor:pointer"><div class="k">Liquidità</div><div class="v num">${formatMoney(breakdown.liquidity)}</div></div>
+            ${investmentsOn ? `<div data-nav="investments" style="cursor:pointer"><div class="k">${t('investments')}</div><div class="v num">${formatMoney(breakdown.investments)}</div></div>` : ''}
+            ${cyclesOn ? `<div data-nav="cycles" style="cursor:pointer"><div class="k">${t('lockedCapital')}</div><div class="v num">${formatMoney(breakdown.lockedCapital)}</div></div>` : ''}
           </div>
         </div>`,
     },
@@ -2383,8 +2217,8 @@ function getWidgetDefs() {
       html: () => `
         <div class="section-title"><span class="st-label">${sectionIcon('finance')}Cashflow (30 giorni)</span></div>
         <div class="two-col">
-          <div class="card stat-card positive"><div class="k">Entrate</div><div class="v num">${formatMoney(income)}</div></div>
-          <div class="card stat-card negative"><div class="k">Uscite</div><div class="v num">${formatMoney(expenses)}</div></div>
+          <div class="card stat-card positive" data-nav="analytics" style="cursor:pointer"><div class="k">Entrate</div><div class="v num">${formatMoney(income)}</div></div>
+          <div class="card stat-card negative" data-nav="analytics" style="cursor:pointer"><div class="k">Uscite</div><div class="v num">${formatMoney(expenses)}</div></div>
         </div>`,
     },
     budgetAlerts: {
@@ -2396,7 +2230,9 @@ function getWidgetDefs() {
         <div class="section-title"><span class="st-label">${sectionIcon('budgets')}Attenzione ai budget</span></div>
         ${alerts.map(({ b, s }) => `
           <div class="card" style="margin-bottom:8px;${s.level === 'over' ? 'border-color:var(--negative)' : 'border-color:var(--warning)'}">
-            <div style="font-size:13px">${s.level === 'over' ? '🔴' : '⚠️'} <strong>${escapeAttr(b.name)}</strong> — ${s.pct}% di ${formatMoney(b.amount)}</div>
+            <div style="font-size:13px">${s.level === 'over' ? '🔴' : '⚠️'}
+<strong>${escapeAttr(b.name)}</strong> — ${s.pct}% di ${formatMoney(b.amount)}
+</div>
           </div>`).join('')}`;
       },
     },
@@ -2405,8 +2241,10 @@ function getWidgetDefs() {
       html: () => `
         <div class="section-title"><span class="st-label">${sectionIcon('cycles')}${t('cycles')}</span></div>
         <div class="two-col">
-          <div class="card stat-card"><div class="k">${t('activeCycles')}</div><div class="v num">${CyclesService.activeCount()}</div></div>
-          <div class="card stat-card"><div class="k">${t('lockedCapital')}</div><div class="v num">${formatMoney(CyclesService.totalLockedCapital())}</div></div>
+          <div class="card stat-card"><div class="k">${t('activeCycles')}</div>
+<div class="v num">${CyclesService.activeCount()}</div></div>
+          <div class="card stat-card"><div class="k">${t('lockedCapital')}</div>
+<div class="v num">${formatMoney(CyclesService.totalLockedCapital())}</div></div>
         </div>`,
     },
     accounts: {
@@ -2423,7 +2261,8 @@ function getWidgetDefs() {
             : accounts.slice(0, 4).map(a => `
               <div class="list-row">
                 <div class="row-icon">${a.icon}</div>
-                <div class="row-main"><div class="row-title">${escapeAttr(a.name)}</div></div>
+                <div class="row-main"><div class="row-title">${escapeAttr(a.name)}
+</div></div>
                 <div class="row-value num">${formatMoney(AccountsService.balance(a.id))}</div>
               </div>`).join('')}
         </div>`;
@@ -2440,13 +2279,15 @@ function getWidgetDefs() {
           <button class="btn-ghost" data-nav="finance" style="font-size:12px;font-weight:700;color:var(--primary)">Vedi tutti</button>
         </div>
         <div class="card">
-          ${!recent.length ? `<div class="empty-state"><div class="glyph">💸</div><p>Nessun movimento registrato.<br>Usa il pulsante + per aggiungere entrate o uscite.</p></div>`
+          ${!recent.length ? `<div class="empty-state"><div class="glyph">💸</div>
+<p>Nessun movimento registrato.<br>Usa il pulsante + per aggiungere entrate o uscite.</p></div>`
             : recent.map(tx => {
               const acc = AccountsService.get(tx.accountId);
               const tag = tags.find(g => g.id === tx.tagId);
               return `
               <div class="list-row">
-                <div class="row-icon">${tag ? tag.icon : (tx.type === 'income' ? '⬆️' : '⬇️')}</div>
+                <div class="row-icon">${tag ? tag.icon : (tx.type === 'income' ?
+'⬆️' : '⬇️')}</div>
                 <div class="row-main">
                   <div class="row-title">${escapeAttr(tx.note) || (tx.type === 'income' ? t('income') : t('expense'))}</div>
                   <div class="row-sub">${acc ? escapeAttr(acc.name) : ''} · ${formatDate(tx.date)}</div>
@@ -2475,18 +2316,15 @@ function getWidgetDefs() {
     },
   };
 }
-
 async function renderHome(root) {
   const defs = getWidgetDefs();
   const s = store.get().settings;
   const layout = s.dashboardLayout && s.dashboardLayout.length ? s.dashboardLayout : Object.keys(defs);
   const hidden = new Set(s.dashboardHidden || []);
-
   const blocks = layout
     .filter(key => defs[key] && !hidden.has(key) && (!defs[key].moduleKey || ModuleManager.isEnabled(defs[key].moduleKey)))
     .map(key => defs[key].html())
     .filter(Boolean);
-
   // Any widget not yet present in a saved layout (e.g. after an update) still shows, appended at the end.
   Object.keys(defs).forEach(key => {
     if (!layout.includes(key) && !hidden.has(key) && (!defs[key].moduleKey || ModuleManager.isEnabled(defs[key].moduleKey))) {
@@ -2494,24 +2332,18 @@ async function renderHome(root) {
       if (html) blocks.push(html);
     }
   });
-
   root.innerHTML = blocks.join('\n');
   root.querySelectorAll('[data-nav]').forEach(btn => {
     btn.addEventListener('click', () => navigate(btn.dataset.nav));
   });
-
   const netWorthNode = root.querySelector('#net-worth-value');
   if (netWorthNode) animateCountUp(netWorthNode, parseFloat(netWorthNode.dataset.target) || 0);
 }
-
 function escapeAttr(s) {
   return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
-
-
 // ---- core/sheet.js ----
 let scrim, current;
-
 function ensureScrim() {
   if (scrim) return scrim;
   scrim = el('<div class="overlay-scrim"></div>');
@@ -2519,11 +2351,11 @@ function ensureScrim() {
   scrim.addEventListener('click', closeSheet);
   return scrim;
 }
-
 function openSheet(innerHtml, { onClose } = {}) {
   closeSheet();
   ensureScrim();
-  const node = el(`<div class="sheet"><div class="sheet-handle"></div>${innerHtml}</div>`);
+  const node = el(`<div class="sheet"><div class="sheet-handle"></div>${innerHtml}
+</div>`);
   document.body.appendChild(node);
   current = { node, onClose };
   requestAnimationFrame(() => {
@@ -2532,7 +2364,6 @@ function openSheet(innerHtml, { onClose } = {}) {
   });
   return node;
 }
-
 function closeSheet() {
   if (!current) {
     if (scrim) scrim.classList.remove('visible');
@@ -2545,16 +2376,17 @@ function closeSheet() {
   current = null;
   if (onClose) onClose();
 }
-
-
 // ---- views/finance.js ----
-let state = { type: '', accountId: '', tagId: '', query: '' };
-
+let state = { type: '', accountId: '', tagId: '', query: '', from: '', to: '', _drill: '' };
 async function renderFinance(root) {
   const params = getParams();
+  if (params.drill && params.drill !== state._drill) {
+    state = { type: params.ftype || '', accountId: params.accountId || '', tagId: params.tagId || '', query: '', from: params.from || '', to: params.to || '', _drill: params.drill };
+  }
+  const drillTag = state.tagId ? FinanceService.listTags().find(g => g.id === state.tagId) : null;
+  const drillBar = (state.from || state.tagId) ? `<div class="chip-row" style="margin-bottom:12px"><button class="chip active" id="drill-clear">${drillTag ? escapeAttr(drillTag.name) + ' · ' : ''}${state.from ? formatDate(state.from) + ' → ' + formatDate(state.to) : 'filtro attivo'} ✕</button></div>` : '';
   const accounts = AccountsService.list();
   const tags = FinanceService.listTags();
-
   root.innerHTML = `
     <div class="field" style="margin-bottom:12px">
       <div style="position:relative">
@@ -2562,31 +2394,33 @@ async function renderFinance(root) {
         <span class="inline-icon" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--text-secondary)">${icon('search')}</span>
       </div>
     </div>
-
     <div class="segmented" id="type-filter" style="margin-bottom:12px">
       <button data-v="" class="${state.type === '' ? 'active' : ''}">Tutti</button>
       <button data-v="income" class="${state.type === 'income' ? 'active' : ''}">${t('income')}</button>
       <button data-v="expense" class="${state.type === 'expense' ? 'active' : ''}">${t('expense')}</button>
     </div>
-
     ${accounts.length ? `<div class="chip-row" id="account-filter" style="margin-bottom:16px">
       <button class="chip ${state.accountId === '' ? 'active' : ''}" data-v="">Tutti gli account</button>
-      ${accounts.map(a => `<button class="chip ${state.accountId === a.id ? 'active' : ''}" data-v="${a.id}">${a.icon} ${escapeAttr(a.name)}</button>`).join('')}
+      ${accounts.map(a => `<button class="chip ${state.accountId === a.id ? 'active' : ''}" data-v="${a.id}">${a.icon} ${escapeAttr(a.name)}
+</button>`).join('')}
     </div>` : ''}
-
-    <div class="card" id="tx-list" style="padding:8px var(--space-5)"></div>
+    ${drillBar}<div class="card" id="tx-list" style="padding:8px var(--space-5)"></div>
   `;
-
   root.querySelector('#search').addEventListener('input', debounce(e => {
     state.query = e.target.value;
     renderList();
   }, 200));
-
   root.querySelectorAll('#type-filter button').forEach(btn => {
-    btn.addEventListener('click', () => { state.type = btn.dataset.v; renderFinance(root); });
+    btn.addEventListener('click', () => { state.type = btn.dataset.v;
+renderFinance(root); });
   });
   root.querySelectorAll('#account-filter button').forEach(btn => {
-    btn.addEventListener('click', () => { state.accountId = btn.dataset.v; renderFinance(root); });
+    btn.addEventListener('click', () => { state.accountId = btn.dataset.v;
+renderFinance(root); });
+  });
+  root.querySelector('#drill-clear')?.addEventListener('click', () => {
+    state = { type: '', accountId: '', tagId: '', query: '', from: '', to: '', _drill: state._drill };
+    renderFinance(root);
   });
 
   function renderList() {
@@ -2594,7 +2428,7 @@ async function renderFinance(root) {
     const items = FinanceService.listTransactions({
       type: state.type || undefined,
       accountId: state.accountId || undefined,
-      query: state.query || undefined,
+      query: state.query || undefined, tagId: state.tagId || undefined, from: state.from || undefined, to: state.to || undefined,
     });
     listNode.innerHTML = '';
     if (!items.length) {
@@ -2609,7 +2443,8 @@ async function renderFinance(root) {
           <div class="row-icon">${tag ? tag.icon : (tx.type === 'income' ? '⬆️' : '⬇️')}</div>
           <div class="row-main">
             <div class="row-title">${escapeAttr(tx.note) || (tx.type === 'income' ? t('income') : t('expense'))}</div>
-            <div class="row-sub">${acc ? escapeAttr(acc.name) : 'Nessun account'} · ${formatDate(tx.date)}${tag ? ' · ' + escapeAttr(tag.name) : ''}</div>
+            <div class="row-sub">${acc ? escapeAttr(acc.name) : 'Nessun account'}
+· ${formatDate(tx.date)}${tag ? ' · ' + escapeAttr(tag.name) : ''}</div>
           </div>
           <div class="row-value num ${tx.type}">${tx.type === 'income' ? '+' : '-'}${formatMoney(tx.amount)}</div>
         </div>
@@ -2618,14 +2453,11 @@ async function renderFinance(root) {
       listNode.appendChild(row);
     });
   }
-
   renderList();
-
   if (params.type) {
     openTransactionSheet(null, params.type);
   }
 }
-
 function openTransactionSheet(existing, presetType, presetCycleId, presetAmount, presetNote, presetAccountId) {
   const accounts = AccountsService.list();
   const tags = FinanceService.listTags();
@@ -2636,12 +2468,10 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
   const amountValue = existing ? existing.amount : (presetAmount !== undefined && presetAmount !== null ? presetAmount : '');
   const noteValue = existing ? existing.note : (presetNote || '');
   const accountIdValue = existing ? existing.accountId : (presetAccountId || '');
-
   if (!accounts.length) {
     toast('Crea prima un account per registrare un movimento.');
     return;
   }
-
   const node = openSheet(`
     <div class="sheet-title">${existing ? 'Modifica movimento' : 'Nuovo movimento'}</div>
     <div class="segmented" id="tx-type" style="margin-bottom:16px">
@@ -2681,15 +2511,14 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
     <button class="btn btn-primary" id="tx-save">Salva</button>
     ${existing ? '<button class="btn btn-danger" id="tx-delete" style="margin-top:10px">Elimina</button>' : ''}
   `);
-
   let currentType = type;
   node.querySelectorAll('#tx-type button').forEach(btn => {
     btn.addEventListener('click', () => {
       currentType = btn.dataset.v;
-      node.querySelectorAll('#tx-type button').forEach(b => b.classList.toggle('active', b === btn));
+      node.querySelectorAll('#tx-type button').forEach(b =>
+b.classList.toggle('active', b === btn));
     });
   });
-
   node.querySelector('#tx-save').addEventListener('click', () => {
     const amount = parseFloat(node.querySelector('#tx-amount').value);
     if (!amount || amount <= 0) { toast('Inserisci un importo valido.'); return; }
@@ -2699,7 +2528,6 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
     const note = node.querySelector('#tx-note').value.trim();
     const tag = tagName ? FinanceService.getOrCreateTag(tagName) : null;
     const selectedCycleId = cyclesEnabled ? (node.querySelector('#tx-cycle').value || null) : (existing?.cycleId || null);
-
     if (existing) {
       FinanceService.updateTransaction(existing.id, { type: currentType, amount, accountId, tagId: tag?.id || null, date, note, cycleId: selectedCycleId });
       toast('Movimento aggiornato.');
@@ -2711,7 +2539,6 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
     closeSheet();
     renderCurrentRoute();
   });
-
   if (existing) {
     node.querySelector('#tx-delete').addEventListener('click', () => {
       FinanceService.deleteTransaction(existing.id);
@@ -2721,12 +2548,9 @@ function openTransactionSheet(existing, presetType, presetCycleId, presetAmount,
     });
   }
 }
-
 function escapeAttr(s) {
   return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
-
-
 // ---- services/transfers.js ----
 // A transfer moves money between two accounts. It is deliberately NOT a
 // transaction: it never touches income/expense totals or net worth.
@@ -2736,7 +2560,6 @@ const TransfersService = {
     if (accountId) items = items.filter(t => t.fromAccountId === accountId || t.toAccountId === accountId);
     return items.sort((a, b) => b.date.localeCompare(a.date) || b.createdAt.localeCompare(a.createdAt));
   },
-
   create({ fromAccountId, toAccountId, amount, date, note }) {
     if (fromAccountId === toAccountId) {
       throw new Error('Il conto di origine e destinazione devono essere diversi.');
@@ -2753,45 +2576,39 @@ const TransfersService = {
     store.commit(d => d.transfers.push(transfer));
     return transfer;
   },
-
   delete(id) {
     store.commit(d => { d.transfers = d.transfers.filter(t => t.id !== id); });
   },
 };
-
-
 // ---- views/accounts.js ----
 const ACCOUNT_COLORS = ['#C8A84B', '#3DD68C', '#5B8DEF', '#FF6B6B', '#F5B942', '#B98BE0', '#4FD1C5'];
-
 async function renderAccounts(root) {
   const params = getParams();
   const accounts = AccountsService.list();
-  const archived = AccountsService.list({ includeArchived: true }).filter(a => a.archived);
-
+  const archived = AccountsService.list({ includeArchived: true }).filter(a =>
+a.archived);
   root.innerHTML = `
     <div class="section-title">
       <span class="st-label">${sectionIcon('accounts')}I tuoi account</span>
     </div>
     <div class="card" id="acc-list" style="padding:8px var(--space-5)"></div>
-
     <button class="btn btn-secondary" id="add-account" style="margin-top:16px">＋ Nuovo account</button>
-
     ${ModuleManager.isEnabled('transfers') && accounts.length >= 2 ? `
       <button class="btn btn-secondary" id="add-transfer" style="margin-top:10px">↔ Nuovo trasferimento</button>
     ` : ''}
-
     ${archived.length ? `
       <div class="section-title">Account archiviati</div>
-      <div class="card" id="acc-archived" style="padding:8px var(--space-5)"></div>
+      <div class="card" id="acc-archived" style="padding:8px var(--space-5)">
+</div>
     ` : ''}
-
     <div class="section-title">Trasferimenti recenti</div>
     <div class="card" id="transfer-list" style="padding:8px var(--space-5)"></div>
   `;
-
   const list = root.querySelector('#acc-list');
   if (!accounts.length) {
-    list.appendChild(el(`<div class="empty-state"><div class="glyph">🏦</div><p>Nessun account ancora. Crea il primo per iniziare a tracciare i saldi.</p></div>`));
+    list.appendChild(el(`<div class="empty-state"><div class="glyph">🏦</div>
+<p>Nessun account ancora. Crea il primo per iniziare a tracciare i saldi.</p>
+</div>`));
   } else {
     accounts.forEach(a => {
       const row = el(`
@@ -2801,14 +2618,14 @@ async function renderAccounts(root) {
             <div class="row-title">${escapeAttr(a.name)}</div>
             <div class="row-sub">${escapeAttr(typeLabel(a))}</div>
           </div>
-          <div class="row-value num">${formatMoney(AccountsService.balance(a.id))}</div>
+          <div class="row-value num">${formatMoney(AccountsService.balance(a.id))}
+</div>
         </div>
       `);
       row.addEventListener('click', () => openAccountSheet(a));
       list.appendChild(row);
     });
   }
-
   if (archived.length) {
     const archNode = root.querySelector('#acc-archived');
     archived.forEach(a => {
@@ -2827,11 +2644,11 @@ async function renderAccounts(root) {
       archNode.appendChild(row);
     });
   }
-
   const trList = root.querySelector('#transfer-list');
   const transfers = TransfersService.list().slice(0, 8);
   if (!transfers.length) {
-    trList.appendChild(el(`<div class="empty-state"><div class="glyph">↔️</div><p>Nessun trasferimento registrato.</p></div>`));
+    trList.appendChild(el(`<div class="empty-state"><div class="glyph">↔️</div>
+<p>Nessun trasferimento registrato.</p></div>`));
   } else {
     transfers.forEach(tr => {
       const from = AccountsService.get(tr.fromAccountId);
@@ -2848,21 +2665,20 @@ async function renderAccounts(root) {
       `));
     });
   }
-
-  root.querySelector('#add-account').addEventListener('click', () => openAccountSheet(null));
-  root.querySelector('#add-transfer')?.addEventListener('click', () => openTransferSheet());
-
+  root.querySelector('#add-account').addEventListener('click', () =>
+openAccountSheet(null));
+  root.querySelector('#add-transfer')?.addEventListener('click', () =>
+openTransferSheet());
   if (params.openTransfer === 'true' && accounts.length >= 2) openTransferSheet();
 }
-
 function typeLabel(a) {
   if (a.type === 'custom') return a.customType || 'Personalizzato';
   return ACCOUNT_TYPES.find(t2 => t2.id === a.type)?.label || a.type;
 }
-
 function openAccountSheet(existing) {
   const node = openSheet(`
-    <div class="sheet-title">${existing ? 'Modifica account' : 'Nuovo account'}</div>
+    <div class="sheet-title">${existing ? 'Modifica account' : 'Nuovo account'}
+</div>
     <div class="field">
       <label>Nome</label>
       <input id="a-name" placeholder="es. Intesa Sanpaolo, HYPE, Vinted..." value="${existing ? escapeAttr(existing.name) : ''}" />
@@ -2893,24 +2709,23 @@ function openAccountSheet(existing) {
     </div>
     <div class="field">
       <label>Note (opzionale)</label>
-      <textarea id="a-note">${existing ? escapeAttr(existing.note) : ''}</textarea>
+      <textarea id="a-note">${existing ? escapeAttr(existing.note) : ''}
+</textarea>
     </div>
-    <button class="btn btn-primary" id="a-save">Salva</button>
+    ${existing ? '<button class="btn btn-secondary" id="a-moves" style="margin-bottom:10px">Vedi movimenti</button>' : ''}<button class="btn btn-primary" id="a-save">Salva</button>
     ${existing ? '<button class="btn btn-danger" id="a-archive" style="margin-top:10px">Archivia account</button>' : ''}
   `);
-
   let selectedColor = existing?.color || ACCOUNT_COLORS[0];
   node.querySelectorAll('#a-colors .swatch').forEach(sw => {
     sw.addEventListener('click', () => {
       selectedColor = sw.dataset.c;
-      node.querySelectorAll('#a-colors .swatch').forEach(s => s.classList.toggle('active', s === sw));
+      node.querySelectorAll('#a-colors .swatch').forEach(s =>
+s.classList.toggle('active', s === sw));
     });
   });
-
   node.querySelector('#a-type').addEventListener('change', e => {
     node.querySelector('#custom-type-field').style.display = e.target.value === 'custom' ? 'block' : 'none';
   });
-
   node.querySelector('#a-save').addEventListener('click', () => {
     const name = node.querySelector('#a-name').value.trim();
     if (!name) { toast('Inserisci un nome.'); return; }
@@ -2933,8 +2748,8 @@ function openAccountSheet(existing) {
     closeSheet();
     renderCurrentRoute();
   });
-
   if (existing) {
+    node.querySelector('#a-moves').addEventListener('click', () => { closeSheet(); navigate('finance', { drill: String(Date.now()), accountId: existing.id }); });
     node.querySelector('#a-archive').addEventListener('click', () => {
       AccountsService.archive(existing.id);
       closeSheet();
@@ -2943,14 +2758,14 @@ function openAccountSheet(existing) {
     });
   }
 }
-
 function openTransferSheet() {
   const accounts = AccountsService.list();
   const node = openSheet(`
     <div class="sheet-title">${t('transfer')}</div>
     <div class="field">
       <label>Da</label>
-      <select id="tr-from">${accounts.map(a => `<option value="${a.id}">${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
+      <select id="tr-from">${accounts.map(a => `<option value="${a.id}">${a.icon}
+${escapeAttr(a.name)}</option>`).join('')}</select>
     </div>
     <div class="field">
       <label>A</label>
@@ -2970,13 +2785,13 @@ function openTransferSheet() {
     </div>
     <button class="btn btn-primary" id="tr-save">Trasferisci</button>
   `);
-
   node.querySelector('#tr-save').addEventListener('click', () => {
     const fromAccountId = node.querySelector('#tr-from').value;
     const toAccountId = node.querySelector('#tr-to').value;
     const amount = parseFloat(node.querySelector('#tr-amount').value);
     if (!amount || amount <= 0) { toast('Inserisci un importo valido.'); return; }
-    if (fromAccountId === toAccountId) { toast('Scegli due account diversi.'); return; }
+    if (fromAccountId === toAccountId) { toast('Scegli due account diversi.');
+return; }
     TransfersService.create({
       fromAccountId, toAccountId, amount,
       date: node.querySelector('#tr-date').value,
@@ -2987,12 +2802,9 @@ function openTransferSheet() {
     renderCurrentRoute();
   });
 }
-
 function escapeAttr(s) {
   return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
-
-
 // ---- core/csv.js ----
 function toCSV(rows, columns) {
   const escape = (v) => {
@@ -3003,7 +2815,6 @@ function toCSV(rows, columns) {
   const lines = rows.map(row => columns.map(c => escape(typeof c.value === 'function' ? c.value(row) : row[c.value])).join(','));
   return [header, ...lines].join('\n');
 }
-
 function downloadCSV(filename, csvString) {
   const blob = new Blob(['\uFEFF' + csvString], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
@@ -3013,15 +2824,11 @@ function downloadCSV(filename, csvString) {
   a.click();
   URL.revokeObjectURL(url);
 }
-
-
 // ---- views/settings.js ----
 const THEME_COLORS = ['#C8A84B', '#3DD68C', '#5B8DEF', '#FF6B6B', '#F5B942', '#B98BE0', '#4FD1C5', '#EDEFF3'];
 const CURRENCIES = ['EUR', 'USD', 'GBP', 'CHF'];
-
 async function renderSettings(root) {
   const s = store.get().settings;
-
   root.innerHTML = `
     <div class="section-title">Aspetto</div>
     <div class="card">
@@ -3035,7 +2842,8 @@ async function renderSettings(root) {
       <div class="settings-row" style="flex-direction:column;align-items:flex-start">
         <div class="row-title" style="margin-bottom:10px">Colore principale</div>
         <div class="swatch-row" id="color-picker">
-          ${THEME_COLORS.map(c => `<button type="button" class="swatch ${s.primaryColor === c ? 'active' : ''}" data-c="${c}" style="background:${c}"></button>`).join('')}
+          ${THEME_COLORS.map(c => `<button type="button" class="swatch ${s.primaryColor === c ? 'active' : ''}" data-c="${c}" style="background:${c}">
+</button>`).join('')}
         </div>
       </div>
       <div class="settings-row" style="flex-direction:column;align-items:flex-start">
@@ -3050,7 +2858,6 @@ async function renderSettings(root) {
         </div>
       </div>
     </div>
-
     <div class="section-title">Personalizzazione</div>
     <div class="card">
       <div class="field" style="margin-bottom:0">
@@ -3058,22 +2865,6 @@ async function renderSettings(root) {
         <input id="app-name-input" value="${escapeAttr(s.appName)}" />
       </div>
     </div>
-    <div class="card" style="margin-top:10px">
-      <div class="section-title" style="margin:0 0 10px">Rinomina sezioni</div>
-      <div class="field"><label>💰 Finanze</label><input id="lbl-finance" value="${escapeAttr(t('finance'))}" /></div>
-      <div class="field"><label>🏦 Account</label><input id="lbl-accounts" value="${escapeAttr(t('accounts'))}" /></div>
-      <div class="field"><label>↔️ Trasferimenti</label><input id="lbl-transfers" value="${escapeAttr(t('transfers'))}" /></div>
-      <div class="field"><label>🔄 Cicli</label><input id="lbl-cycles" value="${escapeAttr(t('cycles'))}" /></div>
-      <div class="field"><label>📦 Inventario</label><input id="lbl-inventory" value="${escapeAttr(t('inventory'))}" /></div>
-      <div class="field"><label>💸 Budget</label><input id="lbl-budgets" value="${escapeAttr(t('budgets'))}" /></div>
-      <div class="field"><label>🎯 Obiettivi</label><input id="lbl-goals" value="${escapeAttr(t('goals'))}" /></div>
-      <div class="field"><label>🔁 Ricorrenze</label><input id="lbl-recurrences" value="${escapeAttr(t('recurrences'))}" /></div>
-      <div class="field"><label>🧠 Insights</label><input id="lbl-insights" value="${escapeAttr(t('insights'))}" /></div>
-      <div class="field"><label>📦 Investimenti</label><input id="lbl-investments" value="${escapeAttr(t('investments'))}" /></div>
-      <div class="field"><label>📅 Calendario</label><input id="lbl-calendar" value="${escapeAttr(t('calendar'))}" /></div>
-      <div class="field" style="margin-bottom:0"><label>🔮 Previsioni</label><input id="lbl-forecasts" value="${escapeAttr(t('forecasts'))}" /></div>
-    </div>
-
     <div class="section-title">Moduli</div>
     <div class="card">
       <button class="settings-row" id="go-modules" style="width:100%;text-align:left;background:none">
@@ -3081,23 +2872,23 @@ async function renderSettings(root) {
         <span class="chev" style="width:18px;height:18px;transform:scaleX(-1)">${icon('back')}</span>
       </button>
     </div>
-
     <div class="section-title">Personalizza dashboard</div>
-    <div class="card" id="dashboard-card" style="padding:4px var(--space-5)"></div>
+    <div class="card" id="dashboard-card" style="padding:4px var(--space-5)">
+</div>
     <p style="color:var(--text-secondary);font-size:12px;line-height:1.5;margin:8px 0 0">
       Riordina con le frecce o nascondi i widget che non ti servono nella Home.
     </p>
-
     <div class="section-title">Sicurezza</div>
     <div class="card" id="security-card"></div>
-
     <div class="section-title">Dati</div>
     <div class="card">
       <button class="settings-row" id="export-btn" style="width:100%;text-align:left;background:none">
-        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--primary)">${icon('download')}</span><div class="row-title">Esporta backup (JSON)</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--primary)">${icon('download')}
+</span><div class="row-title">Esporta backup (JSON)</div></div>
       </button>
       <label class="settings-row" style="width:100%;cursor:pointer">
-        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--primary)">${icon('upload')}</span><div class="row-title">Importa backup</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--primary)">${icon('upload')}</span>
+<div class="row-title">Importa backup</div></div>
         <input type="file" id="import-file" accept="application/json" style="display:none" />
       </label>
       <button class="settings-row" id="csv-transactions" style="width:100%;text-align:left;background:none">
@@ -3108,17 +2899,17 @@ async function renderSettings(root) {
       </button>
       ${ModuleManager.isEnabled('cycles') ? `<button class="settings-row" id="csv-cycles" style="width:100%;text-align:left;background:none"><div class="row-title">Esporta cicli (CSV)</div></button>` : ''}
       <button class="settings-row" id="reset-btn" style="width:100%;text-align:left;background:none">
-        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--negative)">${icon('trash')}</span><div class="row-title" style="color:var(--negative)">Azzera tutti i dati</div></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="inline-icon" style="width:20px;height:20px;color:var(--negative)">${icon('trash')}</span>
+<div class="row-title" style="color:var(--negative)">Azzera tutti i dati</div>
+</div>
       </button>
     </div>
-
     <div class="section-title">Informazioni</div>
     <div class="card">
       <div class="settings-row"><div class="row-title">Versione</div><div class="row-desc">1.0.0</div></div>
       <div class="settings-row" style="border-bottom:none"><div class="row-desc">100% offline · i dati restano solo su questo dispositivo.</div></div>
     </div>
   `;
-
   root.querySelectorAll('[data-theme]').forEach(btn => {
     btn.addEventListener('click', () => {
       store.commit(d => { d.settings.theme = btn.dataset.theme; });
@@ -3126,7 +2917,6 @@ async function renderSettings(root) {
       renderSettings(root);
     });
   });
-
   root.querySelectorAll('#color-picker .swatch').forEach(sw => {
     sw.addEventListener('click', () => {
       store.commit(d => { d.settings.primaryColor = sw.dataset.c; });
@@ -3134,39 +2924,21 @@ async function renderSettings(root) {
       renderSettings(root);
     });
   });
-
   root.querySelectorAll('[data-preset]').forEach(btn => {
     btn.addEventListener('click', () => {
       applyPreset(btn.dataset.preset);
       renderSettings(root);
     });
   });
-
   root.querySelector('#app-name-input').addEventListener('change', e => {
     store.commit(d => { d.settings.appName = e.target.value.trim() || 'Finance Hub'; });
     applyTheme();
     toast('Nome aggiornato.');
   });
-
-  const labelMap = {
-    'lbl-finance': 'finance', 'lbl-accounts': 'accounts', 'lbl-transfers': 'transfers', 'lbl-cycles': 'cycles',
-    'lbl-inventory': 'inventory', 'lbl-budgets': 'budgets', 'lbl-goals': 'goals', 'lbl-recurrences': 'recurrences', 'lbl-insights': 'insights',
-    'lbl-investments': 'investments', 'lbl-calendar': 'calendar', 'lbl-forecasts': 'forecasts',
-  };
-  Object.entries(labelMap).forEach(([id, key]) => {
-    root.querySelector('#' + id).addEventListener('change', e => {
-      setLabel(key, e.target.value.trim());
-      toast('Etichetta aggiornata.');
-      renderNavIfNeeded();
-    });
-  });
-
-  root.querySelector('#go-modules').addEventListener('click', () => navigate('modules'));
-
+  root.querySelector('#go-modules').addEventListener('click', () =>
+navigate('modules'));
   renderDashboardCard(root.querySelector('#dashboard-card'), root);
-
   renderSecurityCard(root.querySelector('#security-card'), root);
-
   root.querySelector('#csv-transactions').addEventListener('click', () => {
     const csv = toCSV(FinanceService.listTransactions(), [
       { label: 'Data', value: 'date' },
@@ -3178,7 +2950,6 @@ async function renderSettings(root) {
     downloadCSV('finance-hub-movimenti.csv', csv);
     toast('CSV esportato.');
   });
-
   root.querySelector('#csv-accounts').addEventListener('click', () => {
     const csv = toCSV(AccountsService.list(), [
       { label: 'Nome', value: 'name' },
@@ -3188,21 +2959,20 @@ async function renderSettings(root) {
     downloadCSV('finance-hub-account.csv', csv);
     toast('CSV esportato.');
   });
-
   root.querySelector('#csv-cycles')?.addEventListener('click', async () => {
     const { CyclesService } = await import('../services/cycles.js');
     const csv = toCSV(CyclesService.list(), [
       { label: 'Nome', value: 'name' },
       { label: 'Stato', value: 'status' },
       { label: 'Costo', value: r => CyclesService.metrics(r.id).cost },
-      { label: 'Ricavi raccolti', value: r => CyclesService.metrics(r.id).revenueCollected },
+      { label: 'Ricavi raccolti', value: r =>
+CyclesService.metrics(r.id).revenueCollected },
       { label: 'Profitto', value: r => CyclesService.metrics(r.id).profitCurrent },
       { label: 'ROI %', value: r => CyclesService.metrics(r.id).roiCurrent },
     ]);
     downloadCSV('finance-hub-cicli.csv', csv);
     toast('CSV esportato.');
   });
-
   root.querySelector('#export-btn').addEventListener('click', () => {
     const json = Storage.backup();
     const blob = new Blob([json], { type: 'application/json' });
@@ -3214,7 +2984,6 @@ async function renderSettings(root) {
     URL.revokeObjectURL(url);
     toast('Backup esportato.');
   });
-
   root.querySelector('#import-file').addEventListener('change', async e => {
     const file = e.target.files[0];
     if (!file) return;
@@ -3227,7 +2996,6 @@ async function renderSettings(root) {
       toast(result.error || 'Import fallito.');
     }
   });
-
   root.querySelector('#reset-btn').addEventListener('click', () => {
     if (confirm('Questa azione cancella definitivamente tutti i dati locali. Continuare?')) {
       Storage.remove();
@@ -3235,11 +3003,9 @@ async function renderSettings(root) {
     }
   });
 }
-
 function renderNavIfNeeded() {
   window.dispatchEvent(new Event('nav:refresh'));
 }
-
 const DASHBOARD_WIDGETS = {
   netWorth: { label: t('netWorth'), moduleKey: null },
   cashflow: { label: t('cashflow'), moduleKey: null },
@@ -3249,13 +3015,11 @@ const DASHBOARD_WIDGETS = {
   recent: { label: 'Movimenti recenti', moduleKey: null },
   insights: { label: t('insights'), moduleKey: 'insights' },
 };
-
 function renderDashboardCard(node, root) {
   const s = store.get().settings;
   const layout = s.dashboardLayout && s.dashboardLayout.length ? s.dashboardLayout : Object.keys(DASHBOARD_WIDGETS);
   const hidden = new Set(s.dashboardHidden || []);
   const relevant = layout.filter(key => DASHBOARD_WIDGETS[key] && (!DASHBOARD_WIDGETS[key].moduleKey || ModuleManager.isEnabled(DASHBOARD_WIDGETS[key].moduleKey)));
-
   node.innerHTML = '';
   relevant.forEach((key, i) => {
     const def = DASHBOARD_WIDGETS[key];
@@ -3265,19 +3029,21 @@ function renderDashboardCard(node, root) {
         <div style="flex:1;${isHidden ? 'opacity:.45' : ''}"><div class="row-title">${def.label}</div></div>
         <div style="display:flex;gap:4px;align-items:center">
           <button class="icon-btn" data-act="up" data-key="${key}" ${i === 0 ? 'disabled style="opacity:.3"' : ''} style="width:32px;height:32px;font-size:14px">▲</button>
-          <button class="icon-btn" data-act="down" data-key="${key}" ${i === relevant.length - 1 ? 'disabled style="opacity:.3"' : ''} style="width:32px;height:32px;font-size:14px">▼</button>
+          <button class="icon-btn" data-act="down" data-key="${key}" ${i === relevant.length - 1 ? 'disabled style="opacity:.3"' : ''}
+style="width:32px;height:32px;font-size:14px">▼</button>
           <div class="toggle ${!isHidden ? 'on' : ''}" data-act="toggle" data-key="${key}" style="margin-left:6px"><div class="dot"></div></div>
         </div>
       </div>
     `);
     node.appendChild(row);
   });
-
-  node.querySelectorAll('[data-act="up"]').forEach(btn => btn.addEventListener('click', () => moveWidget(btn.dataset.key, -1, node, root)));
-  node.querySelectorAll('[data-act="down"]').forEach(btn => btn.addEventListener('click', () => moveWidget(btn.dataset.key, 1, node, root)));
-  node.querySelectorAll('[data-act="toggle"]').forEach(t2 => t2.addEventListener('click', () => toggleWidget(t2.dataset.key, node, root)));
+  node.querySelectorAll('[data-act="up"]').forEach(btn =>
+btn.addEventListener('click', () => moveWidget(btn.dataset.key, -1, node, root)));
+  node.querySelectorAll('[data-act="down"]').forEach(btn =>
+btn.addEventListener('click', () => moveWidget(btn.dataset.key, 1, node, root)));
+  node.querySelectorAll('[data-act="toggle"]').forEach(t2 =>
+t2.addEventListener('click', () => toggleWidget(t2.dataset.key, node, root)));
 }
-
 function moveWidget(key, dir, node, root) {
   const s = store.get().settings;
   const layout = [...(s.dashboardLayout && s.dashboardLayout.length ? s.dashboardLayout : Object.keys(DASHBOARD_WIDGETS))];
@@ -3290,7 +3056,6 @@ function moveWidget(key, dir, node, root) {
   store.commit(d => { d.settings.dashboardLayout = layout; });
   renderDashboardCard(node, root);
 }
-
 function toggleWidget(key, node, root) {
   store.commit(d => {
     const hidden = new Set(d.settings.dashboardHidden || []);
@@ -3299,14 +3064,13 @@ function toggleWidget(key, node, root) {
   });
   renderDashboardCard(node, root);
 }
-
 function renderSecurityCard(node, root) {
   const s = store.get().settings;
   const pinSet = isPinSet();
-
   node.innerHTML = `
     <div class="settings-row" style="width:100%">
-      <div><div class="row-title">${pinSet ? 'PIN attivo' : 'Blocco con PIN'}</div><div class="row-desc">Richiede un PIN per aprire l'app</div></div>
+      <div><div class="row-title">${pinSet ? 'PIN attivo' : 'Blocco con PIN'}
+</div><div class="row-desc">Richiede un PIN per aprire l'app</div></div>
       <button class="btn btn-secondary" id="pin-btn" style="width:auto;padding:8px 16px;font-size:12px">${pinSet ? 'Cambia' : 'Imposta'}</button>
     </div>
     ${pinSet ? `
@@ -3321,7 +3085,6 @@ function renderSecurityCard(node, root) {
       <div class="row-desc">Nessun server coinvolto: il PIN è verificato solo su questo dispositivo. La biometria non è ancora supportata in questa build.</div>
     </div>`}
   `;
-
   node.querySelector('#pin-btn').addEventListener('click', () => openPinSheet());
   node.querySelector('#autolock-toggle')?.addEventListener('click', () => {
     store.commit(d => { d.settings.autoLock = !d.settings.autoLock; });
@@ -3335,7 +3098,6 @@ function renderSecurityCard(node, root) {
     }
   });
 }
-
 function openPinSheet() {
   const sheetNode = openSheet(`
     <div class="sheet-title">Imposta PIN</div>
@@ -3346,7 +3108,8 @@ function openPinSheet() {
   sheetNode.querySelector('#pin-save').addEventListener('click', async () => {
     const a = sheetNode.querySelector('#pin-new').value;
     const b = sheetNode.querySelector('#pin-confirm').value;
-    if (!/^\d{4,6}$/.test(a)) { toast('Il PIN deve avere 4-6 cifre numeriche.'); return; }
+    if (!/^\d{4,6}$/.test(a)) { toast('Il PIN deve avere 4-6 cifre numeriche.');
+return; }
     if (a !== b) { toast('I due PIN non coincidono.'); return; }
     await setPin(a);
     closeSheet();
@@ -3354,15 +3117,11 @@ function openPinSheet() {
     renderSettings(document.getElementById('view-root'));
   });
 }
-
 function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- views/modules.js ----
 async function renderModules(root) {
   const manageable = ModuleManager.getManageableModules();
-
   root.innerHTML = `
     <div class="section-title">Moduli</div>
     <p style="color:var(--text-secondary);font-size:13px;line-height:1.5;margin-bottom:16px">
@@ -3371,11 +3130,10 @@ async function renderModules(root) {
     </p>
     <div class="card" id="mod-list" style="padding:4px var(--space-5)"></div>
     <p style="color:var(--text-secondary);font-size:12px;line-height:1.5;margin-top:16px">
-      💰 Finanze e 🏦 Account sono i moduli di base e restano sempre attivi: gli altri moduli si appoggiano
+         💰 Finanze e 🏦 Account sono i moduli di base e restano sempre attivi: gli altri moduli si appoggiano
       alle loro transazioni.
     </p>
   `;
-
   const list = root.querySelector('#mod-list');
   manageable.forEach(m => {
     const enabled = ModuleManager.isEnabled(m.id);
@@ -3386,7 +3144,8 @@ async function renderModules(root) {
           <div class="row-icon">${m.icon}</div>
           <div>
             <div class="row-title">${t(m.labelKey)}</div>
-            ${deps.length ? `<div class="row-desc">Richiede: ${deps.join(', ')}</div>` : ''}
+            ${deps.length ? `<div class="row-desc">Richiede: ${deps.join(', ')}
+</div>` : ''}
           </div>
         </div>
         <div class="toggle ${enabled ? 'on' : ''}" data-id="${m.id}"><div class="dot"></div></div>
@@ -3395,7 +3154,8 @@ async function renderModules(root) {
     row.querySelector('.toggle').addEventListener('click', () => {
       if (enabled) {
         const dependents = ModuleManager.disableModule(m.id);
-        if (dependents.length) toast(`Disattivati anche: ${dependents.map(d => t(d.labelKey)).join(', ')}`);
+        if (dependents.length) toast(`Disattivati anche: ${dependents.map(d =>
+t(d.labelKey)).join(', ')}`);
       } else {
         ModuleManager.enableModule(m.id);
       }
@@ -3404,28 +3164,23 @@ async function renderModules(root) {
     list.appendChild(row);
   });
 }
-
-
 // ---- views/cycles.js ----
 async function renderCycles(root) {
   const params = getParams();
   const cycles = CyclesService.list();
   const lockedCapital = CyclesService.totalLockedCapital();
   const activeCount = CyclesService.activeCount();
-
   root.innerHTML = `
     <div class="two-col" style="margin-bottom:20px">
       <div class="card stat-card"><div class="k">${t('activeCycles')}</div><div class="v num">${activeCount}</div></div>
       <div class="card stat-card"><div class="k">${t('lockedCapital')}</div><div class="v num">${formatMoney(lockedCapital)}</div></div>
     </div>
-
     <div class="section-title">
       <span class="st-label">${sectionIcon('cycles')}${t('cycles')}</span>
       <button class="btn-ghost" id="new-cycle" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="cycle-list"></div>
   `;
-
   const list = root.querySelector('#cycle-list');
   if (!cycles.length) {
     list.appendChild(el(`<div class="card"><div class="empty-state"><div class="glyph">🔄</div><p>Nessun ciclo ancora.<br>Crea il tuo primo ciclo per tracciare l'acquisto e la rivendita di un prodotto.</p></div></div>`));
@@ -3437,7 +3192,8 @@ async function renderCycles(root) {
       const card = el(`
         <div class="card" style="margin-bottom:10px;cursor:pointer">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
-            <div style="font-weight:700;font-size:15px">${escapeAttr(c.name)}</div>
+            <div style="font-weight:700;font-size:15px">${escapeAttr(c.name)}
+</div>
             <span class="chip" style="background:${statusDef.color}22;border-color:${statusDef.color};color:${statusDef.color}">${statusDef.label}</span>
           </div>
           <div class="two-col" style="grid-template-columns:1fr 1fr 1fr;gap:8px">
@@ -3451,12 +3207,11 @@ async function renderCycles(root) {
       list.appendChild(card);
     });
   }
-
-  root.querySelector('#new-cycle').addEventListener('click', () => openCycleForm(null));
-
+  root.querySelector('#new-cycle').addEventListener('click', () =>
+openCycleForm(null));
   if (params.openNew === 'true') openCycleForm(null);
+  if (params.open) openCycleDetail(params.open);
 }
-
 function openCycleForm(existing) {
   const tags = FinanceService.listTags();
   const node = openSheet(`
@@ -3467,7 +3222,8 @@ function openCycleForm(existing) {
     </div>
     <div class="field">
       <label>Categoria / tag (opzionale)</label>
-      <input id="c-tag" list="c-tag-list" value="${existing ? (tags.find(t2 => t2.id === existing.tagId)?.name || '') : ''}" />
+      <input id="c-tag" list="c-tag-list" value="${existing ? (tags.find(t2 =>
+t2.id === existing.tagId)?.name || '') : ''}" />
       <datalist id="c-tag-list">${tags.map(t2 => `<option value="${escapeAttr(t2.name)}"></option>`).join('')}</datalist>
     </div>
     <div class="field">
@@ -3488,11 +3244,11 @@ function openCycleForm(existing) {
     </div>
     <div class="field">
       <label>Note (opzionale)</label>
-      <textarea id="c-notes">${existing ? escapeAttr(existing.notes) : ''}</textarea>
+      <textarea id="c-notes">${existing ? escapeAttr(existing.notes) : ''}
+</textarea>
     </div>
     <button class="btn btn-primary" id="c-save">Salva</button>
   `);
-
   node.querySelector('#c-save').addEventListener('click', () => {
     const name = node.querySelector('#c-name').value.trim();
     if (!name) { toast('Inserisci un nome per il ciclo.'); return; }
@@ -3518,19 +3274,16 @@ function openCycleForm(existing) {
     renderCurrentRoute();
   });
 }
-
 function openCycleDetail(id) {
   const c = CyclesService.get(id);
   if (!c) return;
   const m = CyclesService.metrics(id);
   const txs = CyclesService.transactions(id);
-
   const node = openSheet(`
     <div class="sheet-title">${escapeAttr(c.name)}</div>
     <div class="segmented" id="status-picker" style="margin-bottom:16px">
       ${CYCLE_STATUSES.filter(s => s.id !== 'CANCELLED').map(s => `<button data-s="${s.id}" class="${c.status === s.id ? 'active' : ''}" style="font-size:11px">${s.label}</button>`).join('')}
     </div>
-
     <div class="two-col" style="grid-template-columns:1fr 1fr;margin-bottom:16px">
       <div class="stat-card card"><div class="k">Costo totale</div><div class="v num">${formatMoney(m.cost)}</div></div>
       <div class="stat-card card"><div class="k">Ricavi raccolti</div><div class="v num">${formatMoney(m.revenueCollected)}</div></div>
@@ -3539,27 +3292,23 @@ function openCycleDetail(id) {
       <div class="stat-card card"><div class="k">Capitale bloccato</div><div class="v num">${formatMoney(m.capitalLocked)}</div></div>
       <div class="stat-card card"><div class="k">Giacenza</div><div class="v num">${m.holdingDays} giorni</div></div>
     </div>
-
     <div style="display:flex;gap:8px;margin-bottom:16px">
       <button class="btn btn-secondary" id="add-cost" style="flex:1">＋ Costo</button>
       <button class="btn btn-secondary" id="add-revenue" style="flex:1">＋ Ricavo</button>
     </div>
-
     <div class="section-title" style="margin-top:0">Movimenti collegati</div>
     <div class="card" id="cycle-tx-list" style="padding:4px var(--space-5);margin-bottom:16px"></div>
-
     ${ModuleManager.isEnabled('inventory') ? `
     <div class="section-title" style="margin-top:0">Prodotti collegati</div>
     <div class="card" id="cycle-inv-list" style="padding:4px var(--space-5);margin-bottom:16px"></div>
     ` : ''}
-
     <button class="btn btn-secondary" id="edit-cycle" style="margin-bottom:10px">${'Modifica dettagli'}</button>
     <button class="btn btn-danger" id="delete-cycle">Elimina ciclo</button>
   `);
-
   const txList = node.querySelector('#cycle-tx-list');
   if (!txs.length) {
-    txList.appendChild(el(`<div class="empty-state" style="padding:20px 0"><p>Nessun movimento collegato ancora.</p></div>`));
+    txList.appendChild(el(`<div class="empty-state" style="padding:20px 0">
+<p>Nessun movimento collegato ancora.</p></div>`));
   } else {
     txs.forEach(tx => {
       txList.appendChild(el(`
@@ -3571,28 +3320,30 @@ function openCycleDetail(id) {
       `));
     });
   }
-
   const invList = node.querySelector('#cycle-inv-list');
   if (invList) {
     const linkedItems = InventoryService.list().filter(item => item.cycleId === id);
     if (!linkedItems.length) {
-      invList.appendChild(el(`<div class="empty-state" style="padding:20px 0"><p>Nessun prodotto d'inventario collegato a questo ciclo.</p></div>`));
+      invList.appendChild(el(`<div class="empty-state" style="padding:20px 0">
+<p>Nessun prodotto d'inventario collegato a questo ciclo.</p></div>`));
     } else {
       linkedItems.forEach(item => {
         const im = InventoryService.metrics(item.id);
         const row = el(`
           <div class="list-row" style="cursor:pointer">
             <div class="row-icon">${icon('inventory')}</div>
-            <div class="row-main"><div class="row-title">${escapeAttr(item.name)}</div><div class="row-sub">${im.available} disponibili · ${item.quantitySold} venduti</div></div>
+            <div class="row-main"><div class="row-title">${escapeAttr(item.name)}
+</div><div class="row-sub">${im.available} disponibili · ${item.quantitySold}
+venduti</div></div>
             <div class="row-value num">${formatMoney(im.inventoryValue)}</div>
           </div>
         `);
-        row.addEventListener('click', () => { closeSheet(); openItemDetail(item.id); });
+        row.addEventListener('click', () => { closeSheet();
+openItemDetail(item.id); });
         invList.appendChild(row);
       });
     }
   }
-
   node.querySelectorAll('#status-picker button').forEach(btn => {
     btn.addEventListener('click', () => {
       CyclesService.setStatus(id, btn.dataset.s);
@@ -3601,7 +3352,6 @@ function openCycleDetail(id) {
       toast('Stato aggiornato.');
     });
   });
-
   node.querySelector('#add-cost').addEventListener('click', () => {
     closeSheet();
     openTransactionSheet(null, 'expense', id);
@@ -3623,19 +3373,14 @@ function openCycleDetail(id) {
     }
   });
 }
-
 function escapeAttr(s) {
   return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
-
-
 // ---- views/budgets.js ----
 const LEVEL_COLOR = { ok: 'var(--positive)', warning: 'var(--warning)', danger: 'var(--warning)', over: 'var(--negative)' };
-
 async function renderBudgets(root) {
   const params = getParams();
   const budgets = BudgetsService.list();
-
   root.innerHTML = `
     <div class="section-title">
       <span class="st-label">${sectionIcon('budgets')}${t('budgets')}</span>
@@ -3643,7 +3388,6 @@ async function renderBudgets(root) {
     </div>
     <div id="budget-list"></div>
   `;
-
   const list = root.querySelector('#budget-list');
   if (!budgets.length) {
     list.appendChild(el(`<div class="card"><div class="empty-state"><div class="glyph">💸</div><p>Nessun budget ancora.<br>Crea un limite di spesa per una categoria o per il totale.</p></div></div>`));
@@ -3654,12 +3398,14 @@ async function renderBudgets(root) {
       const card = el(`
         <div class="card" style="margin-bottom:10px;cursor:pointer">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-            <div style="font-weight:700;font-size:15px">${escapeAttr(b.name)}</div>
+            <div style="font-weight:700;font-size:15px">${escapeAttr(b.name)}
+</div>
             <div style="font-size:12px;color:var(--text-secondary)">${periodLabel(b)}</div>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px">
             <span class="num" style="color:${color};font-weight:700">${formatMoney(s.spent)}</span>
-            <span style="color:var(--text-secondary)">di ${formatMoney(b.amount)}</span>
+            <span style="color:var(--text-secondary)">di ${formatMoney(b.amount)}
+</span>
           </div>
           <div class="progress-bar" style="margin-top:0"><div class="fill" style="width:${Math.min(100, s.pct)}%;background:${color}"></div></div>
           ${s.level === 'over' ? `<div style="font-size:12px;color:var(--negative);margin-top:8px">🔴 Budget superato</div>`
@@ -3671,22 +3417,21 @@ async function renderBudgets(root) {
       list.appendChild(card);
     });
   }
-
-  root.querySelector('#new-budget').addEventListener('click', () => openBudgetForm(null));
+  root.querySelector('#new-budget').addEventListener('click', () =>
+openBudgetForm(null));
   if (params.openNew === 'true') openBudgetForm(null);
+  if (params.open && BudgetsService.get(params.open)) openBudgetForm(BudgetsService.get(params.open));
 }
-
 function periodLabel(b) {
   const def = BUDGET_PERIODS.find(p => p.id === b.period);
   return def ? def.label : b.period;
 }
-
 function openBudgetForm(existing) {
   const tags = FinanceService.listTags();
   const selectedTagIds = new Set(existing?.tagIds || []);
-
   const node = openSheet(`
-    <div class="sheet-title">${existing ? 'Modifica budget' : 'Nuovo budget'}</div>
+    <div class="sheet-title">${existing ? 'Modifica budget' : 'Nuovo budget'}
+</div>
     <div class="field">
       <label>Nome</label>
       <input id="b-name" placeholder="es. Spesa alimentare, Trasporti..." value="${existing ? escapeAttr(existing.name) : ''}" />
@@ -3712,25 +3457,25 @@ function openBudgetForm(existing) {
     ${tags.length ? `<div class="field">
       <label>Tag associati (vuoto = tutte le spese)</label>
       <div class="chip-row" id="b-tags">
-        ${tags.map(tg => `<button type="button" class="chip ${selectedTagIds.has(tg.id) ? 'active' : ''}" data-id="${tg.id}">${tg.icon} ${escapeAttr(tg.name)}</button>`).join('')}
+        ${tags.map(tg => `<button type="button" class="chip ${selectedTagIds.has(tg.id) ? 'active' : ''}" data-id="${tg.id}">${tg.icon}
+${escapeAttr(tg.name)}</button>`).join('')}
       </div>
     </div>` : ''}
-    <button class="btn btn-primary" id="b-save" style="margin-top:8px">Salva</button>
+    <button class="btn btn-primary" id="b-save" style="margin-
+top:8px">Salva</button>
     ${existing ? '<button class="btn btn-danger" id="b-delete" style="margin-top:10px">Elimina budget</button>' : ''}
   `);
-
   node.querySelector('#b-period').addEventListener('change', e => {
     node.querySelector('#b-end-field').style.display = e.target.value === 'custom' ? 'block' : 'none';
   });
-
   node.querySelectorAll('#b-tags .chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const id = chip.dataset.id;
-      if (selectedTagIds.has(id)) { selectedTagIds.delete(id); chip.classList.remove('active'); }
+      if (selectedTagIds.has(id)) { selectedTagIds.delete(id);
+chip.classList.remove('active'); }
       else { selectedTagIds.add(id); chip.classList.add('active'); }
     });
   });
-
   node.querySelector('#b-save').addEventListener('click', () => {
     const name = node.querySelector('#b-name').value.trim();
     const amount = parseFloat(node.querySelector('#b-amount').value);
@@ -3748,7 +3493,6 @@ function openBudgetForm(existing) {
     closeSheet();
     renderCurrentRoute();
   });
-
   if (existing) {
     node.querySelector('#b-delete').addEventListener('click', () => {
       BudgetsService.delete(existing.id);
@@ -3758,22 +3502,16 @@ function openBudgetForm(existing) {
     });
   }
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- services/goals.js ----
 const GOAL_COLORS = ['#C8A84B', '#3DD68C', '#5B8DEF', '#FF6B6B', '#F5B942', '#B98BE0'];
-
 const GoalsService = {
   list() {
     return store.get().goals.sort((a, b) => (a.targetDate || '9999').localeCompare(b.targetDate || '9999'));
   },
-
   get(id) {
     return store.get().goals.find(g => g.id === id);
   },
-
   create({ name, icon, color, targetAmount, currentAmount, targetDate, accountId, notes }) {
     const goal = {
       id: uid(),
@@ -3791,25 +3529,22 @@ const GoalsService = {
     store.commit(d => d.goals.push(goal));
     return goal;
   },
-
   update(id, patch) {
     store.commit(d => {
       const g = d.goals.find(x => x.id === id);
       if (g) Object.assign(g, patch, { updatedAt: nowISO() });
     });
   },
-
   contribute(id, amount) {
     store.commit(d => {
       const g = d.goals.find(x => x.id === id);
-      if (g) { g.currentAmount = Math.max(0, g.currentAmount + Number(amount)); g.updatedAt = nowISO(); }
+      if (g) { g.currentAmount = Math.max(0, g.currentAmount + Number(amount));
+g.updatedAt = nowISO(); }
     });
   },
-
   delete(id) {
     store.commit(d => { d.goals = d.goals.filter(g => g.id !== id); });
   },
-
   progress(id) {
     const g = this.get(id);
     if (!g) return 0;
@@ -3817,13 +3552,10 @@ const GoalsService = {
     return Math.min(100, Math.round((g.currentAmount / g.targetAmount) * 100));
   },
 };
-
-
 // ---- views/goals.js ----
 async function renderGoals(root) {
   const params = getParams();
   const goals = GoalsService.list();
-
   root.innerHTML = `
     <div class="section-title">
       <span class="st-label">${sectionIcon('goals')}${t('goals')}</span>
@@ -3831,7 +3563,6 @@ async function renderGoals(root) {
     </div>
     <div id="goal-list"></div>
   `;
-
   const list = root.querySelector('#goal-list');
   if (!goals.length) {
     list.appendChild(el(`<div class="card"><div class="empty-state"><div class="glyph">🎯</div><p>Nessun obiettivo ancora.<br>Crea il primo per iniziare a risparmiare verso qualcosa.</p></div></div>`));
@@ -3843,7 +3574,8 @@ async function renderGoals(root) {
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
             <div class="row-icon" style="background:${g.color}22;color:${g.color}">${g.icon}</div>
             <div style="flex:1">
-              <div style="font-weight:700;font-size:15px">${escapeAttr(g.name)}</div>
+              <div style="font-weight:700;font-size:15px">${escapeAttr(g.name)}
+</div>
               ${g.targetDate ? `<div style="font-size:12px;color:var(--text-secondary)">entro ${formatDate(g.targetDate, { style: 'long' })}</div>` : ''}
             </div>
             <div style="text-align:right">
@@ -3861,11 +3593,11 @@ async function renderGoals(root) {
       list.appendChild(card);
     });
   }
-
-  root.querySelector('#new-goal').addEventListener('click', () => openGoalForm(null));
+  root.querySelector('#new-goal').addEventListener('click', () =>
+openGoalForm(null));
   if (params.openNew === 'true') openGoalForm(null);
+  if (params.open && GoalsService.get(params.open)) openGoalDetail(params.open);
 }
-
 function openGoalDetail(id) {
   const g = GoalsService.get(id);
   const linkedAccount = g.accountId ? AccountsService.get(g.accountId) : null;
@@ -3885,12 +3617,10 @@ function openGoalDetail(id) {
     <button class="btn btn-secondary" id="g-edit" style="margin-top:10px">Modifica obiettivo</button>
     <button class="btn btn-danger" id="g-delete" style="margin-top:10px">Elimina obiettivo</button>
   `);
-
   node.querySelector('#g-account-link')?.addEventListener('click', () => {
     closeSheet();
     openAccountSheet(linkedAccount);
   });
-
   node.querySelector('#g-add').addEventListener('click', () => {
     const amount = parseFloat(node.querySelector('#g-contribute').value);
     if (!amount || amount <= 0) { toast('Inserisci un importo valido.'); return; }
@@ -3905,7 +3635,8 @@ function openGoalDetail(id) {
     }
     renderCurrentRoute();
   });
-  node.querySelector('#g-edit').addEventListener('click', () => { closeSheet(); openGoalForm(g); });
+  node.querySelector('#g-edit').addEventListener('click', () => { closeSheet();
+openGoalForm(g); });
   node.querySelector('#g-delete').addEventListener('click', () => {
     GoalsService.delete(id);
     closeSheet();
@@ -3913,7 +3644,6 @@ function openGoalDetail(id) {
     renderCurrentRoute();
   });
 }
-
 function openGoalForm(existing) {
   const accounts = AccountsService.list();
   const node = openSheet(`
@@ -3946,24 +3676,25 @@ function openGoalForm(existing) {
     </div>
     <div class="field">
       <label>Note (opzionale)</label>
-      <textarea id="g-notes">${existing ? escapeAttr(existing.notes) : ''}</textarea>
+      <textarea id="g-notes">${existing ? escapeAttr(existing.notes) : ''}
+</textarea>
     </div>
     ${accounts.length ? `<div class="field">
       <label>Account collegato (opzionale)</label>
-      <select id="g-account"><option value="">Nessuno</option>${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
+      <select id="g-account"><option value="">Nessuno</option>${accounts.map(a =>
+`<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
       <p style="color:var(--text-secondary);font-size:12px;margin-top:8px">Se scelto, ogni volta che aggiungi un contributo ti proporrò il movimento che sposta davvero quella cifra da questo account.</p>
     </div>` : ''}
     <button class="btn btn-primary" id="g-save">Salva</button>
   `);
-
   let selectedColor = existing?.color || GOAL_COLORS[0];
   node.querySelectorAll('#g-colors .swatch').forEach(sw => {
     sw.addEventListener('click', () => {
       selectedColor = sw.dataset.c;
-      node.querySelectorAll('#g-colors .swatch').forEach(s => s.classList.toggle('active', s === sw));
+      node.querySelectorAll('#g-colors .swatch').forEach(s =>
+s.classList.toggle('active', s === sw));
     });
   });
-
   node.querySelector('#g-save').addEventListener('click', () => {
     const name = node.querySelector('#g-name').value.trim();
     const target = parseFloat(node.querySelector('#g-target').value);
@@ -3984,26 +3715,23 @@ function openGoalForm(existing) {
     renderCurrentRoute();
   });
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- views/recurrences.js ----
 async function renderRecurrences(root) {
   const params = getParams();
   const recs = RecurrencesService.list();
-
   root.innerHTML = `
     <div class="section-title">
-      <span class="st-label">${sectionIcon('recurrences')}${t('recurrences')}</span>
+      <span class="st-label">${sectionIcon('recurrences')}${t('recurrences')}
+</span>
       <button class="btn-ghost" id="new-rec" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuova</button>
     </div>
     <div class="card" id="rec-list" style="padding:8px var(--space-5)"></div>
   `;
-
   const list = root.querySelector('#rec-list');
   if (!recs.length) {
-    list.appendChild(el(`<div class="empty-state"><div class="glyph">🔁</div><p>Nessuna ricorrenza impostata.<br>Automatizza entrate e uscite che si ripetono, come stipendio o abbonamenti.</p></div>`));
+    list.appendChild(el(`<div class="empty-state"><div class="glyph">🔁</div>
+<p>Nessuna ricorrenza impostata.<br>Automatizza entrate e uscite che si ripetono, come stipendio o abbonamenti.</p></div>`));
   } else {
     recs.forEach(r => {
       const acc = AccountsService.get(r.accountId);
@@ -4013,7 +3741,8 @@ async function renderRecurrences(root) {
           <div class="row-icon">${r.type === 'income' ? '⬆️' : '⬇️'}</div>
           <div class="row-main">
             <div class="row-title">${escapeAttr(r.note) || (r.type === 'income' ? t('income') : t('expense'))}</div>
-            <div class="row-sub">${freq}${r.interval > 1 ? ` ×${r.interval}` : ''} · ${acc ? escapeAttr(acc.name) : ''} · prossima: ${formatDate(r.nextDate)}</div>
+            <div class="row-sub">${freq}${r.interval > 1 ? ` ×${r.interval}` : ''}
+· ${acc ? escapeAttr(acc.name) : ''} · prossima: ${formatDate(r.nextDate)}</div>
           </div>
           <div class="row-value num ${r.type}">${r.type === 'income' ? '+' : '-'}${formatMoney(r.amount)}</div>
         </div>
@@ -4022,17 +3751,15 @@ async function renderRecurrences(root) {
       list.appendChild(row);
     });
   }
-
-  root.querySelector('#new-rec').addEventListener('click', () => openRecurrenceForm(null));
+  root.querySelector('#new-rec').addEventListener('click', () =>
+openRecurrenceForm(null));
   if (params.openNew === 'true') openRecurrenceForm(null);
 }
-
 function openRecurrenceForm(existing) {
   const accounts = AccountsService.list();
   if (!accounts.length) { toast('Crea prima un account.'); return; }
   const tags = FinanceService.listTags();
   const type = existing?.type || 'expense';
-
   const node = openSheet(`
     <div class="sheet-title">${existing ? 'Modifica ricorrenza' : 'Nuova ricorrenza'}</div>
     <div class="segmented" id="r-type" style="margin-bottom:16px">
@@ -4041,32 +3768,36 @@ function openRecurrenceForm(existing) {
     </div>
     <div class="field"><label>Importo</label><input id="r-amount" type="number" step="0.01" min="0" value="${existing ? existing.amount : ''}" /></div>
     <div class="field"><label>Account</label>
-      <select id="r-account">${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
+      <select id="r-account">${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}
+</option>`).join('')}</select>
     </div>
     <div class="field"><label>Tag (opzionale)</label>
-      <input id="r-tag" list="r-tag-list" value="${existing ? (tags.find(tg => tg.id === existing.tagId)?.name || '') : ''}" />
+      <input id="r-tag" list="r-tag-list" value="${existing ? (tags.find(tg =>
+tg.id === existing.tagId)?.name || '') : ''}" />
       <datalist id="r-tag-list">${tags.map(tg => `<option value="${escapeAttr(tg.name)}"></option>`).join('')}</datalist>
     </div>
     <div class="field"><label>Nota (opzionale)</label><input id="r-note" value="${existing ? escapeAttr(existing.note) : ''}" placeholder="es. Stipendio, Netflix..." /></div>
     <div class="field"><label>Frequenza</label>
-      <select id="r-freq">${RECURRENCE_FREQUENCIES.map(f => `<option value="${f.id}" ${existing?.frequency === f.id ? 'selected' : ''}>${f.label}</option>`).join('')}</select>
+      <select id="r-freq">${RECURRENCE_FREQUENCIES.map(f => `<option value="${f.id}" ${existing?.frequency === f.id ? 'selected' : ''}>${f.label}
+</option>`).join('')}</select>
     </div>
-    <div class="field"><label>Ogni quante volte (es. 2 = ogni 2 mesi)</label><input id="r-interval" type="number" min="1" value="${existing ? existing.interval : 1}" /></div>
-    <div class="field"><label>Prima occorrenza</label><input id="r-start" type="date" value="${existing ? existing.nextDate : nowISO().slice(0, 10)}" /></div>
+    <div class="field"><label>Ogni quante volte (es. 2 = ogni 2 mesi)</label>
+<input id="r-interval" type="number" min="1" value="${existing ? existing.interval : 1}" /></div>
+    <div class="field"><label>Prima occorrenza</label><input id="r-start" type="date" value="${existing ? existing.nextDate : nowISO().slice(0, 10)}" />
+</div>
     <div class="field"><label>Fine (opzionale)</label><input id="r-end" type="date" value="${existing?.endDate || ''}" /></div>
     <button class="btn btn-primary" id="r-save">Salva</button>
     ${existing ? `<button class="btn btn-secondary" id="r-toggle" style="margin-top:10px">${existing.active ? 'Metti in pausa' : 'Riattiva'}</button>
       <button class="btn btn-danger" id="r-delete" style="margin-top:10px">Elimina</button>` : ''}
   `);
-
   let currentType = type;
   node.querySelectorAll('#r-type button').forEach(btn => {
     btn.addEventListener('click', () => {
       currentType = btn.dataset.v;
-      node.querySelectorAll('#r-type button').forEach(b => b.classList.toggle('active', b === btn));
+      node.querySelectorAll('#r-type button').forEach(b =>
+b.classList.toggle('active', b === btn));
     });
   });
-
   node.querySelector('#r-save').addEventListener('click', () => {
     const amount = parseFloat(node.querySelector('#r-amount').value);
     if (!amount || amount <= 0) { toast('Inserisci un importo valido.'); return; }
@@ -4093,7 +3824,6 @@ function openRecurrenceForm(existing) {
     closeSheet();
     renderCurrentRoute();
   });
-
   if (existing) {
     node.querySelector('#r-toggle').addEventListener('click', () => {
       RecurrencesService.toggleActive(existing.id);
@@ -4108,20 +3838,15 @@ function openRecurrenceForm(existing) {
     });
   }
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- services/inventory.js ----
 const InventoryService = {
   list() {
     return store.get().inventory.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
   },
-
   get(id) {
     return store.get().inventory.find(i => i.id === id);
   },
-
   create({ name, category, quantityPurchased, purchasePrice, salePrice, cycleId }) {
     const item = {
       id: uid(),
@@ -4138,14 +3863,12 @@ const InventoryService = {
     store.commit(d => d.inventory.push(item));
     return item;
   },
-
   update(id, patch) {
     store.commit(d => {
       const i = d.inventory.find(x => x.id === id);
       if (i) Object.assign(i, patch, { updatedAt: nowISO() });
     });
   },
-
   registerSale(id, quantity) {
     const item = this.get(id);
     if (!item) return;
@@ -4153,16 +3876,13 @@ const InventoryService = {
     if (qty <= 0) return;
     this.update(id, { quantitySold: item.quantitySold + qty });
   },
-
   delete(id) {
     store.commit(d => { d.inventory = d.inventory.filter(i => i.id !== id); });
   },
-
   available(id) {
     const i = this.get(id);
     return i ? Math.max(0, i.quantityPurchased - i.quantitySold) : 0;
   },
-
   metrics(id) {
     const i = this.get(id);
     if (!i) return null;
@@ -4176,19 +3896,15 @@ const InventoryService = {
       realizedRevenue: i.quantitySold * i.salePrice,
     };
   },
-
   totalInventoryValue() {
     return this.list().reduce((sum, i) => sum + this.metrics(i.id).inventoryValue, 0);
   },
 };
-
-
 // ---- views/inventory.js ----
 async function renderInventory(root) {
   const params = getParams();
   const items = InventoryService.list();
   const totalValue = InventoryService.totalInventoryValue();
-
   root.innerHTML = `
     <div class="card stat-card" style="margin-bottom:20px">
       <div class="k">Valore inventario</div>
@@ -4200,7 +3916,6 @@ async function renderInventory(root) {
     </div>
     <div id="item-list"></div>
   `;
-
   const list = root.querySelector('#item-list');
   if (!items.length) {
     list.appendChild(el(`<div class="card"><div class="empty-state"><div class="glyph">📦</div><p>Nessun prodotto in inventario.<br>Aggiungi i prodotti che acquisti per rivenderli.</p></div></div>`));
@@ -4210,7 +3925,8 @@ async function renderInventory(root) {
       const card = el(`
         <div class="card" style="margin-bottom:10px;cursor:pointer">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-            <div style="font-weight:700;font-size:15px">${escapeAttr(i.name)}</div>
+            <div style="font-weight:700;font-size:15px">${escapeAttr(i.name)}
+</div>
             <span class="chip">${m.available} disponibili</span>
           </div>
           <div class="two-col" style="grid-template-columns:1fr 1fr 1fr;gap:8px">
@@ -4224,11 +3940,10 @@ async function renderInventory(root) {
       list.appendChild(card);
     });
   }
-
-  root.querySelector('#new-item').addEventListener('click', () => openItemForm(null));
+  root.querySelector('#new-item').addEventListener('click', () =>
+openItemForm(null));
   if (params.openNew === 'true') openItemForm(null);
 }
-
 function openItemDetail(id) {
   const i = InventoryService.get(id);
   const m = InventoryService.metrics(id);
@@ -4236,13 +3951,15 @@ function openItemDetail(id) {
   const node = openSheet(`
     <div class="sheet-title">${escapeAttr(i.name)}</div>
     ${linkedCycle ? `
-    <button type="button" id="i-cycle-link" class="chip" style="margin-bottom:14px">${sectionIcon('cycles')} Collegato a: ${escapeAttr(linkedCycle.name)}</button>
+    <button type="button" id="i-cycle-link" class="chip" style="margin-bottom:14px">${sectionIcon('cycles')} Collegato a: ${escapeAttr(linkedCycle.name)}
+</button>
     ` : ''}
     <div class="two-col" style="grid-template-columns:1fr 1fr;margin-bottom:16px">
       <div class="stat-card card"><div class="k">Disponibili</div><div class="v num">${m.available} / ${i.quantityPurchased}</div></div>
       <div class="stat-card card"><div class="k">Venduti</div><div class="v num">${i.quantitySold}</div></div>
       <div class="stat-card card"><div class="k">Valore inventario</div><div class="v num">${formatMoney(m.inventoryValue)}</div></div>
-      <div class="stat-card card"><div class="k">Profitto potenziale</div><div class="v num" style="color:var(--positive)">${formatMoney(m.potentialProfit)}</div></div>
+      <div class="stat-card card"><div class="k">Profitto potenziale</div><div class="v num" style="color:var(--positive)">${formatMoney(m.potentialProfit)}
+</div></div>
     </div>
     ${m.available > 0 ? `
     <div class="field">
@@ -4256,12 +3973,10 @@ function openItemDetail(id) {
     <button class="btn btn-secondary" id="i-edit" style="margin-top:6px">Modifica prodotto</button>
     <button class="btn btn-danger" id="i-delete" style="margin-top:10px">Elimina prodotto</button>
   `);
-
   node.querySelector('#i-cycle-link')?.addEventListener('click', () => {
     closeSheet();
     openCycleDetail(i.cycleId);
   });
-
   node.querySelector('#i-sell')?.addEventListener('click', () => {
     const qty = parseInt(node.querySelector('#i-sell-qty').value) || 0;
     if (qty <= 0 || qty > m.available) { toast('Quantità non valida.'); return; }
@@ -4276,7 +3991,8 @@ function openItemDetail(id) {
     }
     renderCurrentRoute();
   });
-  node.querySelector('#i-edit').addEventListener('click', () => { closeSheet(); openItemForm(i); });
+  node.querySelector('#i-edit').addEventListener('click', () => { closeSheet();
+openItemForm(i); });
   node.querySelector('#i-delete').addEventListener('click', () => {
     InventoryService.delete(id);
     closeSheet();
@@ -4284,24 +4000,24 @@ function openItemDetail(id) {
     renderCurrentRoute();
   });
 }
-
 function openItemForm(existing) {
   const cyclesEnabled = ModuleManager.isEnabled('cycles');
   const cycles = cyclesEnabled ? CyclesService.list() : [];
-
   const node = openSheet(`
-    <div class="sheet-title">${existing ? 'Modifica prodotto' : 'Nuovo prodotto'}</div>
+    <div class="sheet-title">${existing ? 'Modifica prodotto' : 'Nuovo prodotto'}
+</div>
     <div class="field"><label>Nome prodotto</label><input id="i-name" value="${existing ? escapeAttr(existing.name) : ''}" placeholder="es. Felpa Nike taglia M" /></div>
     <div class="field"><label>Categoria (opzionale)</label><input id="i-category" value="${existing ? escapeAttr(existing.category) : ''}" /></div>
-    <div class="field"><label>Quantità acquistata</label><input id="i-qty" type="number" min="0" value="${existing ? existing.quantityPurchased : 1}" /></div>
+    <div class="field"><label>Quantità acquistata</label><input id="i-qty" type="number" min="0" value="${existing ? existing.quantityPurchased : 1}" />
+</div>
     <div class="field"><label>Prezzo di acquisto (unitario)</label><input id="i-buy" type="number" step="0.01" min="0" value="${existing ? existing.purchasePrice : ''}" /></div>
     <div class="field"><label>Prezzo di vendita previsto (unitario)</label><input id="i-sell" type="number" step="0.01" min="0" value="${existing ? existing.salePrice : ''}" /></div>
-    ${cyclesEnabled ? `<div class="field"><label>Ciclo associato (opzionale)</label>
-      <select id="i-cycle"><option value="">Nessuno</option>${cycles.map(c => `<option value="${c.id}" ${existing?.cycleId === c.id ? 'selected' : ''}>${escapeAttr(c.name)}</option>`).join('')}</select>
+    ${cyclesEnabled ? `<div class="field"><label>Ciclo associato (opzionale) </label>
+      <select id="i-cycle"><option value="">Nessuno</option>${cycles.map(c =>
+`<option value="${c.id}" ${existing?.cycleId === c.id ? 'selected' : ''}>${escapeAttr(c.name)}</option>`).join('')}</select>
     </div>` : ''}
     <button class="btn btn-primary" id="i-save">Salva</button>
   `);
-
   node.querySelector('#i-save').addEventListener('click', () => {
     const name = node.querySelector('#i-name').value.trim();
     if (!name) { toast('Inserisci un nome prodotto.'); return; }
@@ -4319,10 +4035,7 @@ function openItemForm(existing) {
     renderCurrentRoute();
   });
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- views/insights.js ----
 const LEVEL_STYLE = {
   good: 'border-color:var(--positive)',
@@ -4330,10 +4043,8 @@ const LEVEL_STYLE = {
   danger: 'border-color:var(--negative)',
   info: '',
 };
-
 async function renderInsights(root) {
   const insights = InsightsService.generate();
-
   root.innerHTML = `
     <div class="section-title"><span class="st-label">${sectionIcon('insights')}${t('insights')}</span></div>
     <p style="color:var(--text-secondary);font-size:13px;line-height:1.5;margin-bottom:16px">
@@ -4341,36 +4052,32 @@ async function renderInsights(root) {
     </p>
     <div id="insight-list"></div>
   `;
-
   const list = root.querySelector('#insight-list');
   insights.forEach(ins => {
     list.appendChild(el(`
       <div class="card" style="margin-bottom:10px;${LEVEL_STYLE[ins.level] || ''}">
         <div style="display:flex;gap:12px;align-items:flex-start">
           <div style="font-size:20px">${ins.icon}</div>
-          <div style="font-size:14px;line-height:1.5;padding-top:2px">${ins.text}</div>
+          <div style="font-size:14px;line-height:1.5;padding-top:2px">${ins.text}
+</div>
         </div>
       </div>
     `));
   });
 }
-
-
 // ---- views/more.js ----
 async function renderMore(root) {
   const extra = ModuleManager.getExtraNavModules();
-
   root.innerHTML = `
     <div class="section-title"><span class="st-label">${sectionIcon('more')}Altro</span></div>
     <div class="card" id="more-list" style="padding:4px var(--space-5)"></div>
   `;
-
   const list = root.querySelector('#more-list');
   if (!extra.length) {
-    list.appendChild(el(`<div class="empty-state" style="padding:24px 0"><p>Nessuna sezione aggiuntiva attiva.</p></div>`));
+    list.appendChild(el(`<div class="empty-state" style="padding:24px 0">
+<p>Nessuna sezione aggiuntiva attiva.</p></div>`));
     return;
   }
-
   extra.forEach(m => {
     const row = el(`
       <button class="settings-row" style="width:100%;text-align:left;background:none">
@@ -4385,32 +4092,68 @@ async function renderMore(root) {
     list.appendChild(row);
   });
 }
-
-
 // ---- views/investments.js ----
+/** Ciambella a due anelli: esterno = investimenti; interno = per ciascuno capitale (pieno) + plusvalenza (a strisce), stessi angoli. */
+function invDonutCard(items) {
+  const rows = items.map(i => ({ i, v: i.currentValue, cap: Math.min(i.capitalInvested, i.currentValue), gain: Math.max(0, i.currentValue - i.capitalInvested) }));
+  const total = rows.reduce((s, r) => s + r.v, 0);
+  if (!total) return '';
+  const C = r => 2 * Math.PI * r, Ro = 66, Ri = 44, SW = 18, GAP = 1.2;
+  const seg = (r, sw, from, len, paint) => len > GAP * 2 ? `<circle cx="90" cy="90" r="${r}" fill="none" stroke-width="${sw}" style="stroke:${paint}" stroke-dasharray="${len - GAP} ${C(r) - len + GAP}" stroke-dashoffset="${-from}"/>` : '';
+  let oOff = 0, iOff = 0, outer = '', inner = '', defs = '';
+  rows.forEach((r, n) => {
+    const col = CH[n % 8];
+    defs += `<pattern id="inv-hatch-${n}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="${col}" fill-opacity=".18"/><rect width="2.6" height="6" fill="${col}"/></pattern>`;
+    const lo = C(Ro) * r.v / total;
+    outer += seg(Ro, SW, oOff, lo, col); oOff += lo;
+    const lc = C(Ri) * r.cap / total, lg = C(Ri) * r.gain / total;
+    inner += seg(Ri, SW, iOff, lc, col); iOff += lc;
+    inner += seg(Ri, SW, iOff, lg, `url(#inv-hatch-${n})`); iOff += lg;
+  });
+  const legend = rows.map((r, n) => {
+    const col = CH[n % 8], pct = Math.round(r.v / total * 100);
+    const gainTxt = r.i.currentValue >= r.i.capitalInvested ? '+' + formatMoney(r.gain, { compact: true }) : formatMoney(r.i.currentValue - r.i.capitalInvested, { compact: true });
+    return `<div data-open-inv="${r.i.id}" style="cursor:pointer;padding:7px 0;border-bottom:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px"><span style="width:10px;height:10px;border-radius:3px;background:${col};flex-shrink:0"></span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700">${escapeAttr(r.i.name)}</span><span class="num" style="font-weight:700">${pct}%</span></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--text-secondary);margin:4px 0 0 18px">
+        <span style="display:inline-flex;align-items:center;gap:5px"><i style="width:9px;height:9px;border-radius:2px;background:${col}"></i>Capitale <b class="num" style="color:var(--text)">${formatMoney(r.i.capitalInvested, { compact: true })}</b></span>
+        <span style="display:inline-flex;align-items:center;gap:5px"><i style="width:9px;height:9px;border-radius:2px;border:1px solid ${col};background:repeating-linear-gradient(45deg,${col} 0 2px,transparent 2px 4px)"></i>Plusvalenza <b class="num" style="color:${r.i.currentValue >= r.i.capitalInvested ? 'var(--positive)' : 'var(--negative)'}">${gainTxt}</b></span>
+      </div></div>`;
+  }).join('');
+  return `<div class="section-title"><span class="st-label">${sectionIcon('investments')}Allocazione</span></div>
+    <div class="card">
+      <div style="display:flex;justify-content:center;margin-bottom:12px"><div style="position:relative;width:200px;height:200px">
+        <svg viewBox="0 0 180 180" style="width:200px;height:200px"><defs>${defs}</defs><g transform="rotate(-90 90 90)">${outer}${inner}</g></svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><span class="num" style="font-weight:700;font-size:15px">${formatMoney(total, { compact: true })}</span><span style="font-size:10px;color:var(--text-secondary)">valore totale</span></div>
+      </div></div>
+      <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;text-align:center;margin-bottom:6px">Anello esterno: quanto pesa ogni investimento.<br>Anello interno: <b style="color:var(--text)">pieno</b> = capitale investito · <b style="color:var(--text)">a strisce</b> = plusvalenza.</div>
+      ${legend}
+    </div>`;
+}
+
 async function renderInvestments(root) {
   const params = getParams();
   const items = InvestmentsService.list();
   const totals = InvestmentsService.totals();
-
   root.innerHTML = `
     <div class="card hero-metric">
       <div class="label">Valore investito</div>
       <div class="value num">${formatMoney(totals.value)}</div>
-      <div class="hero-breakdown">
+      <div class="hero-breakdown" style="flex-wrap:wrap;row-gap:12px">
         <div><div class="k">Capitale investito</div><div class="v num">${formatMoney(totals.invested)}</div></div>
-        <div><div class="k">Profitto</div><div class="v num" style="color:${totals.profit >= 0 ? 'var(--positive)' : 'var(--negative)'}">${formatMoney(totals.profit)}</div></div>
+        <div><div class="k">Non realizzato</div><div class="v num" style="color:${totals.profit >= 0 ? 'var(--positive)' : 'var(--negative)'}">${formatMoney(totals.profit)}</div></div>
+        <div><div class="k">Realizzato</div><div class="v num" style="color:${totals.realized >= 0 ? 'var(--positive)' : 'var(--negative)'}">${formatMoney(totals.realized)}</div></div>
         <div><div class="k">ROI</div><div class="v num">${totals.roi !== null ? totals.roi + '%' : '—'}</div></div>
       </div>
     </div>
-
+    ${invDonutCard(items.filter(x => !x.closed && x.currentValue > 0))}
     <div class="section-title">
-      <span class="st-label">${sectionIcon('investments')}${t('investments')}</span>
+      <span class="st-label">${sectionIcon('investments')}${t('investments')}
+</span>
       <button class="btn-ghost" id="new-inv" style="font-size:12px;font-weight:700;color:var(--primary)">+ Nuovo</button>
     </div>
     <div id="inv-list"></div>
   `;
-
   const list = root.querySelector('#inv-list');
   if (!items.length) {
     list.appendChild(el(`<div class="card"><div class="empty-state"><div class="glyph">📦</div><p>Nessun investimento ancora.<br>Traccia capitale investito, valore attuale e performance.</p></div></div>`));
@@ -4420,7 +4163,8 @@ async function renderInvestments(root) {
       const card = el(`
         <div class="card" style="margin-bottom:10px;cursor:pointer;${i.closed ? 'opacity:.6' : ''}">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-            <div style="font-weight:700;font-size:15px">${escapeAttr(i.name)}</div>
+            <div style="font-weight:700;font-size:15px">${escapeAttr(i.name)}
+</div>
             ${i.closed ? '<span class="chip">Chiuso</span>' : ''}
           </div>
           <div class="two-col" style="grid-template-columns:1fr 1fr 1fr;gap:8px">
@@ -4434,13 +4178,29 @@ async function renderInvestments(root) {
       list.appendChild(card);
     });
   }
-
   root.querySelector('#new-inv').addEventListener('click', () => openInvestmentForm(null));
+  root.querySelectorAll('[data-open-inv]').forEach(r => r.addEventListener('click', () => openInvestmentDetail(r.dataset.openInv)));
   if (params.openNew === 'true') openInvestmentForm(null);
+  if (params.open) openInvestmentDetail(params.open);
 }
-
 function openInvestmentDetail(id) {
   const i = InvestmentsService.get(id);
+  const im = InvestmentsService.metrics(id), w = InvestmentsService.weight(id);
+  const salesList = (i.sales || []).slice().reverse();
+  const extra = `
+    <div class="two-col" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
+      <div class="stat-card card"><div class="k">Non realizzato</div><div class="v num" style="color:${im.unrealized >= 0 ? 'var(--positive)' : 'var(--negative)'}">${formatMoney(im.unrealized)}</div></div>
+      <div class="stat-card card"><div class="k">Realizzato</div><div class="v num" style="color:${im.realized >= 0 ? 'var(--positive)' : 'var(--negative)'}">${formatMoney(im.realized)}</div></div>
+    </div>
+    ${!i.closed && w.count > 1 ? `<div class="card" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;font-size:13px"><b>Peso nel portafoglio</b><span class="num">${w.pct}%</span></div>
+      <div class="progress-bar" style="margin-top:8px"><div class="fill" style="width:${w.pct}%;background:var(--primary)"></div></div></div>` : ''}
+    ${!i.closed && i.currentValue > 0 ? `<div class="field">
+      <label>Vendi una parte (importo incassato)</label>
+      <div style="display:flex;gap:8px"><input id="i-sell-amt" type="number" step="0.01" min="0" placeholder="0,00" style="flex:1" /><button class="btn btn-secondary" id="i-sell" style="width:auto;padding:0 20px">Vendi</button></div>
+      <div id="i-sell-prev" style="font-size:12px;color:var(--text-secondary);margin-top:8px;min-height:16px"></div>
+    </div>` : ''}
+    ${salesList.length ? `<div class="section-title" style="margin-top:0">Vendite</div><div class="card" style="padding:4px var(--space-5);margin-bottom:14px">${salesList.map(s => `<div class="list-row"><div class="row-main"><div class="row-title">${s.final ? 'Chiusura' : 'Vendita parziale'}</div><div class="row-sub">${formatDate(s.date)} · costo ${formatMoney(s.costBasis)}</div></div><div class="row-value num" style="color:${s.gain >= 0 ? 'var(--positive)' : 'var(--negative)'}">${s.gain >= 0 ? '+' : ''}${formatMoney(s.gain)}</div></div>`).join('')}</div>` : ''}`;
   const linkedAccount = i.accountId ? AccountsService.get(i.accountId) : null;
   const node = openSheet(`
     <div class="sheet-title">${escapeAttr(i.name)}</div>
@@ -4454,22 +4214,42 @@ function openInvestmentDetail(id) {
         <button class="btn btn-primary" id="i-update" style="width:auto;padding:0 20px">Aggiorna</button>
       </div>
     </div>
-    <button class="btn btn-secondary" id="i-edit" style="margin-top:6px">Modifica dettagli</button>
+    ${extra}<button class="btn btn-secondary" id="i-edit" style="margin-top:6px">Modifica dettagli</button>
     ${!i.closed ? '<button class="btn btn-secondary" id="i-close" style="margin-top:10px">Segna come chiuso</button>' : ''}
-    <button class="btn btn-danger" id="i-delete" style="margin-top:10px">Elimina</button>
+    <button class="btn btn-danger" id="i-delete" style="margin-
+top:10px">Elimina</button>
   `);
-
   node.querySelector('#i-account-link')?.addEventListener('click', () => {
     closeSheet();
     openAccountSheet(linkedAccount);
   });
-
   node.querySelector('#i-update').addEventListener('click', () => {
     const val = parseFloat(node.querySelector('#i-value').value);
     if (isNaN(val) || val < 0) { toast('Valore non valido.'); return; }
     InvestmentsService.updateValue(id, val);
     closeSheet();
     toast('Valore aggiornato.');
+    renderCurrentRoute();
+  });
+  const sellIn = node.querySelector('#i-sell-amt');
+  sellIn?.addEventListener('input', () => {
+    const p = parseFloat(sellIn.value), pv = node.querySelector('#i-sell-prev');
+    if (!p || p <= 0) { pv.textContent = ''; return; }
+    if (p >= i.currentValue) { pv.textContent = 'Per vendere tutto usa "Segna come chiuso".'; return; }
+    const cost = i.capitalInvested * (p / i.currentValue);
+    pv.textContent = `Quota venduta ${Math.round(p / i.currentValue * 100)}% · costo ${formatMoney(cost)} · plusvalenza ${formatMoney(p - cost)}`;
+  });
+  node.querySelector('#i-sell')?.addEventListener('click', () => {
+    const p = parseFloat(sellIn.value);
+    if (!p || p <= 0 || p >= i.currentValue) { toast('Importo non valido: deve essere inferiore al valore attuale.'); return; }
+    const sale = InvestmentsService.sell(id, p);
+    closeSheet();
+    if (i.accountId) {
+      // Il rientro in account riguarda solo la parte venduta.
+      openTransactionSheet(null, 'income', null, p, `Vendita parziale: ${i.name}`, i.accountId);
+    } else {
+      toast(`Vendita registrata: plusvalenza ${formatMoney(sale.gain)}.`);
+    }
     renderCurrentRoute();
   });
   node.querySelector('#i-edit').addEventListener('click', () => { closeSheet(); openInvestmentForm(i); });
@@ -4492,7 +4272,6 @@ function openInvestmentDetail(id) {
     renderCurrentRoute();
   });
 }
-
 function openInvestmentForm(existing) {
   const accounts = AccountsService.list();
   const node = openSheet(`
@@ -4501,14 +4280,14 @@ function openInvestmentForm(existing) {
     <div class="field"><label>Capitale investito</label><input id="i-capital" type="number" step="0.01" min="0" value="${existing ? existing.capitalInvested : ''}" /></div>
     <div class="field"><label>Valore attuale</label><input id="i-current" type="number" step="0.01" min="0" value="${existing ? existing.currentValue : ''}" /></div>
     <div class="field"><label>Data inizio</label><input id="i-start" type="date" value="${existing ? existing.startDate : nowISO().slice(0, 10)}" /></div>
-    ${accounts.length ? `<div class="field"><label>Account collegato (opzionale)</label>
-      <select id="i-account"><option value="">Nessuno</option>${accounts.map(a => `<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
+    ${accounts.length ? `<div class="field"><label>Account collegato (opzionale) </label>
+      <select id="i-account"><option value="">Nessuno</option>${accounts.map(a =>
+`<option value="${a.id}" ${existing?.accountId === a.id ? 'selected' : ''}>${a.icon} ${escapeAttr(a.name)}</option>`).join('')}</select>
       <p style="color:var(--text-secondary);font-size:12px;margin-top:8px">${existing ? 'Usato per proporre il movimento quando chiudi l\'investimento.' : 'Se scelto, alla creazione ti proporrò di spostare il capitale investito da questo account.'}</p>
     </div>` : ''}
     <div class="field"><label>Note (opzionale)</label><textarea id="i-notes">${existing ? escapeAttr(existing.notes) : ''}</textarea></div>
     <button class="btn btn-primary" id="i-save">Salva</button>
   `);
-
   node.querySelector('#i-save').addEventListener('click', () => {
     const name = node.querySelector('#i-name').value.trim();
     const capital = parseFloat(node.querySelector('#i-capital').value);
@@ -4540,14 +4319,10 @@ function openInvestmentForm(existing) {
     renderCurrentRoute();
   });
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- views/calendar.js ----
 let viewMonth = new Date();
 let selectedDate = null;
-
 async function renderCalendar(root) {
   root.innerHTML = `
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
@@ -4561,28 +4336,23 @@ async function renderCalendar(root) {
     <div class="section-title" id="cal-agenda-title">Oggi</div>
     <div id="cal-agenda"></div>
   `;
-
-  root.querySelector('#cal-prev').addEventListener('click', () => { viewMonth.setMonth(viewMonth.getMonth() - 1); renderCalendar(root); });
-  root.querySelector('#cal-next').addEventListener('click', () => { viewMonth.setMonth(viewMonth.getMonth() + 1); renderCalendar(root); });
-
+  root.querySelector('#cal-prev').addEventListener('click', () => {
+viewMonth.setMonth(viewMonth.getMonth() - 1); renderCalendar(root); });
+  root.querySelector('#cal-next').addEventListener('click', () => {
+viewMonth.setMonth(viewMonth.getMonth() + 1); renderCalendar(root); });
   const eventsByDay = collectEvents();
-
   root.querySelector('#cal-title').textContent = viewMonth.toLocaleDateString('it-IT', { month: 'long', year: 'numeric' });
-
   const grid = root.querySelector('#cal-grid');
   ['L', 'M', 'M', 'G', 'V', 'S', 'D'].forEach(d => {
     grid.appendChild(el(`<div style="text-align:center;font-size:10px;font-weight:700;color:var(--text-secondary);padding:4px 0">${d}</div>`));
   });
-
   const year = viewMonth.getFullYear(), month = viewMonth.getMonth();
   const firstDay = new Date(year, month, 1);
   const startOffset = (firstDay.getDay() + 6) % 7; // Monday-first
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const todayStr = new Date().toISOString().slice(0, 10);
   if (!selectedDate) selectedDate = todayStr;
-
   for (let i = 0; i < startOffset; i++) grid.appendChild(el('<div></div>'));
-
   for (let day = 1; day <= daysInMonth; day++) {
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const events = eventsByDay[dateStr] || [];
@@ -4596,18 +4366,18 @@ async function renderCalendar(root) {
         color:${isSelected ? 'var(--background)' : isToday ? 'var(--primary)' : 'var(--text)'};
       ">
         <span>${day}</span>
-        ${events.length ? `<span style="display:flex;gap:2px">${events.slice(0, 3).map(e => `<span style="width:4px;height:4px;border-radius:50%;background:${isSelected ? 'var(--background)' : e.color}"></span>`).join('')}</span>` : ''}
+        ${events.length ? `<span style="display:flex;gap:2px">${events.slice(0, 3).map(e => `<span style="width:4px;height:4px;border-radius:50%;background:${isSelected ? 'var(--background)' : e.color}">
+</span>`).join('')}</span>` : ''}
       </button>
     `);
-    cell.addEventListener('click', () => { selectedDate = dateStr; renderCalendar(root); });
+    cell.addEventListener('click', () => { selectedDate = dateStr;
+renderCalendar(root); });
     grid.appendChild(cell);
   }
-
   const agendaTitle = root.querySelector('#cal-agenda-title');
   const agenda = root.querySelector('#cal-agenda');
   const dayEvents = eventsByDay[selectedDate] || [];
   agendaTitle.textContent = new Date(selectedDate + 'T00:00:00').toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-
   if (!dayEvents.length) {
     agenda.appendChild(el(`<div class="card"><div class="empty-state" style="padding:16px 0"><p>Nessun evento in questa data.</p></div></div>`));
   } else {
@@ -4615,14 +4385,14 @@ async function renderCalendar(root) {
       agenda.appendChild(el(`
         <div class="list-row card" style="margin-bottom:8px;padding:var(--space-4)">
           <div class="row-icon" style="background:${e.color}22;color:${e.color}">${e.icon}</div>
-          <div class="row-main"><div class="row-title">${escapeAttr(e.title)}</div><div class="row-sub">${escapeAttr(e.subtitle || '')}</div></div>
+          <div class="row-main"><div class="row-title">${escapeAttr(e.title)}
+</div><div class="row-sub">${escapeAttr(e.subtitle || '')}</div></div>
           ${e.amount !== undefined ? `<div class="row-value num">${formatMoney(e.amount)}</div>` : ''}
         </div>
       `));
     });
   }
 }
-
 function collectEvents() {
   const data = store.get();
   const byDay = {};
@@ -4630,7 +4400,6 @@ function collectEvents() {
     if (!date) return;
     (byDay[date] = byDay[date] || []).push(event);
   };
-
   data.transactions.forEach(tx => {
     const acc = AccountsService.get(tx.accountId);
     push(tx.date, {
@@ -4641,32 +4410,25 @@ function collectEvents() {
       amount: tx.type === 'income' ? tx.amount : -tx.amount,
     });
   });
-
   if (ModuleManager.isEnabled('recurrences')) {
     data.recurrences.filter(r => r.active).forEach(r => {
       push(r.nextDate, { icon: '🔁', color: '#5B8DEF', title: r.note || t('recurrences'), subtitle: 'Prossima occorrenza' });
     });
   }
-
   if (ModuleManager.isEnabled('cycles')) {
     CyclesService.list().forEach(c => {
       push(c.startDate, { icon: '🔄', color: '#B98BE0', title: c.name, subtitle: 'Inizio ciclo' });
       if (c.endDate) push(c.endDate, { icon: '🏁', color: '#B98BE0', title: c.name, subtitle: 'Fine ciclo' });
     });
   }
-
   if (ModuleManager.isEnabled('goals')) {
     GoalsService.list().forEach(g => {
       if (g.targetDate) push(g.targetDate, { icon: g.icon, color: g.color, title: g.name, subtitle: 'Scadenza obiettivo' });
     });
   }
-
   return byDay;
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
-
-
 // ---- services/forecasts.js ----
 function nextOccurrence(dateStr, frequency, interval = 1) {
   const d = new Date(dateStr + 'T00:00:00');
@@ -4676,9 +4438,9 @@ function nextOccurrence(dateStr, frequency, interval = 1) {
   else if (frequency === 'yearly') d.setFullYear(d.getFullYear() + interval);
   return d.toISOString().slice(0, 10);
 }
-
 const ForecastsService = {
-  /** Confirmed = current net worth + every recurring transaction due within `days`. Read-only, no side effects. */
+  /** Confirmed = current net worth + every recurring transaction due within
+`days`. Read-only, no side effects. */
   confirmedDelta(days) {
     const horizon = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
     const recs = store.get().recurrences.filter(r => r.active);
@@ -4694,7 +4456,6 @@ const ForecastsService = {
     });
     return delta;
   },
-
   /** Estimated adds the still-uncollected estimated revenue of open cycles, as upside. */
   estimatedUpside() {
     if (!ModuleManager.isEnabled('cycles')) return 0;
@@ -4705,25 +4466,20 @@ const ForecastsService = {
         return sum + Math.max(0, m.revenueEstimated - m.revenueCollected);
       }, 0);
   },
-
   project(days) {
     const base = Analytics.calculateNetWorth();
     const confirmed = base + this.confirmedDelta(days);
     const estimated = confirmed + this.estimatedUpside();
     return { confirmed, estimated };
   },
-
   horizons() {
     return [0, 30, 60, 90].map(days => ({ days, ...this.project(days) }));
   },
 };
-
-
 // ---- views/forecasts.js ----
 async function renderForecasts(root) {
   const horizons = ForecastsService.horizons();
   const hasUpside = ForecastsService.estimatedUpside() > 0;
-
   root.innerHTML = `
     <div class="section-title"><span class="st-label">${sectionIcon('forecasts')}${t('forecasts')}</span></div>
     <p style="color:var(--text-secondary);font-size:13px;line-height:1.5;margin-bottom:16px">
@@ -4731,7 +4487,6 @@ async function renderForecasts(root) {
     </p>
     <div id="forecast-list"></div>
   `;
-
   const list = root.querySelector('#forecast-list');
   horizons.forEach(h => {
     const label = h.days === 0 ? 'Oggi' : `${h.days} giorni`;
@@ -4742,13 +4497,12 @@ async function renderForecasts(root) {
           <div class="num" style="font-family:var(--font-display);font-size:22px;font-weight:700">${formatMoney(h.confirmed)}</div>
           ${hasUpside && h.estimated !== h.confirmed ? `<div class="num" style="font-size:13px;color:var(--text-secondary)">fino a ${formatMoney(h.estimated)}</div>` : ''}
         </div>
-        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px">previsione confermata${hasUpside ? ' · stimata con cicli aperti' : ''}</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px">previsione confermata${hasUpside ? ' · stimata con cicli aperti' : ''}
+</div>
       </div>
     `));
   });
 }
-
-
 // ---- services/search.js ----
 const SearchService = {
   search(query) {
@@ -4756,19 +4510,19 @@ const SearchService = {
     if (!q) return { transactions: [], accounts: [], tags: [], cycles: [], inventory: [], goals: [] };
     const data = store.get();
     const has = (s) => (s || '').toLowerCase().includes(q);
-
     return {
       transactions: data.transactions.filter(t => has(t.note)).slice(0, 20),
       accounts: data.accounts.filter(a => !a.archived && has(a.name)),
       tags: data.tags.filter(t => has(t.name)),
-      cycles: ModuleManager.isEnabled('cycles') ? data.cycles.filter(c => has(c.name) || has(c.platform)) : [],
-      inventory: ModuleManager.isEnabled('inventory') ? data.inventory.filter(i => has(i.name) || has(i.category)) : [],
-      goals: ModuleManager.isEnabled('goals') ? data.goals.filter(g => has(g.name)) : [],
+      cycles: ModuleManager.isEnabled('cycles') ? data.cycles.filter(c =>
+has(c.name) || has(c.platform)) : [],
+      inventory: ModuleManager.isEnabled('inventory') ? data.inventory.filter(i =>
+has(i.name) || has(i.category)) : [],
+      goals: ModuleManager.isEnabled('goals') ? data.goals.filter(g =>
+has(g.name)) : [],
     };
   },
 };
-
-
 // ---- views/search.js ----
 async function renderSearch(root) {
   root.innerHTML = `
@@ -4777,36 +4531,37 @@ async function renderSearch(root) {
     </div>
     <div id="search-results"></div>
   `;
-
   const resultsNode = root.querySelector('#search-results');
-  root.querySelector('#global-search').addEventListener('input', debounce(e => runSearch(e.target.value, resultsNode), 200));
+  root.querySelector('#global-search').addEventListener('input', debounce(e =>
+runSearch(e.target.value, resultsNode), 200));
 }
-
 function runSearch(query, node) {
   if (!query.trim()) {
-    node.innerHTML = `<div class="empty-state"><div class="glyph">🔍</div><p>Digita per cercare in tutta l'app.</p></div>`;
+    node.innerHTML = `<div class="empty-state"><div class="glyph">🔍</div>
+<p>Digita per cercare in tutta l'app.</p></div>`;
     return;
   }
   const r = SearchService.search(query);
   const totalCount = r.transactions.length + r.accounts.length + r.tags.length + r.cycles.length + r.inventory.length + r.goals.length;
   node.innerHTML = '';
-
   if (!totalCount) {
-    node.appendChild(el(`<div class="empty-state"><div class="glyph">🔍</div><p>Nessun risultato per "${escapeAttr(query)}".</p></div>`));
+    node.appendChild(el(`<div class="empty-state"><div class="glyph">🔍</div>
+<p>Nessun risultato per "${escapeAttr(query)}".</p></div>`));
     return;
   }
-
   if (r.accounts.length) node.appendChild(section(t('accounts'), r.accounts.map(a => row('🏦', a.name, '', () => navigate('accounts'))), 'accounts'));
   if (r.transactions.length) node.appendChild(section('Movimenti', r.transactions.map(tx => {
     const acc = AccountsService.get(tx.accountId);
     return row(tx.type === 'income' ? '⬆️' : '⬇️', tx.note || (tx.type === 'income' ? t('income') : t('expense')), `${acc?.name || ''} · ${formatDate(tx.date)} · ${formatMoney(tx.amount)}`, () => navigate('finance'));
   }), 'finance'));
   if (r.tags.length) node.appendChild(section('Tag', r.tags.map(tg => row(tg.icon, tg.name, '', () => navigate('finance')))));
-  if (r.cycles.length) node.appendChild(section(t('cycles'), r.cycles.map(c => row('🔄', c.name, c.platform || '', () => navigate('cycles'))), 'cycles'));
-  if (r.inventory.length) node.appendChild(section(t('inventory'), r.inventory.map(i => row('📦', i.name, i.category || '', () => navigate('inventory'))), 'inventory'));
-  if (r.goals.length) node.appendChild(section(t('goals'), r.goals.map(g => row(g.icon, g.name, '', () => navigate('goals'))), 'goals'));
+  if (r.cycles.length) node.appendChild(section(t('cycles'), r.cycles.map(c =>
+row('🔄', c.name, c.platform || '', () => navigate('cycles'))), 'cycles'));
+  if (r.inventory.length) node.appendChild(section(t('inventory'), r.inventory.map(i => row('📦', i.name, i.category || '', () =>
+navigate('inventory'))), 'inventory'));
+  if (r.goals.length) node.appendChild(section(t('goals'), r.goals.map(g =>
+row(g.icon, g.name, '', () => navigate('goals'))), 'goals'));
 }
-
 function section(title, rows, iconKey) {
   const wrap = el(`<div style="margin-bottom:16px"></div>`);
   wrap.appendChild(el(`<div class="section-title" style="margin-top:0"><span class="st-label">${iconKey ? sectionIcon(iconKey) : ''}${title}</span></div>`));
@@ -4815,7 +4570,6 @@ function section(title, rows, iconKey) {
   wrap.appendChild(card);
   return wrap;
 }
-
 function row(icon, title, sub, onClick) {
   const node = el(`
     <div class="list-row" style="cursor:pointer">
@@ -4826,8 +4580,165 @@ function row(icon, title, sub, onClick) {
   node.addEventListener('click', onClick);
   return node;
 }
-
 function escapeAttr(s) { return (s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+// ---- views/analytics.js ----
+const CH = ['#C8A84B', '#5B8DEF', '#3DD68C', '#FF6B6B', '#B98BE0', '#F5B942', '#4FD1C5', '#8B93A7'];
+let anaDays = 180;
+const isoL = d => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+
+function anaBuckets(days) {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const out = [];
+  if (days && days <= 40) {
+    const tom = new Date(today.getTime() + 864e5);
+    for (let i = 4; i >= 0; i--) {
+      const e = new Date(tom.getTime() - i * 7 * 864e5), s = new Date(e.getTime() - 7 * 864e5);
+      out.push({ start: isoL(s), end: isoL(e), label: s.toLocaleDateString('it-IT', { day: 'numeric', month: 'short' }) });
+    }
+    return out;
+  }
+  let first;
+  if (days) first = new Date(today.getFullYear(), today.getMonth() - Math.round(days / 30) + 1, 1);
+  else {
+    const ds = store.get().transactions.map(t => t.date).sort();
+    const f = ds.length ? new Date(ds[0] + 'T00:00:00') : today;
+    first = new Date(f.getFullYear(), f.getMonth(), 1);
+  }
+  for (let d = first; d <= today; d = new Date(d.getFullYear(), d.getMonth() + 1, 1)) {
+    const e = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+    out.push({ start: isoL(d), end: isoL(e), label: d.toLocaleDateString('it-IT', { month: 'short' }) });
+  }
+  return out;
+}
+
+function liqAt(endIso) {
+  const d = store.get();
+  const act = new Set(d.accounts.filter(a => !a.archived).map(a => a.id));
+  let v = d.accounts.filter(a => act.has(a.id)).reduce((s, a) => s + a.initialBalance, 0);
+  d.transactions.forEach(t => { if (act.has(t.accountId) && t.date < endIso) v += t.type === 'income' ? t.amount : -t.amount; });
+  d.transfers.forEach(t => {
+    if (t.date < endIso) { if (act.has(t.toAccountId)) v += t.amount; if (act.has(t.fromAccountId)) v -= t.amount; }
+  });
+  return v;
+}
+
+function svgLine(vals, labels) {
+  const W = 320, H = 150, p = 24, mx = Math.max(...vals), mn = Math.min(...vals), r = (mx - mn) || 1;
+  const x = i => p + (vals.length > 1 ? i * (W - 2 * p) / (vals.length - 1) : (W - 2 * p) / 2);
+  const y = v => 12 + (H - 34) * (1 - (v - mn) / r);
+  const pts = vals.map((v, i) => `${x(i)},${y(v)}`);
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><defs><linearGradient id="ana-lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--primary)" stop-opacity=".35"/><stop offset="1" stop-color="var(--primary)" stop-opacity="0"/></linearGradient></defs>
+    <path d="M${x(0)},${H - 22} L${pts.join(' L')} L${x(vals.length - 1)},${H - 22}Z" fill="url(#ana-lg)"/>
+    <polyline points="${pts.join(' ')}" fill="none" stroke="var(--primary)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+    ${vals.map((v, i) => `<circle cx="${x(i)}" cy="${y(v)}" r="${i === vals.length - 1 ? 4 : 2.5}" fill="var(--primary)"/>`).join('')}
+    ${labels.map((l, i) => `<text x="${x(i)}" y="${H - 6}" text-anchor="middle" font-size="9" fill="var(--text-secondary)">${l}</text>`).join('')}</svg>`;
+}
+
+function svgBars(bk, inc, exp) {
+  const W = 320, H = 160, p = 10, n = bk.length, gw = (W - 2 * p) / n, bw = Math.min(14, gw / 2 - 2);
+  const mx = Math.max(1, ...inc, ...exp), h = v => (H - 34) * v / mx;
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">${bk.map((b, i) => {
+    const cx = p + gw * i + gw / 2;
+    return `<g data-f="${b.start}" data-t="${addDays(b.end, -1)}" style="cursor:pointer"><rect x="${cx - gw / 2}" y="0" width="${gw}" height="${H - 18}" fill="transparent"/>
+      <rect x="${cx - bw - 1}" y="${H - 22 - h(inc[i])}" width="${bw}" height="${h(inc[i])}" rx="3" fill="var(--positive)"/>
+      <rect x="${cx + 1}" y="${H - 22 - h(exp[i])}" width="${bw}" height="${h(exp[i])}" rx="3" fill="var(--negative)"/>
+      <text x="${cx}" y="${H - 6}" text-anchor="middle" font-size="9" fill="var(--text-secondary)">${b.label}</text></g>`;
+  }).join('')}</svg>`;
+}
+
+function svgDonut(slices, total) {
+  const R = 52, C = 2 * Math.PI * R; let off = 0;
+  return `<svg viewBox="0 0 140 140" style="width:140px;height:140px;flex-shrink:0;transform:rotate(-90deg)">${slices.map((s, i) => {
+    const len = C * s.v / total;
+    const c = `<circle cx="70" cy="70" r="${R}" fill="none" stroke="${CH[i % 8]}" stroke-width="18" stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-off}"/>`;
+    off += len; return c;
+  }).join('')}</svg>`;
+}
+
+function hbars(rows) {
+  const mx = Math.max(1, ...rows.map(r => Math.abs(r.value)));
+  return rows.map(r => `<div class="ana-bar" ${r.attr}><span style="width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeAttr(r.label)}</span>
+    <div class="track"><i style="width:${Math.max(3, Math.abs(r.value) / mx * 100)}%;background:${r.value < 0 ? 'var(--negative)' : r.color}"></i></div>
+    <span class="num" style="width:78px;text-align:right;font-weight:700">${r.text}</span></div>`).join('');
+}
+
+async function renderAnalytics(root) {
+  const d = store.get(), bk = anaBuckets(anaDays);
+  const from = bk[0].start, toEx = bk[bk.length - 1].end, toIn = addDays(toEx, -1);
+  const rng = d.transactions.filter(t => t.date >= from && t.date < toEx);
+  const sum = (arr, ty) => arr.filter(t => t.type === ty).reduce((s, t) => s + t.amount, 0);
+  const inc = bk.map(b => sum(rng.filter(t => t.date >= b.start && t.date < b.end), 'income'));
+  const exp = bk.map(b => sum(rng.filter(t => t.date >= b.start && t.date < b.end), 'expense'));
+  const I = inc.reduce((a, b) => a + b, 0), E = exp.reduce((a, b) => a + b, 0), net = I - E;
+  const rate = I ? Math.round(net / I * 100) : 0;
+const span = daysBetween(from, toEx), pf = addDays(from, -span);
+const prev = anaDays ? d.transactions.filter(t => t.date >= pf && t.date < from) : null;
+const pI = prev ? sum(prev, 'income') : 0, pE = prev ? sum(prev, 'expense') : 0;
+const dl = (cur, pr, bad) => {
+  const c = prev ? pctChange(cur, pr) : null;
+  if (c === null || c === 0) return '';
+  return `<div style="font-size:11px;margin-top:2px;color:${(c > 0) === bad ? 'var(--negative)' : 'var(--positive)'}">${c > 0 ? '▲' : '▼'} ${Math.abs(c)}% vs periodo prec.</div>`;
+};
+  const liq = bk.map(b => liqAt(b.end));
+
+  const byTag = {};
+  rng.filter(t => t.type === 'expense').forEach(t => { const k = t.tagId || '_'; byTag[k] = (byTag[k] || 0) + t.amount; });
+  let slices = Object.entries(byTag).map(([k, v]) => ({ k: k === '_' ? '' : k, v, name: k === '_' ? 'Senza tag' : (d.tags.find(x => x.id === k)?.name || '—') })).sort((a, b) => b.v - a.v);
+  if (slices.length > 7) slices = [...slices.slice(0, 7), { k: '', v: slices.slice(7).reduce((s, x) => s + x.v, 0), name: 'Altro' }];
+
+  const cyc = ModuleManager.isEnabled('cycles') ? CyclesService.list().map(c => ({ c, m: CyclesService.metrics(c.id) })).filter(x => x.m.cost > 0).sort((a, b) => b.m.profitCurrent - a.m.profitCurrent).slice(0, 6) : [];
+  const inv = ModuleManager.isEnabled('investments') ? InvestmentsService.list().filter(i => !i.closed && i.currentValue > 0) : [];
+  const today = nowISO().slice(0, 10);
+const card0 = (title, body) => `<div class="section-title"><span class="st-label">${title}</span></div><div class="card">${body}</div>`;
+const bud = ModuleManager.isEnabled('budgets') ? BudgetsService.list().map(b => ({ b, s: BudgetsService.status(b.id) })) : [];
+const budRows = bud.length ? card0(sectionIcon('budgets') + 'Budget', bud.map(({ b, s }) => {
+  const days = Math.max(1, daysBetween(s.range.start, today) + 1), tot = Math.max(1, daysBetween(s.range.start, s.range.end));
+  const proj = Math.round(s.spent / days * tot);
+  return `<div class="ana-bar" style="display:block;margin-bottom:14px" data-open-budget="${b.id}">
+    <div style="display:flex;justify-content:space-between;margin-bottom:5px"><b>${escapeAttr(b.name)}</b><span class="num">${formatMoney(s.spent, { compact: true })} / ${formatMoney(b.amount, { compact: true })}</span></div>
+    <div class="track"><i style="width:${Math.min(100, s.pct)}%;background:${LEVEL_COLOR[s.level]}"></i></div>
+    <div style="color:var(--text-secondary);margin-top:4px">Al ritmo attuale chiuderai a ${formatMoney(proj, { compact: true })}${proj > b.amount ? ' ⚠️' : ''}</div></div>`;
+}).join('')) : '';
+const gl = ModuleManager.isEnabled('goals') ? GoalsService.list().filter(g => g.targetAmount > 0 && g.currentAmount < g.targetAmount) : [];
+const goalRows = gl.length ? card0(sectionIcon('goals') + 'Obiettivi · data stimata', gl.map(g => {
+  const days = daysBetween(g.createdAt.slice(0, 10), today), rate = g.currentAmount / Math.max(1, days);
+  const eta = days >= 7 && rate > 0 ? addDays(today, Math.ceil((g.targetAmount - g.currentAmount) / rate)) : null;
+  const late = eta && g.targetDate && eta > g.targetDate;
+  return `<div class="ana-bar" style="display:block;margin-bottom:14px" data-open-goal="${g.id}">
+    <div style="display:flex;justify-content:space-between;margin-bottom:5px"><b>${g.icon} ${escapeAttr(g.name)}</b><span class="num">${GoalsService.progress(g.id)}%</span></div>
+    <div class="track"><i style="width:${GoalsService.progress(g.id)}%;background:${g.color}"></i></div>
+    <div style="color:${late ? 'var(--warning)' : 'var(--text-secondary)'};margin-top:4px">${eta ? 'Al ritmo attuale: ' + formatDate(eta, { style: 'long' }) + (late ? ' · dopo la scadenza ⚠️' : '') : 'Dati insufficienti per una stima'}</div></div>`;
+}).join('')) : '';
+const top = rng.filter(t => t.type === 'expense').sort((a, b) => b.amount - a.amount).slice(0, 5);
+const topRows = top.length ? card0(sectionIcon('expense') + 'Maggiori uscite', `<div data-f="${from}" data-t="${toIn}" style="cursor:pointer">${top.map(t => `<div class="list-row"><div class="row-main"><div class="row-title">${escapeAttr(t.note) || (d.tags.find(g => g.id === t.tagId)?.name || t('expense'))}</div><div class="row-sub">${formatDate(t.date)}</div></div><div class="row-value num expense">-${formatMoney(t.amount)}</div></div>`).join('')}</div>`) : '';
+const card = (title, body) => `<div class="section-title"><span class="st-label">${title}</span></div><div class="card">${body}</div>`;
+  const periods = [[30, '1M'], [90, '3M'], [180, '6M'], [365, '1A'], [0, 'Tutto']];
+
+  root.innerHTML = `
+    <div class="segmented" id="ana-period" style="margin-bottom:16px">${periods.map(([v, l]) => `<button data-d="${v}" class="${anaDays === v ? 'active' : ''}">${l}</button>`).join('')}</div>
+    ${!d.transactions.length ? `<div class="card"><div class="empty-state"><div class="glyph">📊</div><p>Registra qualche movimento per vedere le analisi.</p></div></div>` : `
+    <div class="two-col" style="margin-bottom:8px">
+      <div class="card stat-card positive"><div class="k">Entrate</div><div class="v num">${formatMoney(I)}</div>${dl(I, pI, false)}</div>
+      <div class="card stat-card negative"><div class="k">Uscite</div><div class="v num">${formatMoney(E)}</div>${dl(E, pE, true)}</div>
+      <div class="card stat-card ${net >= 0 ? 'positive' : 'negative'}"><div class="k">Risparmio · ${rate}%</div><div class="v num">${formatMoney(net)}</div></div>
+    </div>
+    ${card(sectionIcon('finance') + 'Liquidità nel tempo', `<div class="k" style="font-size:12px;color:var(--text-secondary)">Patrimonio totale oggi</div><div class="num" style="font-family:var(--font-display);font-size:22px;font-weight:700;margin-bottom:8px">${formatMoney(Analytics.calculateNetWorth())}</div>${svgLine(liq, bk.map(b => b.label))}`)}
+    ${card(sectionIcon('finance') + 'Entrate vs uscite <span style="font-weight:500">(tocca una barra)</span>', svgBars(bk, inc, exp))}
+    ${slices.length ? card(sectionIcon('budgets') + 'Dove vanno i soldi', `<div style="display:flex;align-items:center;gap:16px"><div style="position:relative">${svgDonut(slices, E)}<div class="num" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px">${formatMoney(E, { compact: true })}</div></div>
+      <div style="flex:1;min-width:0">${slices.map((s, i) => `<div class="ana-legend" data-tag="${s.k}"><span class="sw" style="background:${CH[i % 8]}"></span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeAttr(s.name)}</span><span class="num" style="font-weight:700">${Math.round(s.v / E * 100)}%</span></div>`).join('')}</div></div>`) : ''}
+    ${budRows}${goalRows}${topRows}${cyc.length ? card(sectionIcon('cycles') + 'Profitto per ciclo', hbars(cyc.map(x => ({ label: x.c.name, value: x.m.profitCurrent, color: 'var(--positive)', text: formatMoney(x.m.profitCurrent, { compact: true }), attr: `data-open-cycle="${x.c.id}"` })))) : ''}
+    ${invDonutCard(inv)}`}
+  `;
+
+  root.querySelectorAll('[data-open-budget]').forEach(r => r.addEventListener('click', () => navigate('budgets', { open: r.dataset.openBudget })));
+  root.querySelectorAll('[data-open-goal]').forEach(r => r.addEventListener('click', () => navigate('goals', { open: r.dataset.openGoal })));
+  const go = o => { const p = { drill: String(Date.now()) }; Object.entries(o).forEach(([k, v]) => { if (v) p[k] = v; }); navigate('finance', p); };
+  root.querySelectorAll('#ana-period button').forEach(b => b.addEventListener('click', () => { anaDays = Number(b.dataset.d); renderAnalytics(root); }));
+  root.querySelectorAll('[data-f]').forEach(g => g.addEventListener('click', () => go({ from: g.dataset.f, to: g.dataset.t })));
+  root.querySelectorAll('[data-tag]').forEach(l => l.addEventListener('click', () => go({ ftype: 'expense', tagId: l.dataset.tag, from, to: toIn })));
+  root.querySelectorAll('[data-open-cycle]').forEach(r => r.addEventListener('click', () => navigate('cycles', { open: r.dataset.openCycle })));
+  root.querySelectorAll('[data-open-inv]').forEach(r => r.addEventListener('click', () => navigate('investments', { open: r.dataset.openInv })));
+}
 
 
 // ---- app.js ----
@@ -4847,7 +4758,7 @@ registerRoute('investments', renderInvestments);
 registerRoute('calendar', renderCalendar);
 registerRoute('forecasts', renderForecasts);
 registerRoute('search', renderSearch);
-
+registerRoute('analytics', renderAnalytics);
 function renderNav() {
   const nav = document.getElementById('bottom-nav');
   const items = ModuleManager.getNavigationItems();
@@ -4861,12 +4772,10 @@ function renderNav() {
     btn.addEventListener('click', () => navigate(btn.dataset.route));
   });
 }
-
 function renderFab() {
   const container = document.getElementById('fab-container');
   const actions = ModuleManager.getQuickActions();
   if (!actions.length) { container.innerHTML = ''; return; }
-
   container.innerHTML = `
     <div class="overlay-scrim" id="fab-scrim"></div>
     <div class="fab-menu" id="fab-menu" style="display:none">
@@ -4879,19 +4788,16 @@ function renderFab() {
     </div>
     <button class="fab" id="fab-btn">${icon('plus')}</button>
   `;
-
   const fabBtn = document.getElementById('fab-btn');
   const menu = document.getElementById('fab-menu');
   const scrim = document.getElementById('fab-scrim');
   let open = false;
-
   function setOpen(v) {
     open = v;
     fabBtn.classList.toggle('open', open);
     menu.style.display = open ? 'flex' : 'none';
     scrim.classList.toggle('visible', open);
   }
-
   fabBtn.addEventListener('click', () => setOpen(!open));
   scrim.addEventListener('click', () => setOpen(false));
   menu.querySelectorAll('.fab-menu-item').forEach(item => {
@@ -4902,26 +4808,23 @@ function renderFab() {
     });
   });
 }
-
 function refreshChrome() {
   renderNav();
   renderFab();
 }
-
 window.addEventListener('nav:refresh', refreshChrome);
-
 function boot() {
   applyTheme();
   refreshChrome();
-
-  document.getElementById('header-search-btn')?.addEventListener('click', () => navigate('search'));
+  document.getElementById('header-search-btn')?.addEventListener('click', () =>
+navigate('search'));
   document.getElementById('header-settings-btn')?.addEventListener('click', () => navigate('settings'));
-
+  const backBtn = document.getElementById('header-back-btn');
+  if (backBtn) { backBtn.innerHTML = icon('back'); backBtn.addEventListener('click', () => history.back()); }
   if (store.get().onboarded) {
     const generated = RecurrencesService.processAll();
     if (generated > 0) refreshChrome();
   }
-
   const startApp = () => {
     if (!store.get().onboarded) {
       renderOnboarding(() => {
@@ -4932,7 +4835,6 @@ function boot() {
       startRouter();
     }
   };
-
   if (store.get().onboarded && isPinSet()) {
     document.getElementById('app').style.display = 'none';
     showLock(() => {
@@ -4942,17 +4844,14 @@ function boot() {
   } else {
     startApp();
   }
-
   store.subscribe(() => {
     refreshChrome();
   });
-
   // Ambient background: restart on load and every time the app comes back
   // into view — covers app switches, screen lock/unlock and the OS bfcache.
   restartAmbientAnimations();
   window.addEventListener('pageshow', restartAmbientAnimations);
   window.addEventListener('focus', restartAmbientAnimations);
-
   // Auto-lock: re-show the PIN pad when the app regains visibility, if enabled.
   let hiddenAt = null;
   document.addEventListener('visibilitychange', () => {
@@ -4967,9 +4866,7 @@ function boot() {
     }
   });
 }
-
 boot();
-
 </script>
 </body>
 </html>
